@@ -11,4 +11,5 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("ui_cancel"):
 		player_car.global_position = start_position
+		player_car.global_rotation_degrees = Vector3.ZERO
 		player_car.linear_velocity = Vector3.ZERO

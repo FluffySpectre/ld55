@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://bxoaf0w42s6rh"]
+
+[sub_resource type="Curve" id="Curve_dpdsp"]
+_data = [Vector2(0, 0.985491), 0.0, 0.0, 0, 0, Vector2(0.62, 0.985491), 0.0, 0.0, 0, 0, Vector2(0.988572, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6730o"]
+curve = SubResource("Curve_dpdsp")
+
+[sub_resource type="Gradient" id="Gradient_fnwxb"]
+interpolation_mode = 2
+colors = PackedColorArray(0.185605, 0.329721, 0.0852146, 1, 0.375274, 0.82866, 0.235013, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b6gr7"]
+gradient = SubResource("Gradient_fnwxb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8j2uu"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.1
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 1.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+flatness = 1.0
+initial_velocity_min = 4.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
+damping_min = 5.0
+damping_max = 5.0
+color_ramp = SubResource("GradientTexture1D_b6gr7")
+alpha_curve = SubResource("CurveTexture_6730o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ndo2o"]
+transparency = 1
+vertex_color_use_as_albedo = true
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_4innc"]
+material = SubResource("StandardMaterial3D_ndo2o")
+shape = 0
+size = 0.1
+sections = 2
+section_length = 0.1
+section_segments = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ubf7"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_5ik64"]
+material = SubResource("StandardMaterial3D_6ubf7")
+size = Vector2(0.2, 0.2)
+
+[node name="RitualPickup1" type="Node3D"]
+
+[node name="CircleParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.154869, 0.367996, -1.73068)
+visible = false
+amount = 250
+lifetime = 20.0
+preprocess = 10.0
+transform_align = 1
+trail_enabled = true
+trail_lifetime = 20.0
+process_material = SubResource("ParticleProcessMaterial_8j2uu")
+draw_pass_1 = SubResource("RibbonTrailMesh_4innc")
+
+[node name="PickupParticlesGreen" type="GPUParticles3D" parent="."]
+amount = 50
+preprocess = 3.0
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_8j2uu")
+draw_pass_1 = SubResource("QuadMesh_5ik64")
