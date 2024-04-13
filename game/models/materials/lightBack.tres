@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://crsn3h5c8b474"]
+
+[resource]
+resource_name = "lightBack"
+albedo_color = Color(1, 0.34902, 0.227451, 1)
+metallic = 1.0

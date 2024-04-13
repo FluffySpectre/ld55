@@ -1,0 +1,84 @@
+[gd_scene load_steps=14 format=3 uid="uid://c5385qrdr3oil"]
+
+[ext_resource type="PackedScene" uid="uid://dap5ikl03t5t4" path="res://scenes/straight_street.tscn" id="1_1hm0f"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_a32xk"]
+[ext_resource type="PackedScene" uid="uid://cc2gxluvkmj1t" path="res://scenes/player_car_v5.tscn" id="2_np6hg"]
+[ext_resource type="Script" path="res://scripts/follow_target.gd" id="4_n7enx"]
+[ext_resource type="Script" path="res://scripts/camera_controller.gd" id="4_n7y0v"]
+[ext_resource type="Script" path="res://scripts/track_generator.gd" id="5_4jdud"]
+[ext_resource type="PackedScene" uid="uid://b2qw28r6n53s4" path="res://scenes/enemy_car_1.tscn" id="6_cyxr3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hocx1"]
+transparency = 1
+albedo_color = Color(0.411765, 0.403922, 0.396078, 0.513726)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_roxwb"]
+albedo_color = Color(0.235294, 0.2, 0.172549, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ofu8k"]
+material = SubResource("StandardMaterial3D_roxwb")
+flip_faces = true
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="Curve" id="Curve_8x50n"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Environment" id="Environment_u523i"]
+tonemap_mode = 3
+fog_height = 1.0
+fog_height_density = 0.1
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_gpxap"]
+
+[node name="Main" type="Node3D" node_paths=PackedStringArray("player_car")]
+script = ExtResource("1_a32xk")
+player_car = NodePath("PlayerCarV5")
+
+[node name="PlayerCarV5" parent="." instance=ExtResource("2_np6hg")]
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="PlayerCarV5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0792724, 1.02961, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_hocx1")
+amount = 10
+lifetime = 5.0
+mesh = SubResource("QuadMesh_ofu8k")
+direction = Vector3(2.08165e-12, 2.08165e-12, -1)
+spread = 25.0
+gravity = Vector3(2.08165e-12, 0.01, 2.08165e-12)
+tangential_accel_min = 0.01
+tangential_accel_max = 0.05
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_8x50n")
+hue_variation_min = -0.25
+hue_variation_max = 0.25
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(-1, -6.18173e-08, 6.18173e-08, 2.4663e-16, 0.707107, 0.707107, -8.74228e-08, 0.707107, -0.707107, 1.62137, 7.9633, 8.0044)
+script = ExtResource("4_n7y0v")
+target = NodePath("../CameraTarget")
+lerp_speed = 20.0
+offset = Vector3(2.08165e-12, 9, -8)
+
+[node name="CameraTarget" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_n7enx")
+target = NodePath("../PlayerCarV5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.907777, -0.40516, 0.108562, 0, 0.258819, 0.965926, -0.419452, -0.876846, 0.23495, 0, 0, 0)
+shadow_enabled = true
+
+[node name="TrackGenerator" type="Node3D" parent="."]
+script = ExtResource("5_4jdud")
+straight_street_scene = ExtResource("1_1hm0f")
+
+[node name="EnemyCar1" parent="." instance=ExtResource("6_cyxr3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.57968, 20.0923)
+max_speed = 220.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_u523i")
+camera_attributes = SubResource("CameraAttributesPhysical_gpxap")
+
+[editable path="PlayerCarV5"]

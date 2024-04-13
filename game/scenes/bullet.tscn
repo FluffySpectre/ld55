@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://p5cjdn7jticj"]
+
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_gsa4t"]
+[ext_resource type="Script" path="res://scripts/destroy_after_time.gd" id="1_v6sj8"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_warbx"]
+height = 0.1
+radius = 0.01
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_btse4"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 1.0
+radial_segments = 6
+
+[node name="Bullet" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 0
+mass = 0.01
+gravity_scale = 1.66533e-16
+can_sleep = false
+continuous_cd = true
+script = ExtResource("1_gsa4t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, -1.5246e-23, -1.5246e-23, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_warbx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, -1.5246e-23, -1.5246e-23, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_btse4")
+
+[node name="DestroyAfterTime" type="Node" parent="."]
+script = ExtResource("1_v6sj8")
+destroy_parent_instead = true
