@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c5385qrdr3oil"]
+[gd_scene load_steps=14 format=3 uid="uid://c5385qrdr3oil"]
 
 [ext_resource type="PackedScene" uid="uid://dap5ikl03t5t4" path="res://scenes/straight_street.tscn" id="1_1hm0f"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_a32xk"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://scripts/camera_controller.gd" id="4_n7y0v"]
 [ext_resource type="Script" path="res://scripts/track_generator.gd" id="5_4jdud"]
 [ext_resource type="PackedScene" uid="uid://b2qw28r6n53s4" path="res://scenes/enemy_car_1.tscn" id="6_cyxr3"]
-[ext_resource type="PackedScene" uid="uid://ch788n75qxxpa" path="res://scenes/ritual_pickup_2.tscn" id="8_qjqu8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hocx1"]
 transparency = 1
@@ -87,9 +86,6 @@ player_car = NodePath("../PlayerCarV5")
 [node name="EnemyCar1" parent="." instance=ExtResource("6_cyxr3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.57968, 20.0923)
 max_speed = 220.0
-
-[node name="RitualPickup2" parent="." instance=ExtResource("8_qjqu8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.1, 100)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_u523i")
