@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cc2gxluvkmj1t"]
+[gd_scene load_steps=24 format=3 uid="uid://cc2gxluvkmj1t"]
 
 [ext_resource type="Script" path="res://scripts/car_controller.gd" id="1_ydngu"]
 [ext_resource type="Script" path="res://scripts/player_input.gd" id="2_gusdt"]
@@ -340,6 +340,33 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fbcro")
 
+[sub_resource type="Curve" id="Curve_4y6t7"]
+_data = [Vector2(0.00871459, 1), 0.0, 0.0, 0, 0, Vector2(0.984749, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mctc7"]
+curve = SubResource("Curve_4y6t7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x0b63"]
+direction = Vector3(2.08165e-12, 2.08165e-12, -1)
+spread = 25.0
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+gravity = Vector3(2.08165e-12, 2, -1)
+damping_min = 2.8
+damping_max = 2.9
+scale_min = 0.1
+color = Color(0.282353, 0.290196, 0.266667, 0.901961)
+alpha_curve = SubResource("CurveTexture_mctc7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxs0f"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_1cnoi"]
+material = SubResource("StandardMaterial3D_xxs0f")
+size = Vector2(0.2, 0.2)
+
 [node name="PlayerCarV5" type="VehicleBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.57968, 25.6832)
 mass = 100.0
@@ -433,6 +460,23 @@ omni_range = 0.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.473938, 0.0361633, -1.15439)
 light_color = Color(1, 0.0588235, 0.0588235, 1)
 omni_range = 0.5
+
+[node name="BrakeParticlesLeft" type="GPUParticles3D" parent="BrakeLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.459999, -0.613527, -0.834604)
+emitting = false
+amount = 48
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_x0b63")
+draw_pass_1 = SubResource("QuadMesh_1cnoi")
+
+[node name="BrakeParticlesRight" type="GPUParticles3D" parent="BrakeLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.500982, -0.613527, -0.834604)
+emitting = false
+amount = 48
+explosiveness = 0.4
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_x0b63")
+draw_pass_1 = SubResource("QuadMesh_1cnoi")
 
 [node name="PlayerInput" type="Node" parent="."]
 script = ExtResource("2_gusdt")

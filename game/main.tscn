@@ -47,6 +47,7 @@ script = ExtResource("1_a32xk")
 cam_controller = NodePath("../Camera3D2")
 
 [node name="PlayerCarV5" parent="." instance=ExtResource("2_np6hg")]
+speed_dependent_steering = 0.1
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="PlayerCarV5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0792724, 1.02961, 0)
