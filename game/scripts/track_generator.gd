@@ -3,18 +3,24 @@ class_name TrackGenerator extends Node3D
 @export var street_part_scenes: Array[PackedScene]
 @export var player_car: Node3D
 
-var num_parts_to_load = 10
+var num_parts_to_load = 5
 var loaded_street_parts = []
 var last_out_connector: Node3D
 var rng = RandomNumberGenerator.new()
+var last_player_track_part: Node3D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	generate()
 
-func _process(delta):
+func _process(_delta):
 	generate()
 	destroy_out_of_screen_street_parts()
+
+func get_player_track_part_position():
+	if last_player_track_part == null:
+		return Vector3.ZERO
+	return last_player_track_part.global_position
 
 func get_street_part_scene():
 	return street_part_scenes[rng.randi_range(0, street_part_scenes.size() - 1)]

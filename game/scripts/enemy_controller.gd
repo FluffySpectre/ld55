@@ -17,7 +17,7 @@ func _physics_process(delta):
 	var predicted_position = predict_player_position(delta)
 	perform_interception(predicted_position)
 
-func predict_player_position(delta: float) -> Vector3:
+func predict_player_position(_delta: float) -> Vector3:
 	var player_velocity = player_car.linear_velocity
 	var predicted_position = player_car.global_transform.origin + (player_velocity * predict_time)
 	return predicted_position
@@ -40,7 +40,7 @@ func calculate_steering(direction_to_target: Vector3) -> float:
 	var steer_angle = forward_direction.cross(direction_to_target).y
 	return clamp(steer_angle, -1.0, 1.0)
 
-func calculate_acceleration(distance_to_predicted: float, direction_to_target: Vector3) -> float:
+func calculate_acceleration(distance_to_predicted: float, _direction_to_target: Vector3) -> float:
 	if distance_to_predicted > attack_distance:
 		return 1.0
 	else:

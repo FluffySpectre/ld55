@@ -6,7 +6,7 @@ class_name CarController extends VehicleBody3D
 @export var max_speed = 200.0
 # Steering smoothing
 @export var steering_smoothness = 750.0
-@export var speed_dependent_steering = 0.1
+@export var speed_dependent_steering = 2.0
 
 # Inputs
 @export var steer_input = 0.0
@@ -32,7 +32,7 @@ func _physics_process(delta):
 		steering = move_toward(steering, target_steering, steering_smoothness * delta)
 	else:
 		# We got steering input, so set it (including the speed adjustment)
-		var adjusted_input = steer_input * deg_to_rad(max_steer)
+		var adjusted_input = speed_adjustment * steer_input * deg_to_rad(max_steer)
 		steering = move_toward(steering, adjusted_input, steering_smoothness * delta)
 	
 	if acceleration_input > 0:

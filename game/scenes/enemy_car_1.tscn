@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://b2qw28r6n53s4"]
+[gd_scene load_steps=20 format=3 uid="uid://b2qw28r6n53s4"]
 
 [ext_resource type="Script" path="res://scripts/car_controller.gd" id="1_wcw3i"]
 [ext_resource type="Script" path="res://scripts/enemy_controller.gd" id="2_uc7be"]
+[ext_resource type="Script" path="res://scripts/brake_lights.gd" id="3_qjwsa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_unqrh"]
 resource_name = "plastic"
@@ -430,3 +431,16 @@ script = ExtResource("2_uc7be")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CarCollision"]
 shape = SubResource("BoxShape3D_xtti3")
+
+[node name="BrakeLights" type="Node3D" parent="."]
+script = ExtResource("3_qjwsa")
+
+[node name="BrakeLightLeft" type="OmniLight3D" parent="BrakeLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.47702, 0.0361633, -1.15439)
+light_color = Color(1, 0, 0, 1)
+omni_range = 0.5
+
+[node name="BrakeLightRight" type="OmniLight3D" parent="BrakeLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.473938, 0.0361633, -1.15439)
+light_color = Color(1, 0.0588235, 0.0588235, 1)
+omni_range = 0.5

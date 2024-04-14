@@ -4,7 +4,7 @@ func _ready():
 	GameManager.player_car = get_parent()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	var steer_input = Input.get_axis("steer_right", "steer_left")
 	var acceleration_input = Input.get_axis("brake", "accelerate")
 	

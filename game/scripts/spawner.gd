@@ -24,5 +24,5 @@ func spawn():
 		return
 	
 	var instance = get_random_scene_to_spawn().instantiate() as Node3D
-	instance.global_position = get_random_point_in_area()
 	add_child(instance)
+	instance.global_position = get_random_point_in_area()
