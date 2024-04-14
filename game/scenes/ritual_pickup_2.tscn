@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxoaf0w42s6rh"]
+[gd_scene load_steps=12 format=3 uid="uid://ch788n75qxxpa"]
 
-[ext_resource type="Texture2D" uid="uid://c1jvhdcw7yxxi" path="res://textures/pentagram.png" id="1_8ky1q"]
+[ext_resource type="Texture2D" uid="uid://c1jvhdcw7yxxi" path="res://textures/pentagram.png" id="1_24t3k"]
+[ext_resource type="Shader" path="res://shader/fadeout.gdshader" id="2_nxpvq"]
 
 [sub_resource type="Curve" id="Curve_dpdsp"]
 _data = [Vector2(0, 0.985491), 0.0, 0.0, 0, 0, Vector2(0.62, 0.985491), 0.0, 0.0, 0, 0, Vector2(0.988572, 0), 0.0, 0.0, 0, 0]
@@ -19,32 +20,19 @@ gradient = SubResource("Gradient_fnwxb")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8j2uu"]
 emission_shape = 6
 emission_ring_axis = Vector3(0, 1, 0)
-emission_ring_height = 0.1
-emission_ring_radius = 1.0
-emission_ring_inner_radius = 1.0
+emission_ring_height = 2.08165e-12
+emission_ring_radius = 2.0
+emission_ring_inner_radius = 2.0
 direction = Vector3(0, 1, 0)
 spread = 0.0
 flatness = 1.0
-initial_velocity_min = 4.0
-initial_velocity_max = 4.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
 gravity = Vector3(0, 0, 0)
-damping_min = 5.0
-damping_max = 5.0
+damping_min = 20.0
+damping_max = 20.0
 color_ramp = SubResource("GradientTexture1D_b6gr7")
 alpha_curve = SubResource("CurveTexture_6730o")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ndo2o"]
-transparency = 1
-vertex_color_use_as_albedo = true
-use_particle_trails = true
-
-[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_4innc"]
-material = SubResource("StandardMaterial3D_ndo2o")
-shape = 0
-size = 0.1
-sections = 2
-section_length = 0.1
-section_segments = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ubf7"]
 transparency = 1
@@ -54,30 +42,38 @@ vertex_color_use_as_albedo = true
 material = SubResource("StandardMaterial3D_6ubf7")
 size = Vector2(0.2, 0.2)
 
-[node name="RitualPickup1" type="Node3D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ae1o6"]
+render_priority = 0
+shader = ExtResource("2_nxpvq")
+shader_parameter/fade_start = -0.1
+shader_parameter/color = Vector3(2.08165e-12, 0.5, 2.08165e-12)
 
-[node name="CircleParticles" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.154869, 0.367996, -1.73068)
-visible = false
-amount = 250
-lifetime = 20.0
-preprocess = 10.0
-transform_align = 1
-trail_enabled = true
-trail_lifetime = 20.0
-process_material = SubResource("ParticleProcessMaterial_8j2uu")
-draw_pass_1 = SubResource("RibbonTrailMesh_4innc")
+[sub_resource type="CylinderMesh" id="CylinderMesh_ga2pg"]
+lightmap_size_hint = Vector2i(58, 32)
+flip_faces = true
+top_radius = 1.8
+bottom_radius = 1.8
+cap_top = false
+cap_bottom = false
+
+[node name="RitualPickup2" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 1, 0, 0, 0, 7, 0, 0, 0)
+axis = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("1_24t3k")
 
 [node name="PickupParticlesGreen" type="GPUParticles3D" parent="."]
-amount = 50
+amount = 100
 preprocess = 3.0
 transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_8j2uu")
 draw_pass_1 = SubResource("QuadMesh_5ik64")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0)
-axis = 1
-double_sided = false
-texture_filter = 0
-texture = ExtResource("1_8ky1q")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.929608, 0)
+visible = false
+material_override = SubResource("ShaderMaterial_ae1o6")
+mesh = SubResource("CylinderMesh_ga2pg")

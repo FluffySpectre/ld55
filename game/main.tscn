@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/camera_controller.gd" id="4_n7y0v"]
 [ext_resource type="Script" path="res://scripts/track_generator.gd" id="5_4jdud"]
 [ext_resource type="PackedScene" uid="uid://b2qw28r6n53s4" path="res://scenes/enemy_car_1.tscn" id="6_cyxr3"]
-[ext_resource type="PackedScene" uid="uid://bxoaf0w42s6rh" path="res://scenes/ritual_pickup_1.tscn" id="8_vyb8q"]
+[ext_resource type="PackedScene" uid="uid://ch788n75qxxpa" path="res://scenes/ritual_pickup_2.tscn" id="8_qjqu8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hocx1"]
 transparency = 1
@@ -29,14 +29,17 @@ point_count = 2
 tonemap_mode = 3
 tonemap_exposure = 1.96
 ssao_enabled = true
+glow_enabled = true
 fog_light_color = Color(1, 0.152941, 0.137255, 1)
 fog_height = 1.0
 fog_height_density = 0.2
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.035
-volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_density = 0.025
+adjustment_brightness = 0.47
+adjustment_contrast = 1.22
+adjustment_saturation = 1.39
 
-[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_gpxap"]
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_82l6d"]
 
 [node name="Main" type="Node3D" node_paths=PackedStringArray("player_car")]
 script = ExtResource("1_a32xk")
@@ -61,7 +64,7 @@ scale_amount_curve = SubResource("Curve_8x50n")
 hue_variation_min = -0.25
 hue_variation_max = 0.25
 
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+[node name="Camera3D2" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(-1, -6.18173e-08, 6.18173e-08, 2.4663e-16, 0.707107, 0.707107, -8.74228e-08, 0.707107, -0.707107, 1.62137, 7.9633, 8.0044)
 script = ExtResource("4_n7y0v")
 target = NodePath("../CameraTarget")
@@ -84,11 +87,11 @@ straight_street_scene = ExtResource("1_1hm0f")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.57968, 20.0923)
 max_speed = 220.0
 
+[node name="RitualPickup2" parent="." instance=ExtResource("8_qjqu8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.1, 100)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_u523i")
-camera_attributes = SubResource("CameraAttributesPhysical_gpxap")
-
-[node name="RitualPickup1" parent="." instance=ExtResource("8_vyb8q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 87.2815)
+camera_attributes = SubResource("CameraAttributesPractical_82l6d")
 
 [editable path="PlayerCarV5"]
