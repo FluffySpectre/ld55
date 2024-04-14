@@ -11,7 +11,7 @@ func _ready():
 
 func _physics_process(delta):
 	if !player_car:
-		player_car = GameManager.player_car
+		player_car = GameManager.instance.player_car
 		return
 
 	var predicted_position = predict_player_position(delta)
@@ -41,7 +41,7 @@ func calculate_steering(direction_to_target: Vector3) -> float:
 	return clamp(steer_angle, -1.0, 1.0)
 
 func calculate_acceleration(distance_to_predicted: float, _direction_to_target: Vector3) -> float:
-	if distance_to_predicted > attack_distance:
+	if distance_to_predicted > attack_distance && _direction_to_target.z > 0:
 		return 1.0
 	else:
 		return -1.0

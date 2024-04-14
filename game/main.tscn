@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c5385qrdr3oil"]
+[gd_scene load_steps=13 format=3 uid="uid://c5385qrdr3oil"]
 
 [ext_resource type="PackedScene" uid="uid://dap5ikl03t5t4" path="res://scenes/straight_street.tscn" id="1_1hm0f"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_a32xk"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://scripts/follow_target.gd" id="4_n7enx"]
 [ext_resource type="Script" path="res://scripts/camera_controller.gd" id="4_n7y0v"]
 [ext_resource type="Script" path="res://scripts/track_generator.gd" id="5_4jdud"]
-[ext_resource type="PackedScene" uid="uid://b2qw28r6n53s4" path="res://scenes/enemy_car_1.tscn" id="6_cyxr3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hocx1"]
 transparency = 1
@@ -41,9 +40,11 @@ adjustment_saturation = 1.39
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_82l6d"]
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("player_car")]
+[node name="Main" type="Node3D"]
+
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("cam_controller")]
 script = ExtResource("1_a32xk")
-player_car = NodePath("PlayerCarV5")
+cam_controller = NodePath("../Camera3D2")
 
 [node name="PlayerCarV5" parent="." instance=ExtResource("2_np6hg")]
 
@@ -67,9 +68,9 @@ hue_variation_max = 0.25
 [node name="Camera3D2" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(-1, -6.18173e-08, 6.18173e-08, 2.4663e-16, 0.707107, 0.707107, -8.74228e-08, 0.707107, -0.707107, 1.62137, 7.9633, 8.0044)
 script = ExtResource("4_n7y0v")
-target = NodePath("../CameraTarget")
+target = NodePath("../PlayerCarV5/Body")
 lerp_speed = 20.0
-offset = Vector3(2.08165e-12, 9, -8)
+offset = Vector3(0, 9, 8)
 
 [node name="CameraTarget" type="Node3D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("4_n7enx")
@@ -83,10 +84,6 @@ shadow_enabled = true
 script = ExtResource("5_4jdud")
 street_part_scenes = Array[PackedScene]([ExtResource("1_1hm0f")])
 player_car = NodePath("../PlayerCarV5")
-
-[node name="EnemyCar1" parent="." instance=ExtResource("6_cyxr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.57968, 20.0923)
-max_speed = 220.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_u523i")

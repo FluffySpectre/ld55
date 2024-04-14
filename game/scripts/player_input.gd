@@ -1,7 +1,7 @@
 class_name PlayerInput extends Node
 
 func _ready():
-	GameManager.player_car = get_parent()
+	GameManager.instance.player_car = get_parent()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

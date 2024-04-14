@@ -1,10 +1,16 @@
-extends Node3D
+class_name GameManager extends Node
 
 @export var player_car: CarController
+@export var cam_controller: CameraController
+
+static var instance: GameManager
 
 # @onready var track_generator: TrackGenerator = $TrackGenerator
 
 var start_position: Vector3 = Vector3.ZERO
+
+func _ready():
+	instance = self
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -22,3 +28,5 @@ func reset_player():
 	player_car.global_rotation_degrees = Vector3.ZERO
 	player_car.linear_velocity = Vector3.ZERO
 	player_car.angular_velocity = Vector3.ZERO
+	
+	cam_controller.reset_view()
