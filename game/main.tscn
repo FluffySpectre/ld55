@@ -41,9 +41,9 @@ speed_dependent_steering = 0.1
 [node name="Camera3D2" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(-1, -6.18173e-08, 6.18173e-08, 2.4663e-16, 0.707107, 0.707107, -8.74228e-08, 0.707107, -0.707107, 1.62137, 7.9633, 8.0044)
 script = ExtResource("4_n7y0v")
-target = NodePath("../PlayerCarV5/Body")
+target = NodePath("../CameraTarget")
 lerp_speed = 14.0
-offset = Vector3(2.08165e-12, 7, 6)
+offset = Vector3(2.08165e-12, 7, -6)
 
 [node name="CameraTarget" type="Node3D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("4_n7enx")

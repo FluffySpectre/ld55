@@ -1,12 +1,12 @@
 class_name CarController extends VehicleBody3D
 
 @export var engine_power = 3000.0
-@export var max_steer = 6.0
+@export var max_steer = 15.0
 @export var brake_power = 15.0
 @export var max_speed = 100.0
 # Steering smoothing
-@export var steering_smoothness = 750.0
-@export var speed_dependent_steering = 2.0
+@export var steering_smoothness = 10.0
+@export var speed_dependent_steering = 0.2
 
 # Inputs
 @export var steer_input = 0.0
@@ -17,7 +17,7 @@ func _physics_process(delta):
 	var velocity = linear_velocity.length()
 
 	# Adjustment of the steering factor in dependence of the speed
-	var speed_adjustment = clamp(1.0 - (velocity * speed_dependent_steering), 0.1, 1.0)
+	var speed_adjustment = clamp(1.0 - (velocity * speed_dependent_steering), 0.15, 1.0)
 
 	if steer_input == 0:
 		var current_forward = global_transform.basis.z.normalized()
@@ -26,7 +26,7 @@ func _physics_process(delta):
 		# Calculate delta angle between the current direction and the forward direction
 		var angle_diff = atan2(current_forward.cross(desired_forward).y, current_forward.dot(desired_forward))
 		
-		var target_steering = clamp(angle_diff / deg_to_rad(max_steer), -1, 1) * speed_adjustment
+		var target_steering = clamp(angle_diff / deg_to_rad(max_steer), -1, 1) * speed_adjustment * 0.4
 		
 		# Lerp the steering towards the desired direction
 		steering = move_toward(steering, target_steering, steering_smoothness * delta)
