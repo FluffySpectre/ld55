@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://molrk3pyx2am"]
+
+[ext_resource type="ArrayMesh" uid="uid://cf502nxa15n4i" path="res://models/tree.obj" id="1_geqfv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l6is8"]
+albedo_color = Color(0.262745, 0.180392, 0.0588235, 1)
+texture_filter = 0
+
+[node name="SpookyTree1" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_l6is8")
+mesh = ExtResource("1_geqfv")

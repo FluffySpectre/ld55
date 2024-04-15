@@ -40,8 +40,8 @@ func calculate_steering(direction_to_target: Vector3) -> float:
 	var steer_angle = forward_direction.cross(direction_to_target).y
 	return clamp(steer_angle, -1.0, 1.0)
 
-func calculate_acceleration(distance_to_predicted: float, _direction_to_target: Vector3) -> float:
-	if distance_to_predicted > attack_distance && _direction_to_target.z > 0:
+func calculate_acceleration(distance_to_predicted: float, direction_to_target: Vector3) -> float:
+	if direction_to_target.z < 0:
 		return 1.0
 	else:
 		return -1.0

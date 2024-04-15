@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://dap5ikl03t5t4"]
+[gd_scene load_steps=17 format=3 uid="uid://dap5ikl03t5t4"]
 
 [ext_resource type="Texture2D" uid="uid://dvg4jvbn8k6kl" path="res://textures/street.png" id="1_llngd"]
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="2_b4fxe"]
 [ext_resource type="Texture2D" uid="uid://blj021ji4ardo" path="res://textures/street_sidelines.png" id="2_n2rpe"]
 [ext_resource type="PackedScene" uid="uid://ch788n75qxxpa" path="res://scenes/ritual_pickup_2.tscn" id="3_fnry5"]
 [ext_resource type="PackedScene" uid="uid://b2qw28r6n53s4" path="res://scenes/enemy_car_1.tscn" id="5_t6ngi"]
+[ext_resource type="PackedScene" uid="uid://d2265v0byai01" path="res://scenes/street_lamp.tscn" id="6_u5635"]
+[ext_resource type="PackedScene" uid="uid://molrk3pyx2am" path="res://scenes/spooky_tree_1.tscn" id="7_o86ua"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3or4b"]
 
@@ -20,10 +22,19 @@ texture_filter = 0
 size = Vector2(2, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3sqcq"]
-size = Vector3(2, 10, 0.028)
+size = Vector3(2, 10, 0.01)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_02cjv"]
 size = Vector3(25, 0.5, 145)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r7jc4"]
+albedo_color = Color(0.152941, 0.0901961, 0.00392157, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_t6pxs"]
+size = Vector2(500, 150)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f7pcp"]
+size = Vector3(500, 0.1, 150)
 
 [node name="StraightStreet" type="Node3D"]
 
@@ -79,3 +90,39 @@ monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PowerupSpawner/Area3D"]
 shape = SubResource("BoxShape3D_02cjv")
+
+[node name="StreetLamp" parent="." instance=ExtResource("6_u5635")]
+transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, -14.579, 0.21, 75)
+
+[node name="StreetLamp2" parent="." instance=ExtResource("6_u5635")]
+transform = Transform3D(-4.37114e-08, -3.48787e-16, -1, 3.48787e-16, 1, -3.48787e-16, 1, -3.48787e-16, -4.37114e-08, 14.5889, 0.21, 75)
+
+[node name="Trees" type="Node3D" parent="."]
+
+[node name="SpookyTree1" parent="Trees" instance=ExtResource("7_o86ua")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.3967, 0, 109.85)
+
+[node name="SpookyTree2" parent="Trees" instance=ExtResource("7_o86ua")]
+transform = Transform3D(0.152091, -3.09202e-16, -0.734417, 2.6159e-16, 0.75, -2.6159e-16, 0.734417, -2.03108e-16, 0.152091, -32.3967, 0, 90.4556)
+
+[node name="SpookyTree3" parent="Trees" instance=ExtResource("7_o86ua")]
+transform = Transform3D(-0.519519, -1.16823e-16, -0.854459, 3.48787e-16, 1, -3.48787e-16, 0.854459, -4.79225e-16, -0.519519, 37.8315, 0, 90.4556)
+
+[node name="SpookyTree4" parent="Trees" instance=ExtResource("7_o86ua")]
+transform = Transform3D(0.6903, -7.05255e-16, -1.33172, 5.2318e-16, 1.5, -5.2318e-16, 1.33172, -2.2372e-16, 0.6903, 27.0938, -0.192451, 46.2006)
+
+[node name="SpookyTree5" parent="Trees" instance=ExtResource("7_o86ua")]
+transform = Transform3D(0.576432, 8.39574e-17, 0.817145, 3.48787e-16, 1, -3.48787e-16, -0.817145, 4.86061e-16, 0.576432, -23.8174, 0, 31.2852)
+
+[node name="SpookyTree6" parent="Trees" instance=ExtResource("7_o86ua")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.4276, 0, 140.155)
+
+[node name="Plane" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.01, 74.311)
+material_override = SubResource("StandardMaterial3D_r7jc4")
+mesh = SubResource("PlaneMesh_t6pxs")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Plane"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane/StaticBody3D"]
+shape = SubResource("BoxShape3D_f7pcp")

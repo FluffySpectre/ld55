@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5385qrdr3oil"]
+[gd_scene load_steps=12 format=3 uid="uid://c5385qrdr3oil"]
 
 [ext_resource type="PackedScene" uid="uid://dap5ikl03t5t4" path="res://scenes/straight_street.tscn" id="1_1hm0f"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_a32xk"]
@@ -8,7 +8,16 @@
 [ext_resource type="Script" path="res://scripts/camera_controller.gd" id="4_n7y0v"]
 [ext_resource type="Script" path="res://scripts/track_generator.gd" id="5_4jdud"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jf1u2"]
+ground_bottom_color = Color(0.141176, 0.145098, 0.345098, 1)
+
+[sub_resource type="Sky" id="Sky_legu6"]
+sky_material = SubResource("ProceduralSkyMaterial_jf1u2")
+
 [sub_resource type="Environment" id="Environment_u523i"]
+background_mode = 2
+sky = SubResource("Sky_legu6")
+ambient_light_color = Color(0.54902, 0.654902, 0.964706, 1)
 tonemap_mode = 3
 tonemap_exposure = 1.96
 ssao_enabled = true
@@ -17,8 +26,9 @@ fog_light_color = Color(1, 0.152941, 0.137255, 1)
 fog_height = 1.0
 fog_height_density = 0.2
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.025
-volumetric_fog_albedo = Color(0.247059, 0.247059, 0.247059, 1)
+volumetric_fog_density = 0.04
+volumetric_fog_albedo = Color(0.8, 0.8, 0.8, 1)
+volumetric_fog_length = 100.0
 adjustment_brightness = 0.47
 adjustment_contrast = 1.22
 adjustment_saturation = 1.39
@@ -43,7 +53,7 @@ transform = Transform3D(-1, -6.18173e-08, 6.18173e-08, 2.4663e-16, 0.707107, 0.7
 script = ExtResource("4_n7y0v")
 target = NodePath("../CameraTarget")
 lerp_speed = 14.0
-offset = Vector3(2.08165e-12, 7, -6)
+offset = Vector3(2.08165e-12, 5, -7)
 
 [node name="CameraTarget" type="Node3D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("4_n7enx")
@@ -51,7 +61,12 @@ target = NodePath("../PlayerCarV5")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.907777, -0.40516, 0.108562, 0, 0.258819, 0.965926, -0.419452, -0.876846, 0.23495, 0, 0, 0)
+light_color = Color(0.635294, 0.686275, 0.776471, 1)
+light_energy = 0.5
 shadow_enabled = true
+shadow_normal_bias = 0.0
+directional_shadow_mode = 0
+directional_shadow_blend_splits = true
 
 [node name="TrackGenerator" type="Node3D" parent="." node_paths=PackedStringArray("player_car")]
 script = ExtResource("5_4jdud")

@@ -15,15 +15,16 @@ func get_random_scene_to_spawn():
 	return scenes_to_spawn[rng.randi_range(0, scenes_to_spawn.size() - 1)]
 
 func get_random_point_in_area():
-	var area_collision_shape = spawn_area.get_node("CollisionShape3D") as CollisionShape3D
-	var size_halfed = area_collision_shape.shape.size * 0.5
-	var random_point = Vector3(rng.randf_range(-size_halfed.x, size_halfed.x), rng.randf_range(-size_halfed.y, size_halfed.y), rng.randf_range(-size_halfed.z, size_halfed.z))
-	return spawn_area.global_position + random_point
-
+	var collision_shape = spawn_area.get_node("CollisionShape3D") as CollisionShape3D
+	var extents = collision_shape.shape.extents
+	var min_extent = -extents
+	var max_extent = extents
+	return collision_shape.global_position + Vector3(randf_range(min_extent.x, max_extent.x), randf_range(min_extent.y, max_extent.y), randf_range(min_extent.z, max_extent.z))
+	
 func spawn():
-	#if rng.randf() > chance_for_spawn:
-	#	return
+	if rng.randf() > chance_for_spawn:
+		return
 	
 	var instance = get_random_scene_to_spawn().instantiate() as Node3D
-	get_tree().root.add_child.call_deferred(instance)
-	instance.global_position = get_random_point_in_area() + spawn_offset
+	add_child(instance)
+	instance.global_position = get_random_point_in_area()
