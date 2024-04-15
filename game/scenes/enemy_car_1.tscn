@@ -257,7 +257,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_uh6u3")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ucw18"]
-size = Vector3(1.19727, 0.942383, 2.4444)
+size = Vector3(1.57446, 0.942383, 3.16377)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ep4d7"]
 resource_name = "wheelInside"
@@ -380,7 +380,7 @@ brake_power = 20.0
 max_speed = 150.0
 
 [node name="Body" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.08165e-12, -0.425193, 0)
+transform = Transform3D(-1.3, 0, -1.96295e-07, 0, 1.3, 0, 1.96295e-07, 0, -1.3, 2.08165e-12, -0.425193, 0)
 mesh = SubResource("ArrayMesh_0l4mh")
 skeleton = NodePath("")
 
@@ -390,11 +390,11 @@ mesh = SubResource("ArrayMesh_it44l")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0166016, 0.0288086, -0.0282898)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0120844, 0.0288086, -0.0292435)
 shape = SubResource("BoxShape3D_ucw18")
 
 [node name="RearRight" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.521542, -0.351808, -0.663332)
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, -0.6871, -0.32, -0.863001)
 use_as_traction = true
 wheel_roll_influence = 2.08165e-12
 wheel_radius = 0.3
@@ -409,7 +409,7 @@ mesh = SubResource("ArrayMesh_6i7lv")
 skeleton = NodePath("")
 
 [node name="RearLeft" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.522, -0.352, -0.663)
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0.687, -0.32, -0.863)
 use_as_traction = true
 wheel_roll_influence = 2.08165e-12
 wheel_radius = 0.3
@@ -424,7 +424,7 @@ mesh = SubResource("ArrayMesh_6i7lv")
 skeleton = NodePath("")
 
 [node name="FrontRight" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.522, -0.352, 0.658)
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, -0.687, -0.32, 0.865763)
 use_as_steering = true
 wheel_roll_influence = 2.08165e-12
 wheel_radius = 0.3
@@ -439,7 +439,7 @@ mesh = SubResource("ArrayMesh_6i7lv")
 skeleton = NodePath("")
 
 [node name="FrontLeft" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.522, -0.352, 0.658165)
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0.687, -0.32, 0.866)
 use_as_steering = true
 wheel_roll_influence = 2.08165e-12
 wheel_radius = 0.3
@@ -465,27 +465,27 @@ shape = SubResource("BoxShape3D_xtti3")
 script = ExtResource("3_qjwsa")
 
 [node name="BrakeLightLeft" type="OmniLight3D" parent="BrakeLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.47702, 0.0361633, -1.15439)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.625945, 0.17691, -1.52036)
 light_color = Color(1, 0, 0, 1)
 omni_range = 0.5
 
 [node name="BrakeLightRight" type="OmniLight3D" parent="BrakeLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.473938, 0.0361633, -1.15439)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.626, 0.177, -1.52)
 light_color = Color(1, 0.0588235, 0.0588235, 1)
 omni_range = 0.5
 
 [node name="BrakeParticlesLeft" type="GPUParticles3D" parent="BrakeLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.459999, -0.613527, -0.834604)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.645, -0.729, -1.138)
 emitting = false
-amount = 48
+amount = 96
 transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_2a66c")
 draw_pass_1 = SubResource("QuadMesh_44bqy")
 
 [node name="BrakeParticlesRight" type="GPUParticles3D" parent="BrakeLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.500982, -0.613527, -0.834604)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.64067, -0.737163, -1.13832)
 emitting = false
-amount = 48
+amount = 96
 explosiveness = 0.4
 transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_2a66c")
