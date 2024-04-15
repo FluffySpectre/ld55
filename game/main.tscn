@@ -27,9 +27,10 @@ adjustment_saturation = 1.39
 
 [node name="Main" type="Node3D"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("cam_controller")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("cam_controller", "track_generator")]
 script = ExtResource("1_a32xk")
 cam_controller = NodePath("../Camera3D2")
+track_generator = NodePath("../TrackGenerator")
 
 [node name="SoundManager" type="Node" parent="."]
 script = ExtResource("2_t7407")
@@ -41,7 +42,7 @@ speed_dependent_steering = 0.1
 transform = Transform3D(-1, -6.18173e-08, 6.18173e-08, 2.4663e-16, 0.707107, 0.707107, -8.74228e-08, 0.707107, -0.707107, 1.62137, 7.9633, 8.0044)
 script = ExtResource("4_n7y0v")
 target = NodePath("../PlayerCarV5/Body")
-lerp_speed = 19.0
+lerp_speed = 14.0
 offset = Vector3(2.08165e-12, 7, 6)
 
 [node name="CameraTarget" type="Node3D" parent="." node_paths=PackedStringArray("target")]

@@ -376,7 +376,8 @@ mass = 100.0
 gravity_scale = 10.0
 can_sleep = false
 script = ExtResource("1_wcw3i")
-max_speed = 220.0
+brake_power = 20.0
+max_speed = 150.0
 
 [node name="Body" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.08165e-12, -0.425193, 0)

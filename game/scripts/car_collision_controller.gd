@@ -18,14 +18,14 @@ func _physics_process(delta):
 
 func apply_impact_force(body: VehicleBody3D):
 	# Calculate the direction of the impact
-	var impact_direction = (body.global_transform.origin - car_controller.global_transform.origin).normalized()
+	var impact_direction = (body.global_position - car_controller.global_position).normalized()
 	var relative_velocity = (body.linear_velocity - get_parent().linear_velocity).length()
 	
 	# Calculate impact force
 	var impact_strength = relative_velocity * impact_strength_multiplier
 	var impact_force = impact_direction * impact_strength
 	
-	printt("Impact force: ", impact_force)
+	# printt("Impact force: ", impact_force)
 	
 	# Apply the calculated force
 	body.apply_impulse(impact_force)

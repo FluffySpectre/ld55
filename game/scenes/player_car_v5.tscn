@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://cymc7327kabfu" path="res://sounds/hitHurt-2.wav" id="5_pl3mc"]
 [ext_resource type="AudioStream" uid="uid://bxg5avmhwn5ew" path="res://sounds/hitHurt-3.wav" id="6_12kjx"]
 [ext_resource type="AudioStream" uid="uid://ck7ndo3qclca7" path="res://sounds/hitHurt-4.wav" id="7_3kk5e"]
-[ext_resource type="Script" path="res://scenes/car_sfx.gd" id="8_6hrfs"]
+[ext_resource type="Script" path="res://scripts/car_sfx.gd" id="8_25oww"]
 [ext_resource type="AudioStream" uid="uid://con7mnuk4sqbt" path="res://sounds/engine.wav" id="9_n88ve"]
 [ext_resource type="AudioStream" uid="uid://d31n3x6mqokvj" path="res://sounds/brake.wav" id="10_g8x27"]
 
@@ -492,10 +492,11 @@ script = ExtResource("2_gusdt")
 
 [node name="CollisionController" type="Node" parent="."]
 script = ExtResource("4_vdqqh")
+impact_strength_multiplier = 200.0
 impact_sound_fx = Array[AudioStream]([ExtResource("5_pl3mc"), ExtResource("6_12kjx"), ExtResource("7_3kk5e")])
 
 [node name="CarSFX" type="Node3D" parent="."]
-script = ExtResource("8_6hrfs")
+script = ExtResource("8_25oww")
 engine_sfx = ExtResource("9_n88ve")
 brake_sfx = ExtResource("10_g8x27")
 

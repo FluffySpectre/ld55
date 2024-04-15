@@ -14,7 +14,8 @@ func _ready():
 	audio_player.play()
 
 func _process(delta):
-	if car_controller.brake > 0:
+	var velocity = car_controller.linear_velocity.length()
+	if car_controller.brake > 0 && velocity > 0.1:
 		if audio_player.stream != brake_sfx:
 			audio_player.stream = brake_sfx
 			audio_player.play()
@@ -22,7 +23,6 @@ func _process(delta):
 		if audio_player.stream != engine_sfx:
 			audio_player.stream = engine_sfx
 		
-		var velocity = car_controller.linear_velocity.length()
 		audio_player.pitch_scale = remap(velocity, 0.0, car_controller.max_speed, min_pitch, max_pitch)
 	
 		if !audio_player.playing:

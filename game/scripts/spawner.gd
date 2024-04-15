@@ -21,9 +21,9 @@ func get_random_point_in_area():
 	return spawn_area.global_position + random_point
 
 func spawn():
-	if rng.randf() > chance_for_spawn:
-		return
+	#if rng.randf() > chance_for_spawn:
+	#	return
 	
 	var instance = get_random_scene_to_spawn().instantiate() as Node3D
-	add_child(instance)
+	get_tree().root.add_child.call_deferred(instance)
 	instance.global_position = get_random_point_in_area() + spawn_offset

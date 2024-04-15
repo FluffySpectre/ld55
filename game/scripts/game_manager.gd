@@ -2,10 +2,9 @@ class_name GameManager extends Node
 
 @export var player_car: CarController
 @export var cam_controller: CameraController
+@export var track_generator: TrackGenerator
 
 static var instance: GameManager
-
-# @onready var track_generator: TrackGenerator = $TrackGenerator
 
 var start_position: Vector3 = Vector3.ZERO
 
@@ -23,6 +22,8 @@ func _process(_delta):
 func reset_player():
 	# TODO: Get the last track the player was driving on
 	# and place the car there
+	
+	track_generator.reset_track()
 	
 	player_car.global_position = start_position
 	player_car.global_rotation_degrees = Vector3.ZERO

@@ -2,8 +2,8 @@ class_name CarController extends VehicleBody3D
 
 @export var engine_power = 3000.0
 @export var max_steer = 6.0
-@export var brake_power = 30.0
-@export var max_speed = 200.0
+@export var brake_power = 15.0
+@export var max_speed = 100.0
 # Steering smoothing
 @export var steering_smoothness = 750.0
 @export var speed_dependent_steering = 2.0
