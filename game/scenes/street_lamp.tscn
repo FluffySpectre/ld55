@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2265v0byai01"]
+[gd_scene load_steps=7 format=3 uid="uid://d2265v0byai01"]
 
 [ext_resource type="Script" path="res://scripts/flicker_light.gd" id="1_1y24n"]
 
@@ -10,6 +10,16 @@ size = Vector3(0.25, 1, 0.25)
 
 [sub_resource type="BoxMesh" id="BoxMesh_o1xne"]
 size = Vector3(0.25, 0.25, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b0sgs"]
+transparency = 1
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 1.24
+
+[sub_resource type="SphereMesh" id="SphereMesh_ji5o3"]
+height = 0.5
+is_hemisphere = true
 
 [node name="StreetLamp" type="Node3D"]
 
@@ -34,3 +44,8 @@ spot_angle = 61.875
 script = ExtResource("1_1y24n")
 min_intensity = 2.08165e-12
 max_intensity = 12.0
+
+[node name="Bulb" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, -3.48787e-16, -3.48787e-16, -3.48787e-16, -1, 8.74228e-08, -3.48787e-16, -8.74228e-08, -1, 0, 8.47304, 2.09068)
+material_override = SubResource("StandardMaterial3D_b0sgs")
+mesh = SubResource("SphereMesh_ji5o3")
