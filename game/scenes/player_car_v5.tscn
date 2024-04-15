@@ -1,8 +1,15 @@
-[gd_scene load_steps=24 format=3 uid="uid://cc2gxluvkmj1t"]
+[gd_scene load_steps=31 format=3 uid="uid://cc2gxluvkmj1t"]
 
 [ext_resource type="Script" path="res://scripts/car_controller.gd" id="1_ydngu"]
 [ext_resource type="Script" path="res://scripts/player_input.gd" id="2_gusdt"]
 [ext_resource type="Script" path="res://scripts/brake_lights.gd" id="2_kefjp"]
+[ext_resource type="Script" path="res://scripts/car_collision_controller.gd" id="4_vdqqh"]
+[ext_resource type="AudioStream" uid="uid://cymc7327kabfu" path="res://sounds/hitHurt-2.wav" id="5_pl3mc"]
+[ext_resource type="AudioStream" uid="uid://bxg5avmhwn5ew" path="res://sounds/hitHurt-3.wav" id="6_12kjx"]
+[ext_resource type="AudioStream" uid="uid://ck7ndo3qclca7" path="res://sounds/hitHurt-4.wav" id="7_3kk5e"]
+[ext_resource type="Script" path="res://scenes/car_sfx.gd" id="8_6hrfs"]
+[ext_resource type="AudioStream" uid="uid://con7mnuk4sqbt" path="res://sounds/engine.wav" id="9_n88ve"]
+[ext_resource type="AudioStream" uid="uid://d31n3x6mqokvj" path="res://sounds/brake.wav" id="10_g8x27"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_unqrh"]
 resource_name = "plastic"
@@ -372,6 +379,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.57968, 25.6832)
 mass = 100.0
 gravity_scale = 10.0
 can_sleep = false
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("1_ydngu")
 
 [node name="Body" type="MeshInstance3D" parent="."]
@@ -480,3 +489,17 @@ draw_pass_1 = SubResource("QuadMesh_1cnoi")
 
 [node name="PlayerInput" type="Node" parent="."]
 script = ExtResource("2_gusdt")
+
+[node name="CollisionController" type="Node" parent="."]
+script = ExtResource("4_vdqqh")
+impact_sound_fx = Array[AudioStream]([ExtResource("5_pl3mc"), ExtResource("6_12kjx"), ExtResource("7_3kk5e")])
+
+[node name="CarSFX" type="Node3D" parent="."]
+script = ExtResource("8_6hrfs")
+engine_sfx = ExtResource("9_n88ve")
+brake_sfx = ExtResource("10_g8x27")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="CarSFX"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.57968, 25.6832)
+stream = ExtResource("9_n88ve")
+volume_db = 3.0
