@@ -58,7 +58,7 @@ shape = SubResource("BoxShape3D_3sqcq")
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.575546)
-aabb = AABB(-5.481, -1, 0.137909, 10.962, 2, 149.724)
+aabb = AABB(-250.444, -1, 0.137909, 500.888, 2, 149.724)
 
 [node name="EnemySpawner" type="Node3D" parent="." node_paths=PackedStringArray("spawn_area")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 59.356)
