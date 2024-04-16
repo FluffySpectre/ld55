@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://ck7ndo3qclca7" path="res://sounds/hitHurt-4.wav" id="7_3kk5e"]
 [ext_resource type="Script" path="res://scripts/car_sfx.gd" id="8_25oww"]
 [ext_resource type="AudioStream" uid="uid://con7mnuk4sqbt" path="res://sounds/engine.wav" id="9_n88ve"]
-[ext_resource type="AudioStream" uid="uid://d31n3x6mqokvj" path="res://sounds/brake.wav" id="10_g8x27"]
+[ext_resource type="AudioStream" uid="uid://k46d5vrb56uh" path="res://sounds/brake-2.wav" id="10_jibt2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_unqrh"]
 resource_name = "plastic"
@@ -459,7 +459,7 @@ impact_sound_fx = Array[AudioStream]([ExtResource("5_pl3mc"), ExtResource("6_12k
 [node name="CarSFX" type="Node3D" parent="."]
 script = ExtResource("8_25oww")
 engine_sfx = ExtResource("9_n88ve")
-brake_sfx = ExtResource("10_g8x27")
+brake_sfx = ExtResource("10_jibt2")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="CarSFX"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.57968, 25.6832)
