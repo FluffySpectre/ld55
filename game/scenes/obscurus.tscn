@@ -68,7 +68,7 @@ mesh = SubResource("SphereMesh_henmi")
 
 [node name="Lines" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-amount = 32
+amount = 16
 lifetime = 5.0
 preprocess = 1.0
 local_coords = true
