@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=3 uid="uid://kal68on760kc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5b61m"]
+albedo_color = Color(0.843137, 0.196078, 0.137255, 1)
+metallic = 0.75
+roughness = 0.75
+emission_enabled = true
+rim_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_henmi"]
+material = SubResource("StandardMaterial3D_5b61m")
+radial_segments = 6
+rings = 6
+
+[sub_resource type="Curve" id="Curve_arej0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.610022, 0.741055), -1.28784, -1.28784, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_mjgld"]
+curve = SubResource("Curve_arej0")
+
+[sub_resource type="Curve" id="Curve_26o2h"]
+min_value = -2.0
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8gbv4"]
+curve = SubResource("Curve_26o2h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hddlm"]
+emission_shape = 2
+emission_sphere_radius = 2.0
+direction = Vector3(1, 2.08165e-12, 2.08165e-12)
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+orbit_velocity_curve = SubResource("CurveTexture_8gbv4")
+radial_velocity_min = -1.0
+radial_velocity_max = 1.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+linear_accel_min = 1.0
+linear_accel_max = 2.0
+alpha_curve = SubResource("CurveTexture_mjgld")
+hue_variation_min = -0.01
+hue_variation_max = 0.01
+turbulence_enabled = true
+turbulence_noise_scale = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jq3go"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.0117647, 0.0156863, 0.0235294, 1)
+use_particle_trails = true
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_xvb66"]
+material = SubResource("StandardMaterial3D_jq3go")
+radius = 0.25
+radial_steps = 5
+sections = 10
+section_length = 0.1
+
+[node name="Obscurus" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[node name="CoreMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("SphereMesh_henmi")
+
+[node name="Lines" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+amount = 32
+lifetime = 5.0
+preprocess = 1.0
+local_coords = true
+trail_enabled = true
+trail_lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_hddlm")
+draw_pass_1 = SubResource("TubeTrailMesh_xvb66")
+
+[node name="LinesTrail" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+amount = 16
+lifetime = 5.0
+preprocess = 1.0
+trail_enabled = true
+trail_lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_hddlm")
+draw_pass_1 = SubResource("TubeTrailMesh_xvb66")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_color = Color(0.65098, 0.239216, 0.0901961, 1)
+light_energy = 4.0
+light_indirect_energy = 2.0
+light_volumetric_fog_energy = 2.056
+light_specular = 3.0

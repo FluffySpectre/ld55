@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://dap5ikl03t5t4"]
+[gd_scene load_steps=18 format=3 uid="uid://dap5ikl03t5t4"]
 
 [ext_resource type="Texture2D" uid="uid://dvg4jvbn8k6kl" path="res://textures/street.png" id="1_llngd"]
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="2_b4fxe"]
 [ext_resource type="Texture2D" uid="uid://blj021ji4ardo" path="res://textures/street_sidelines.png" id="2_n2rpe"]
 [ext_resource type="PackedScene" uid="uid://ch788n75qxxpa" path="res://scenes/ritual_pickup_2.tscn" id="3_fnry5"]
+[ext_resource type="PackedScene" uid="uid://kal68on760kc" path="res://scenes/obscurus.tscn" id="5_osjkm"]
 [ext_resource type="PackedScene" uid="uid://b2qw28r6n53s4" path="res://scenes/enemy_car_1.tscn" id="5_t6ngi"]
 [ext_resource type="PackedScene" uid="uid://d2265v0byai01" path="res://scenes/street_lamp.tscn" id="6_u5635"]
 [ext_resource type="PackedScene" uid="uid://molrk3pyx2am" path="res://scenes/spooky_tree_1.tscn" id="7_o86ua"]
@@ -63,7 +64,7 @@ aabb = AABB(-250.444, -1, 0.137909, 500.888, 2, 149.724)
 [node name="EnemySpawner" type="Node3D" parent="." node_paths=PackedStringArray("spawn_area")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 59.356)
 script = ExtResource("2_b4fxe")
-scenes_to_spawn = Array[PackedScene]([ExtResource("5_t6ngi")])
+scenes_to_spawn = Array[PackedScene]([ExtResource("5_t6ngi"), ExtResource("5_osjkm")])
 spawn_area = NodePath("../PowerupSpawner/Area3D")
 spawn_offset = Vector3(0, 1, 0)
 chance_for_spawn = 0.4
