@@ -7,9 +7,12 @@ class_name GameManager extends Node
 static var instance: GameManager
 
 var start_position: Vector3 = Vector3.ZERO
+var total_spawned_tracks = 0
 
 func _ready():
 	instance = self
+	
+	track_generator.on_track_spawned.connect(on_track_spawned)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -31,3 +34,9 @@ func reset_player():
 	player_car.angular_velocity = Vector3.ZERO
 	
 	cam_controller.reset_view()
+
+func on_track_spawned():
+	total_spawned_tracks += 1
+	# Start spawning enemies only a bit later in the game
+	if total_spawned_tracks > 2:
+		Globals.spawn_enemies = true

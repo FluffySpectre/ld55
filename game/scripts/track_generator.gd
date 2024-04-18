@@ -3,6 +3,8 @@ class_name TrackGenerator extends Node3D
 @export var street_part_scenes: Array[PackedScene]
 @export var player_car: Node3D
 
+signal on_track_spawned
+
 var num_parts_to_load = 5
 var loaded_street_parts = []
 var last_out_connector: Node3D
@@ -32,6 +34,9 @@ func spawn_street_part():
 	
 	# Get connector for next street piece
 	last_out_connector = instance.get_node("Connector") as Node3D
+	
+	# Emit track spawned signal
+	on_track_spawned.emit()
 
 func generate():
 	for i in range(loaded_street_parts.size(),num_parts_to_load):
