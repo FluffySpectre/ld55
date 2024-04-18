@@ -358,6 +358,7 @@ initial_velocity_max = 2.0
 gravity = Vector3(2.08165e-12, 2, -1)
 damping_min = 2.8
 damping_max = 2.9
+attractor_interaction_enabled = false
 scale_min = 0.1
 color = Color(0.282353, 0.290196, 0.266667, 0.901961)
 alpha_curve = SubResource("CurveTexture_npwej")

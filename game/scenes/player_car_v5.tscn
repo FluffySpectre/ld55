@@ -312,6 +312,7 @@ initial_velocity_max = 2.0
 gravity = Vector3(2.08165e-12, 2, -1)
 damping_min = 2.8
 damping_max = 2.9
+attractor_interaction_enabled = false
 scale_min = 0.1
 color = Color(0.282353, 0.290196, 0.266667, 0.901961)
 alpha_curve = SubResource("CurveTexture_mctc7")
@@ -465,3 +466,14 @@ brake_sfx = ExtResource("10_jibt2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.57968, 25.6832)
 stream = ExtResource("9_n88ve")
 volume_db = 3.0
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="."]
+layers = 2
+strength = 60.0
+cull_mask = 4293918722
+radius = 50.0
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00134277, 0.0533447, -0.0240479)
+layers = 2
+size = Vector3(1.60522, 1.49829, 3.15649)
