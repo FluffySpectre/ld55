@@ -27,29 +27,29 @@ jobs:
           use_preset_export_path: true
           export_debug: false
 
-      - name: Upload web build to itch
-        uses: KikimoraGames/itch-publish@v0.0.3
-        with:
-          butlerApiKey: ${{ secrets.BUTLER_API_KEY }}
-          gameData: ./game/bin/web/web.zip
-          itchUsername: ${{ secrets.ITCH_USER }}
-          itchGameId: ld55
-          buildChannel: html5
+      # - name: Upload web build to itch
+      #   uses: KikimoraGames/itch-publish@v0.0.3
+      #   with:
+      #     butlerApiKey: ${{ secrets.BUTLER_API_KEY }}
+      #     gameData: ./game/bin/web/web.zip
+      #     itchUsername: ${{ secrets.ITCH_USER }}
+      #     itchGameId: ritual-road
+      #     buildChannel: html5
 
       - name: Upload windows build to itch
         uses: KikimoraGames/itch-publish@v0.0.3
         with:
           butlerApiKey: ${{ secrets.BUTLER_API_KEY }}
-          gameData: ./game/bin/win/win.zip
+          gameData: ./game/bin/win/RitualRoad_LD55_Windows.zip
           itchUsername: ${{ secrets.ITCH_USER }}
-          itchGameId: ld55
+          itchGameId: ritual-road
           buildChannel: windows
 
       - name: Upload linux build to itch
         uses: KikimoraGames/itch-publish@v0.0.3
         with:
             butlerApiKey: ${{ secrets.BUTLER_API_KEY }}
-            gameData: ./game/bin/linux/linux.zip
+            gameData: ./game/bin/linux/RitualRoad_LD55_Linux.zip
             itchUsername: ${{ secrets.ITCH_USER }}
-            itchGameId: ld55
+            itchGameId: ritual-road
             buildChannel: linux
