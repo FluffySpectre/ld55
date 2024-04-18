@@ -37,8 +37,9 @@ adjustment_saturation = 1.39
 
 [node name="Main" type="Node3D"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("cam_controller", "track_generator")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player_car", "cam_controller", "track_generator")]
 script = ExtResource("1_a32xk")
+player_car = NodePath("../PlayerCarV5")
 cam_controller = NodePath("../Camera3D2")
 track_generator = NodePath("../TrackGenerator")
 

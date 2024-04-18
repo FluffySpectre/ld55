@@ -1,4 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://kal68on760kc"]
+[gd_scene load_steps=12 format=3 uid="uid://kal68on760kc"]
+
+[ext_resource type="Script" path="res://scripts/obscurus.gd" id="1_8y0th"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5b61m"]
 albedo_color = Color(0.843137, 0.196078, 0.137255, 1)
@@ -83,6 +85,7 @@ turbulence_noise_scale = 3.0
 
 [node name="Obscurus" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+script = ExtResource("1_8y0th")
 
 [node name="Body" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 2.08165e-12)

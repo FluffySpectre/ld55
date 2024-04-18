@@ -12,6 +12,8 @@ var total_spawned_tracks = 0
 func _ready():
 	instance = self
 	
+	Globals.player_car = player_car
+
 	track_generator.on_track_spawned.connect(on_track_spawned)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
