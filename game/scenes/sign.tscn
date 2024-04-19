@@ -1,0 +1,131 @@
+[gd_scene load_steps=15 format=3 uid="uid://dfyv2qv2siijh"]
+
+[ext_resource type="Script" path="res://scripts/sign.gd" id="1_60fhp"]
+[ext_resource type="FontFile" uid="uid://c7bjj2b2gsfv2" path="res://font/Silkscreen-Regular.ttf" id="1_j7i4i"]
+[ext_resource type="Texture2D" uid="uid://cxbi7o8712scg" path="res://textures/sign.png" id="2_6ocb6"]
+[ext_resource type="Script" path="res://scripts/line_mesh.gd" id="4_oy2xh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2i2f"]
+transparency = 1
+albedo_texture = ExtResource("2_6ocb6")
+rim = 0.24
+rim_tint = 1.0
+subsurf_scatter_strength = 0.45
+uv1_scale = Vector3(2, 2, 2)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_kda64"]
+material = SubResource("StandardMaterial3D_k2i2f")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ugkpl"]
+albedo_color = Color(0.152941, 0.0784314, 0.0196078, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kxokq"]
+material = SubResource("StandardMaterial3D_ugkpl")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pbdub"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7mepl"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upf1w"]
+albedo_color = Color(0.180392, 0.141176, 0.12549, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fe5mc"]
+material = SubResource("StandardMaterial3D_upf1w")
+size = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1l1sp"]
+albedo_color = Color(0.180392, 0.141176, 0.12549, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_82npu"]
+material = SubResource("StandardMaterial3D_1l1sp")
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="Sign" type="Node3D"]
+transform = Transform3D(-2.16506, 1.19113e-15, 1.25, 8.71967e-16, 2.5, -8.71967e-16, -1.25, -3.19162e-16, -2.16506, 0, 0, 0)
+script = ExtResource("1_60fhp")
+texts = Array[String](["Don't summon
+and drive", "Summoning
+can be 
+deadly"])
+
+[node name="SignPlate" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.44668, 0.115196, -3.45004e-09, -0.353163, 1.45043, 6.65226e-18, 7.92209e-08, 9.05394e-09, 0.0552222, 7.13693e-13, 1.39041, -1.21053e-05)
+mesh = SubResource("BoxMesh_kda64")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(2.94685, 0.114158, 3.49089e-16, -0.231922, 1.45051, -3.49089e-16, -1.10871e-15, 4.66104e-16, 1.00087, -1.33874e-09, 1.39041, 0.0279662)
+shaded = true
+double_sided = false
+text = "No ritual
+while driving"
+font = ExtResource("1_j7i4i")
+outline_size = 0
+uppercase = true
+
+[node name="SignPost" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0618407, -3.20252e-22, -1.02205e-09, 8.16901e-24, 1.39702, -2.96159e-23, 6.87823e-09, -5.68414e-22, 0.0602028, -2.20197, 0.511622, -1.66332e-08)
+mesh = SubResource("BoxMesh_kxokq")
+
+[node name="SignPost2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0616501, 0.0289848, -1.02205e-09, -0.00485197, 0.368287, -2.0998e-17, 2.6764e-08, 2.41718e-09, 0.0602028, 2.16657, 0.763064, -0.000253962)
+mesh = SubResource("BoxMesh_kxokq")
+
+[node name="SignPost3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0575378, -0.366501, -1.02205e-09, 0.0226647, 0.930418, -2.0998e-17, 2.71521e-09, -9.01135e-08, 0.0602028, 2.33023, 0.142187, 4.97391e-07)
+mesh = SubResource("BoxMesh_kxokq")
+
+[node name="PinJoint3D" type="PinJoint3D" parent="."]
+transform = Transform3D(1, -6.60008e-22, -4.47321e-08, 5.49299e-24, 1, -5.24904e-22, 3.40817e-09, -6.12361e-22, 1, 1.03736, 0.60979, 0.0602398)
+node_a = NodePath("../LightSocket")
+node_b = NodePath("../HangingLight")
+params/damping = 0.6
+
+[node name="LightSocket" type="StaticBody3D" parent="."]
+transform = Transform3D(1, -5.99127e-22, -3.28112e-08, 5.49299e-24, 1, -5.03992e-22, 3.40817e-09, -5.95536e-22, 1, 1.03736, 0.736707, 0.0602398)
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LightSocket"]
+transform = Transform3D(1, -2.73802e-23, -8.96937e-09, 5.49299e-24, 1, -1.2181e-23, 3.40817e-09, -3.20485e-23, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_pbdub")
+
+[node name="HangingLight" type="RigidBody3D" parent="."]
+transform = Transform3D(1, -4.20456e-22, -3.28112e-08, 5.49299e-24, 1, -3.71643e-22, 3.40817e-09, -4.5847e-22, 1, 1.13445, 0.149121, 0.0148686)
+mass = 0.25
+constant_force = Vector3(0.5, 2.08165e-12, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HangingLight"]
+shape = SubResource("CapsuleShape3D_7mepl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HangingLight"]
+mesh = SubResource("BoxMesh_fe5mc")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="HangingLight"]
+transform = Transform3D(0.340913, -0.205843, -0.0375123, 0.0348206, -0.0148984, 0.398203, -0.206315, -0.342647, 0.00522133, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+light_color = Color(0.717647, 0.745098, 0.87451, 1)
+light_energy = 3.0
+spot_range = 3.05923
+spot_angle = 64.0
+
+[node name="LampFrame" type="Node3D" parent="."]
+transform = Transform3D(0.996917, 0.0784591, -3.00889e-09, -0.0784591, 0.996917, -3.48787e-16, 4.94484e-08, 8.02468e-10, 1, -0.730752, 0.777222, 0.0756308)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LampFrame"]
+transform = Transform3D(1, -3.70601e-08, -2.2409e-08, 6.87663e-11, 1, -2.35571e-08, 1.79657e-08, 9.17423e-09, 1, -1.78814e-07, -0.0517911, 0.0824822)
+mesh = SubResource("BoxMesh_82npu")
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="LampFrame"]
+transform = Transform3D(0.225524, 0.330296, -0.00657653, -0.164001, 0.105022, -0.349391, -0.28678, 0.199687, 0.194635, -0.0179853, 0.054361, 0.189433)
+light_color = Color(0.717647, 0.745098, 0.87451, 1)
+light_energy = 3.0
+spot_range = 3.28772
+spot_angle = 64.0
+
+[node name="Line" type="Node3D" parent="." node_paths=PackedStringArray("body_a", "body_b")]
+script = ExtResource("4_oy2xh")
+body_a = NodePath("../LightSocket")
+body_b = NodePath("../HangingLight")
+color = Color(0.207843, 0.207843, 0.207843, 1)
