@@ -103,11 +103,11 @@ monitorable = false
 shape = SubResource("BoxShape3D_02cjv")
 
 [node name="SignSpawner" type="Node3D" parent="Spawner" node_paths=PackedStringArray("spawn_area")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.934, 0, 130.523)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.934, 0, 125.517)
 script = ExtResource("2_b4fxe")
 scenes_to_spawn = Array[PackedScene]([ExtResource("6_qs4op")])
 spawn_area = NodePath("Area3D")
-chance_for_spawn = 0.015
+chance_for_spawn = 0.02
 
 [node name="Area3D" type="Area3D" parent="Spawner/SignSpawner"]
 
