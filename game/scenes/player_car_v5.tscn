@@ -326,7 +326,7 @@ material = SubResource("StandardMaterial3D_xxs0f")
 size = Vector2(0.2, 0.2)
 
 [node name="PlayerCarV5" type="VehicleBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.57968, 25.6832)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 mass = 100.0
 gravity_scale = 10.0
 can_sleep = false
