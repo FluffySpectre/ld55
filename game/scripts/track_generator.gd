@@ -5,7 +5,7 @@ class_name TrackGenerator extends Node3D
 
 signal on_track_spawned
 
-var num_parts_to_load = 5
+var num_parts_to_load = 6
 var loaded_street_parts = []
 var last_out_connector: Node3D
 var rng = RandomNumberGenerator.new()

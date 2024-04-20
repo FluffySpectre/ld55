@@ -28,6 +28,9 @@ func _physics_process(delta):
 		
 		var target_steering = clamp(angle_diff / deg_to_rad(max_steer), -1, 1) * speed_adjustment * 0.4
 		
+		# HACK: Fix the steering angle to drive exactly forward
+		target_steering += 0.0037
+		
 		# Lerp the steering towards the desired direction
 		steering = move_toward(steering, target_steering, steering_smoothness * delta)
 	else:
