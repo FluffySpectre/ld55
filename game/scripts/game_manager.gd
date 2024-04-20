@@ -28,9 +28,14 @@ func reset_player():
 	# TODO: Get the last track the player was driving on
 	# and place the car there
 	
-	track_generator.reset_track()
+	# Reload the entire scene for now
+	get_tree().reload_current_scene()
+	return
 	
-	player_car.global_position = start_position
+	track_generator.reset_track()
+	var first_track_part = track_generator.loaded_street_parts[0]
+	
+	player_car.global_position = first_track_part.global_position + Vector3(0, 0, 10.0)
 	player_car.global_rotation_degrees = Vector3.ZERO
 	player_car.linear_velocity = Vector3.ZERO
 	player_car.angular_velocity = Vector3.ZERO
