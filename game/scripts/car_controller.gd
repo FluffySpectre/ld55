@@ -15,6 +15,10 @@ class_name CarController extends VehicleBody3D
 @onready var raycast_left: RayCast3D = $RayCastLeft
 @onready var raycast_right: RayCast3D = $RayCastRight
 
+var underground_friction = 1.0
+var left_on_street = false
+var right_on_street = false
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	var velocity = linear_velocity.length()
@@ -60,23 +64,30 @@ func _physics_process(delta):
 		new_engine_force = 0
 		
 	# Apply underground friction
-	engine_force = new_engine_force * detect_underground_friction()
+	underground_friction = detect_underground_friction()
+	engine_force = new_engine_force * underground_friction
 
 func detect_underground_friction():
 	if !raycast_left || !raycast_right:
+		left_on_street = true
+		right_on_street = true
 		return 1.0
 	
 	# Check both raycasts
 	var street_hits = 0
+	left_on_street = false
+	right_on_street = false
 	if raycast_left.is_colliding():
 		var colliderLeft = raycast_left.get_collider()
 		if colliderLeft.name == "StreetCollider":
 			street_hits += 1
+			left_on_street = true
 	
 	if raycast_right.is_colliding():
 		var colliderRight = raycast_right.get_collider()
 		if colliderRight.name == "StreetCollider":
 			street_hits += 1
+			right_on_street = true
 	
 	var friction_factors = [0.7, 0.8, 1.0]
 	return friction_factors[street_hits]

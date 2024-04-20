@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cc2gxluvkmj1t"]
+[gd_scene load_steps=33 format=3 uid="uid://cc2gxluvkmj1t"]
 
 [ext_resource type="Script" path="res://scripts/car_controller.gd" id="1_ydngu"]
 [ext_resource type="Script" path="res://scripts/player_input.gd" id="2_gusdt"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/car_sfx.gd" id="8_25oww"]
 [ext_resource type="AudioStream" uid="uid://con7mnuk4sqbt" path="res://sounds/engine.wav" id="9_n88ve"]
 [ext_resource type="AudioStream" uid="uid://k46d5vrb56uh" path="res://sounds/brake-2.wav" id="10_jibt2"]
+[ext_resource type="Script" path="res://scripts/mud_fx.gd" id="11_8prwl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_unqrh"]
 resource_name = "plastic"
@@ -328,6 +329,26 @@ vertex_color_use_as_albedo = true
 material = SubResource("StandardMaterial3D_xxs0f")
 size = Vector2(0.2, 0.2)
 
+[sub_resource type="Curve" id="Curve_5hl7n"]
+_data = [Vector2(0.00871459, 1), 0.0, 0.0, 0, 0, Vector2(0.984749, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_urnni"]
+curve = SubResource("Curve_5hl7n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2llal"]
+direction = Vector3(2.08165e-12, 2.08165e-12, -1)
+spread = 25.0
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+gravity = Vector3(2.08165e-12, 2, -0.1)
+damping_min = 2.8
+damping_max = 2.9
+attractor_interaction_enabled = false
+scale_min = 0.1
+color = Color(0.623938, 0.385534, 0.144917, 0.901961)
+alpha_curve = SubResource("CurveTexture_urnni")
+
 [node name="PlayerCarV5" type="VehicleBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 mass = 100.0
@@ -482,13 +503,32 @@ layers = 2
 size = Vector3(1.60522, 1.49829, 3.15649)
 
 [node name="RayCastLeft" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.63001, -0.447318, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.781965, -0.447318, 0)
 target_position = Vector3(2.08165e-12, -1, 2.08165e-12)
 collision_mask = 256
 hit_from_inside = true
 
 [node name="RayCastRight" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.63, -0.447, 2.08165e-12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.808771, -0.447, 2.08165e-12)
 target_position = Vector3(2.08165e-12, -1, 2.08165e-12)
 collision_mask = 256
 hit_from_inside = true
+
+[node name="MudParticleFX" type="Node3D" parent="."]
+script = ExtResource("11_8prwl")
+
+[node name="MudParticlesLeft" type="GPUParticles3D" parent="MudParticleFX"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.603355, -0.732622, -1.11707)
+emitting = false
+amount = 96
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_2llal")
+draw_pass_1 = SubResource("QuadMesh_1cnoi")
+
+[node name="MudParticlesRight" type="GPUParticles3D" parent="MudParticleFX"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.603, -0.733, -1.117)
+emitting = false
+amount = 96
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_2llal")
+draw_pass_1 = SubResource("QuadMesh_1cnoi")

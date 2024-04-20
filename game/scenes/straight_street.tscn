@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://molrk3pyx2am" path="res://scenes/spooky_tree_1.tscn" id="7_o86ua"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r3ovw"]
-size = Vector3(29.6602, 1, 150.715)
+size = Vector3(30.0463, 1, 150.715)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ft1m6"]
 albedo_texture = ExtResource("1_llngd")
@@ -43,7 +43,7 @@ collision_layer = 256
 collision_mask = 256
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StreetCollider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00386047, 0, 74.8573)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00605297, 0, 74.8573)
 shape = SubResource("BoxShape3D_r3ovw")
 
 [node name="Connector" type="Node3D" parent="."]
