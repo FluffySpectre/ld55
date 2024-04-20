@@ -36,25 +36,18 @@ adjustment_saturation = 1.39
 
 [sub_resource type="Animation" id="Animation_m28vg"]
 length = 0.001
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../CameraTarget")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 2.08165e-12, 2.08165e-12, 85)
 
 [sub_resource type="Animation" id="Animation_t86n8"]
 resource_name = "intro"
-length = 10.0
+length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("../PlayerCarV5:acceleration_input")
-tracks/0/interp = 1
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 10),
+"times": PackedFloat32Array(0, 5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [1.0, 2.08165e-12]
@@ -66,7 +59,7 @@ tracks/1/path = NodePath("../GameManager")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(10),
+"times": PackedFloat32Array(5),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -76,33 +69,26 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../CameraTarget:process_mode")
+tracks/2/path = NodePath("../Camera3D2:lerp_speed")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 10),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [4, 0]
-}
-tracks/3/type = "position_3d"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../CameraTarget")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 73.8133, 10, 1, 2.08165e-12, 2.08165e-12, 180)
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Camera3D2:lerp_speed")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 10),
+"times": PackedFloat32Array(0, 5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [5.0, 14.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../CameraTarget:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(2.08165e-12, 2.08165e-12, 20), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8ugun"]
@@ -135,9 +121,10 @@ lerp_speed = 14.0
 offset = Vector3(2.08165e-12, 5, -7)
 
 [node name="CameraTarget" type="Node3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 85)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 10)
 script = ExtResource("4_n7enx")
 target = NodePath("../PlayerCarV5")
+offset = Vector3(2.08165e-12, 2.08165e-12, 20)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.907777, -0.40516, 0.108562, 0, 0.258819, 0.965926, -0.419452, -0.876846, 0.23495, 0, 0, 0)
@@ -161,5 +148,6 @@ camera_attributes = SubResource("CameraAttributesPractical_82l6d")
 libraries = {
 "": SubResource("AnimationLibrary_8ugun")
 }
+autoplay = "intro"
 
 [editable path="PlayerCarV5"]
