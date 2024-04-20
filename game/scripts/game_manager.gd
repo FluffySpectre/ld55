@@ -42,3 +42,8 @@ func on_track_spawned():
 	# Start spawning enemies only a bit later in the game
 	if total_spawned_tracks > 2:
 		Globals.spawn_enemies = true
+		
+func on_intro_ended():
+	print("Intro ended")
+	
+	Globals.spawn_enemies = true
