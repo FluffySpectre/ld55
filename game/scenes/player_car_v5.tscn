@@ -48,6 +48,9 @@ metallic = 1.0
 resource_name = "lightFront"
 albedo_color = Color(0.960784, 0.72549, 0.258824, 1)
 metallic = 1.0
+emission_enabled = true
+emission = Color(0.734765, 0.593316, 0.256072, 1)
+emission_energy_multiplier = 1.8
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_3suhp"]
 _surfaces = [{
@@ -407,13 +410,13 @@ skeleton = NodePath("")
 [node name="FrontLights" type="Node3D" parent="."]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="FrontLights"]
-transform = Transform3D(-1, 1.13551e-15, -8.74228e-08, -2.38872e-08, 0.961947, 0.273237, 8.40961e-08, 0.273237, -0.961947, -0.426514, 0, 1.1283)
+transform = Transform3D(-1, -5.41669e-14, -8.74228e-08, -2.38872e-08, 0.961947, 0.273237, 8.40961e-08, 0.273237, -0.961947, -0.564026, 0.123352, 1.42012)
 light_color = Color(0.717647, 0.780392, 0.984314, 1)
 light_energy = 3.0
 spot_range = 30.0
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="FrontLights"]
-transform = Transform3D(-1, 9.3259e-16, -8.74228e-08, -2.38872e-08, 0.961947, 0.273237, 8.40961e-08, 0.273237, -0.961947, 0.407104, 0, 1.1283)
+transform = Transform3D(-1, -5.50161e-14, -8.74228e-08, -2.38872e-08, 0.961947, 0.273237, 8.40961e-08, 0.273237, -0.961947, 0.564, 0.123, 1.42)
 light_color = Color(0.717647, 0.780392, 0.984314, 1)
 light_energy = 3.0
 spot_range = 30.0
