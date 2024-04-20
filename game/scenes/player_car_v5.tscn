@@ -480,3 +480,15 @@ radius = 50.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00134277, 0.0533447, -0.0240479)
 layers = 2
 size = Vector3(1.60522, 1.49829, 3.15649)
+
+[node name="RayCastLeft" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.63001, -0.447318, 0)
+target_position = Vector3(2.08165e-12, -1, 2.08165e-12)
+collision_mask = 256
+hit_from_inside = true
+
+[node name="RayCastRight" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.63, -0.447, 2.08165e-12)
+target_position = Vector3(2.08165e-12, -1, 2.08165e-12)
+collision_mask = 256
+hit_from_inside = true

@@ -12,6 +12,9 @@ class_name CarController extends VehicleBody3D
 @export var steer_input = 0.0
 @export var acceleration_input = 0.0
 
+@onready var raycast_left: RayCast3D = $RayCastLeft
+@onready var raycast_right: RayCast3D = $RayCastRight
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	var velocity = linear_velocity.length()
@@ -29,6 +32,7 @@ func _physics_process(delta):
 		var target_steering = clamp(angle_diff / deg_to_rad(max_steer), -1, 1) * speed_adjustment * 0.4
 		
 		# HACK: Fix the steering angle to drive exactly forward
+		# I never touching the calculation above ever again, so this needs to suffice
 		target_steering += 0.0037
 		
 		# Lerp the steering towards the desired direction
@@ -38,19 +42,41 @@ func _physics_process(delta):
 		var adjusted_input = speed_adjustment * steer_input * deg_to_rad(max_steer)
 		steering = move_toward(steering, adjusted_input, steering_smoothness * delta)
 	
+	var new_engine_force = 0.0
 	if acceleration_input > 0:
 		if velocity < max_speed:
 			# Reduce the engine power as the vehicle approaches its maximum speed
 			var approach_factor = max(0, 1 - (velocity / max_speed))
-			engine_force = acceleration_input * engine_power * approach_factor
+			new_engine_force = acceleration_input * engine_power * approach_factor
 			brake = 0.0
 		else:
 			# Prevent further acceleration once the maximum speed is reached
-			engine_force = 0
+			new_engine_force = 0
 	elif acceleration_input < 0:
 		# Do braking
 		var brake_intensity = -acceleration_input
 		brake = brake_power * brake_intensity
 	else:
-		engine_force = 0
+		new_engine_force = 0
+		
+	# Apply underground friction
+	engine_force = new_engine_force * detect_underground_friction()
 
+func detect_underground_friction():
+	if !raycast_left || !raycast_right:
+		return 1.0
+	
+	# Check both raycasts
+	var street_hits = 0
+	if raycast_left.is_colliding():
+		var colliderLeft = raycast_left.get_collider()
+		if colliderLeft.name == "StreetCollider":
+			street_hits += 1
+	
+	if raycast_right.is_colliding():
+		var colliderRight = raycast_right.get_collider()
+		if colliderRight.name == "StreetCollider":
+			street_hits += 1
+	
+	var friction_factors = [0.7, 0.8, 1.0]
+	return friction_factors[street_hits]
