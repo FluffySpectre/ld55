@@ -64,7 +64,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_r3b6j"]
 resource_name = "game_in"
-length = 1.5
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -72,7 +72,7 @@ tracks/0/path = NodePath("../Titlescreen/GameTitle:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -84,7 +84,7 @@ tracks/1/path = NodePath("../Titlescreen/StartHint:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -158,7 +158,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_mimwi"]
 resource_name = "menu"
-length = 2.0
+length = 0.5
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -167,7 +167,7 @@ tracks/0/path = NodePath("../PlayerCarV5:acceleration_input")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [1.0, 1.0]
@@ -179,7 +179,7 @@ tracks/1/path = NodePath("../PlayerCarV5:steer_input")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 0.0]
