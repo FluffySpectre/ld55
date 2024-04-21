@@ -3,6 +3,7 @@ class_name GameManager extends Node
 @export var player_car: CarController
 @export var cam_controller: CameraController
 @export var track_generator: TrackGenerator
+@export var intro_animation_player: AnimationPlayer
 
 static var instance: GameManager
 
@@ -45,10 +46,17 @@ func reset_player():
 func on_track_spawned():
 	total_spawned_tracks += 1
 	# Start spawning enemies only a bit later in the game
-	if total_spawned_tracks > 2:
-		Globals.spawn_enemies = true
-		
+	# if total_spawned_tracks > 2:
+	#	Globals.spawn_enemies = true
+
 func on_intro_ended():
 	print("Intro ended")
+	intro_animation_player.play("menu_in")
+
+func on_menu_in_ended():
+	intro_animation_player.play("menu")
+
+func on_game_started():
+	print("Game started")
 	
 	Globals.spawn_enemies = true
