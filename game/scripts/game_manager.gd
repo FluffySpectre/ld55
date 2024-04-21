@@ -10,6 +10,13 @@ static var instance: GameManager
 var start_position: Vector3 = Vector3.ZERO
 var total_spawned_tracks = 0
 
+enum GameState {
+	INTRO,
+	MENU,
+	IN_GAME
+}
+var game_state: GameState = GameState.INTRO
+
 func _ready():
 	instance = self
 	
@@ -22,8 +29,21 @@ func _process(_delta):
 	if player_car && start_position == Vector3.ZERO:
 		start_position = player_car.global_position
 	
-	if Input.is_action_just_pressed("ui_cancel"):
-		reset_player()
+	if game_state == GameState.IN_GAME:
+		if Input.is_action_just_pressed("ui_cancel"):
+			reset_player()
+	
+	if game_state == GameState.MENU:
+		if Input.is_action_just_pressed("accelerate") || Input.is_action_just_pressed("brake") || Input.is_action_just_pressed("steer_left") || Input.is_action_just_pressed("steer_left"):
+			start_game()
+
+func start_game():
+	game_state = GameState.IN_GAME
+	intro_animation_player.play("game_in")
+	
+	print("Game started")
+	
+	Globals.spawn_enemies = true
 
 func reset_player():
 	# TODO: Get the last track the player was driving on
@@ -54,9 +74,6 @@ func on_intro_ended():
 	intro_animation_player.play("menu_in")
 
 func on_menu_in_ended():
-	intro_animation_player.play("menu")
-
-func on_game_started():
-	print("Game started")
+	game_state = GameState.MENU
 	
-	Globals.spawn_enemies = true
+	intro_animation_player.play("menu")

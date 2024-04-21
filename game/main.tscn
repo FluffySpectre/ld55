@@ -37,6 +37,58 @@ adjustment_saturation = 1.39
 
 [sub_resource type="Animation" id="Animation_m28vg"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Titlescreen/GameTitle:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Titlescreen/StartHint:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_r3b6j"]
+resource_name = "game_in"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Titlescreen/GameTitle:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Titlescreen/StartHint:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_t86n8"]
 resource_name = "intro"
@@ -160,25 +212,13 @@ tracks/1/keys = {
 "update": 0,
 "values": [1.0, 1.0]
 }
-tracks/2/type = "value"
+tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../Control/GameTitle:theme_override_colors/font_color")
+tracks/2/path = NodePath("../GameManager")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.54902)]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../GameManager")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(3),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -186,17 +226,39 @@ tracks/3/keys = {
 "method": &"on_menu_in_ended"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Titlescreen/GameTitle:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Titlescreen/StartHint:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.5, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8ugun"]
 _data = {
 "RESET": SubResource("Animation_m28vg"),
+"game_in": SubResource("Animation_r3b6j"),
 "intro": SubResource("Animation_t86n8"),
 "menu": SubResource("Animation_mimwi"),
 "menu_in": SubResource("Animation_8dxtq")
 }
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wohrq"]
-bg_color = Color(0, 0, 0, 0.235294)
 
 [node name="Main" type="Node3D"]
 
@@ -252,66 +314,62 @@ libraries = {
 }
 autoplay = "intro"
 
-[node name="Titlescreen" type="PanelContainer" parent="."]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("7_yh54y")
-theme_override_styles/panel = SubResource("StyleBoxFlat_wohrq")
-
-[node name="Control" type="Control" parent="."]
+[node name="Titlescreen" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 3.0
 offset_top = 3.0
-offset_right = 640.0
-offset_bottom = 461.0
+offset_right = 431.0
+offset_bottom = 280.0
 
-[node name="GameTitle" type="Label" parent="Control"]
-offset_left = 4.0
+[node name="GameTitle" type="Label" parent="Titlescreen"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 6.0
 offset_top = 5.0
-offset_right = 78.0
-offset_bottom = 19.0
+offset_right = 95.0
+offset_bottom = 21.0
 theme = ExtResource("7_yh54y")
-theme_override_colors/font_color = Color(1, 1, 1, 0)
-theme_override_font_sizes/font_size = 10
+theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
+theme_override_font_sizes/font_size = 12
 text = "Ritual Road"
-horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Subtitle" type="Label" parent="Control"]
+[node name="Subtitle" type="Label" parent="Titlescreen/GameTitle"]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 21.0
-offset_right = 112.0
-offset_bottom = 32.0
+offset_top = 16.0
+offset_right = 109.0
+offset_bottom = 44.0
 theme = ExtResource("7_yh54y")
 theme_override_colors/font_color = Color(1, 1, 1, 0.392157)
 theme_override_font_sizes/font_size = 8
-text = "made by Björn Bosse"
-horizontal_alignment = 1
+text = "made by Björn Bosse 
+for Ludum Dare 55"
 vertical_alignment = 1
 uppercase = true
 
-[node name="StartGame" type="Button" parent="Control"]
+[node name="StartHint" type="Label" parent="Titlescreen"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -57.5
-offset_top = -113.0
-offset_right = 62.5
-offset_bottom = -84.0
+offset_left = -101.0
+offset_top = -103.0
+offset_right = 105.0
+offset_bottom = -61.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("7_yh54y")
-text = "START GAME"
-flat = true
+theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
+theme_override_font_sizes/font_size = 12
+text = "Use WASD or Arrows 
+to take control"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [editable path="PlayerCarV5"]
