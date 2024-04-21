@@ -346,7 +346,7 @@ damping_min = 2.8
 damping_max = 2.9
 attractor_interaction_enabled = false
 scale_min = 0.1
-color = Color(0.623938, 0.385534, 0.144917, 0.901961)
+color = Color(0.496477, 0.301687, 0.104013, 0.901961)
 alpha_curve = SubResource("CurveTexture_urnni")
 
 [node name="PlayerCarV5" type="VehicleBody3D"]
