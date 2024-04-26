@@ -1,13 +1,28 @@
-[gd_scene load_steps=13 format=3 uid="uid://kal68on760kc"]
+[gd_scene load_steps=16 format=3 uid="uid://kal68on760kc"]
 
 [ext_resource type="Script" path="res://scripts/obscurus.gd" id="1_8y0th"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_m8yf8"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3na1m"]
+frequency = 0.0426
+fractal_type = 3
+fractal_octaves = 1
+fractal_lacunarity = 10.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a65ru"]
+width = 64
+height = 64
+noise = SubResource("FastNoiseLite_3na1m")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5b61m"]
-albedo_color = Color(0.843137, 0.196078, 0.137255, 1)
+albedo_color = Color(0.346126, 0.329706, 0.317595, 1)
 metallic = 0.75
 roughness = 0.75
-emission_enabled = true
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_a65ru")
 rim_enabled = true
+rim_tint = 0.52
 
 [sub_resource type="SphereMesh" id="SphereMesh_henmi"]
 material = SubResource("StandardMaterial3D_5b61m")
@@ -58,7 +73,7 @@ point_count = 3
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jq3go"]
 transparency = 1
 vertex_color_use_as_albedo = true
-albedo_color = Color(0.226645, 0.00345718, 0.00357819, 1)
+albedo_color = Color(0.0820803, 0.000637175, 0.0828084, 1)
 use_particle_trails = true
 
 [sub_resource type="TubeTrailMesh" id="TubeTrailMesh_xvb66"]
@@ -88,11 +103,13 @@ hue_variation_max = 0.01
 turbulence_enabled = true
 turbulence_noise_scale = 3.0
 
-[node name="Obscurus" type="Node3D"]
+[node name="Obscurus" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 script = ExtResource("1_8y0th")
-min_speed = 10.0
-max_speed = 30.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04047, 0)
+shape = SubResource("SphereShape3D_m8yf8")
 
 [node name="Body" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 2.08165e-12)
@@ -129,8 +146,8 @@ draw_pass_1 = SubResource("TubeTrailMesh_xvb66")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08165e-12, 0, -2.08165e-12)
-light_color = Color(0.65098, 0.239216, 0.0901961, 1)
-light_energy = 4.0
+light_color = Color(0.179702, 0.149064, 0.306381, 1)
+light_energy = 2.0
 light_indirect_energy = 2.0
 light_volumetric_fog_energy = 2.056
 light_specular = 3.0

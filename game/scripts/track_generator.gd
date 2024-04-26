@@ -65,7 +65,6 @@ func destroy_out_of_screen_street_parts():
 		if !is_on_screen && is_behind_player:
 			loaded_street_parts.pop_at(i)
 			part.queue_free()
-			print("Destroyed track part")
 	
 	resize_track_collider()
 

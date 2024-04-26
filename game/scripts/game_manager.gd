@@ -44,7 +44,7 @@ func _process(_delta):
 		update_score()
 	
 	if game_state == GameState.MENU:
-		if Input.is_action_just_pressed("accelerate") || Input.is_action_just_pressed("brake") || Input.is_action_just_pressed("steer_left") || Input.is_action_just_pressed("steer_left"):
+		if Input.is_action_pressed("accelerate") || Input.is_action_pressed("brake") || Input.is_action_pressed("steer_left") || Input.is_action_pressed("steer_left"):
 			start_game()
 
 func start_game():
