@@ -62,7 +62,7 @@ mesh = SubResource("PlaneMesh_t6pxs")
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.575546)
-aabb = AABB(-250.444, -1, 0.138, 500.888, 2, 300)
+aabb = AABB(-250.444, -1, 0.138, 500.888, 2, 600)
 
 [node name="Spawner" type="Node3D" parent="."]
 

@@ -8,7 +8,7 @@ signal on_track_spawned
 @onready var track_collider: CollisionShape3D = $TrackCollider/CollisionShape3D
 @onready var track_collider_particles: GPUParticlesCollisionBox3D = $TrackCollider/GPUParticlesCollisionBox3D
 
-var num_parts_to_load = 6
+var num_parts_to_load = 8
 var loaded_street_parts = []
 var last_out_connector: Node3D
 var rng = RandomNumberGenerator.new()
@@ -65,6 +65,7 @@ func destroy_out_of_screen_street_parts():
 		if !is_on_screen && is_behind_player:
 			loaded_street_parts.pop_at(i)
 			part.queue_free()
+			print("Destroyed track part")
 	
 	resize_track_collider()
 

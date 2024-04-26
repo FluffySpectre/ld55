@@ -11,7 +11,8 @@ static var instance: GameManager
 
 var start_position: Vector3 = Vector3.ZERO
 var total_spawned_tracks = 0
-var distance_interval = 10.0
+var distance_interval = 150.0
+var score_per_interval = 5.0
 var last_position = Vector3.ZERO
 var distance_in_target_direction_interval = 0.0
 
@@ -39,7 +40,7 @@ func _process(_delta):
 	if game_state == GameState.IN_GAME:
 		if Input.is_action_just_pressed("ui_cancel"):
 			reset_player()
-			
+		
 		update_score()
 	
 	if game_state == GameState.MENU:
@@ -67,12 +68,10 @@ func update_score():
 		Globals.distance_in_target_direction += distance_this_frame
 	
 	if distance_in_target_direction_interval >= distance_interval:
-		Globals.score += 1
+		Globals.score += score_per_interval
 		distance_in_target_direction_interval -= distance_interval
 		score_changed.emit(Globals.score)
 		
-	print("Score: ", Globals.score, " Distance: ", Globals.distance_in_target_direction)
-	
 	last_position = current_position
 
 func reset_player():
