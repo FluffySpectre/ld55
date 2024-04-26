@@ -5,10 +5,15 @@ class_name GameManager extends Node
 @export var track_generator: TrackGenerator
 @export var intro_animation_player: AnimationPlayer
 
+signal score_changed(new_score: int)
+
 static var instance: GameManager
 
 var start_position: Vector3 = Vector3.ZERO
 var total_spawned_tracks = 0
+var distance_interval = 10.0
+var last_position = Vector3.ZERO
+var distance_in_target_direction_interval = 0.0
 
 enum GameState {
 	INTRO,
@@ -21,6 +26,7 @@ func _ready():
 	instance = self
 	
 	Globals.player_car = player_car
+	last_position = player_car.global_position
 
 	track_generator.on_track_spawned.connect(on_track_spawned)
 
@@ -28,10 +34,13 @@ func _ready():
 func _process(_delta):
 	if player_car && start_position == Vector3.ZERO:
 		start_position = player_car.global_position
+		last_position = player_car.global_position
 	
 	if game_state == GameState.IN_GAME:
 		if Input.is_action_just_pressed("ui_cancel"):
 			reset_player()
+			
+		update_score()
 	
 	if game_state == GameState.MENU:
 		if Input.is_action_just_pressed("accelerate") || Input.is_action_just_pressed("brake") || Input.is_action_just_pressed("steer_left") || Input.is_action_just_pressed("steer_left"):
@@ -44,6 +53,27 @@ func start_game():
 	print("Game started")
 	
 	Globals.spawn_enemies = true
+	
+	last_position = player_car.global_position
+
+func update_score():
+	var current_position = player_car.global_position
+	var movement_vector = current_position - last_position
+	var target_direction = Vector3(0, 0, 1)
+	var distance_this_frame = movement_vector.dot(target_direction)
+	
+	if distance_this_frame > 0:
+		distance_in_target_direction_interval += distance_this_frame
+		Globals.distance_in_target_direction += distance_this_frame
+	
+	if distance_in_target_direction_interval >= distance_interval:
+		Globals.score += 1
+		distance_in_target_direction_interval -= distance_interval
+		score_changed.emit(Globals.score)
+		
+	print("Score: ", Globals.score, " Distance: ", Globals.distance_in_target_direction)
+	
+	last_position = current_position
 
 func reset_player():
 	# TODO: Get the last track the player was driving on

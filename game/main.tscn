@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c5385qrdr3oil"]
+[gd_scene load_steps=19 format=3 uid="uid://c5385qrdr3oil"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_a32xk"]
 [ext_resource type="PackedScene" uid="uid://cc2gxluvkmj1t" path="res://scenes/player_car_v5.tscn" id="2_np6hg"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/camera_controller.gd" id="4_n7y0v"]
 [ext_resource type="PackedScene" uid="uid://bke87oao2tdg8" path="res://scenes/track_generator.tscn" id="6_76i6k"]
 [ext_resource type="Theme" uid="uid://blwncnbab5bdl" path="res://ui_theme.tres" id="7_yh54y"]
+[ext_resource type="Script" path="res://scripts/game_ui.gd" id="8_1q0p2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jf1u2"]
 ground_bottom_color = Color(0.141176, 0.145098, 0.345098, 1)
@@ -61,10 +62,22 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../UI/GameOverlay:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_r3b6j"]
 resource_name = "game_in"
-length = 0.5
+length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -88,6 +101,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../UI/GameOverlay:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_t86n8"]
@@ -332,8 +357,120 @@ offset_bottom = 21.0
 theme = ExtResource("7_yh54y")
 theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
 theme_override_font_sizes/font_size = 12
-text = "Ritual Road"
 vertical_alignment = 1
+uppercase = true
+
+[node name="R" type="Label" parent="Titlescreen/GameTitle"]
+layout_mode = 0
+offset_right = 9.0
+offset_bottom = 21.0
+theme = ExtResource("7_yh54y")
+theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
+theme_override_font_sizes/font_size = 12
+text = "R"
+uppercase = true
+
+[node name="I" type="Label" parent="Titlescreen/GameTitle"]
+layout_mode = 0
+offset_left = 9.0
+offset_right = 14.0
+offset_bottom = 18.0
+theme = ExtResource("7_yh54y")
+theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
+theme_override_font_sizes/font_size = 12
+text = "I"
+uppercase = true
+
+[node name="T" type="Label" parent="Titlescreen/GameTitle"]
+layout_mode = 0
+offset_left = 13.0
+offset_right = 21.0
+offset_bottom = 18.0
+theme = ExtResource("7_yh54y")
+theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
+theme_override_font_sizes/font_size = 12
+text = "T"
+uppercase = true
+
+[node name="U" type="Label" parent="Titlescreen/GameTitle"]
+layout_mode = 0
+offset_left = 21.0
+offset_right = 30.0
+offset_bottom = 18.0
+theme = ExtResource("7_yh54y")
+theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
+theme_override_font_sizes/font_size = 12
+text = "U
+"
+uppercase = true
+
+[node name="A" type="Label" parent="Titlescreen/GameTitle"]
+layout_mode = 0
+offset_left = 30.0
+offset_right = 39.0
+offset_bottom = 18.0
+theme = ExtResource("7_yh54y")
+theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
+theme_override_font_sizes/font_size = 12
+text = "A
+"
+uppercase = true
+
+[node name="L" type="Label" parent="Titlescreen/GameTitle"]
+layout_mode = 0
+offset_left = 39.0
+offset_right = 48.0
+offset_bottom = 32.0
+theme = ExtResource("7_yh54y")
+theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
+theme_override_font_sizes/font_size = 12
+text = "L
+
+"
+uppercase = true
+
+[node name="R2" type="Label" parent="Titlescreen/GameTitle"]
+layout_mode = 0
+offset_left = 53.0
+offset_right = 62.0
+offset_bottom = 18.0
+theme = ExtResource("7_yh54y")
+theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
+theme_override_font_sizes/font_size = 12
+text = "R"
+uppercase = true
+
+[node name="O" type="Label" parent="Titlescreen/GameTitle"]
+layout_mode = 0
+offset_left = 62.0
+offset_right = 71.0
+offset_bottom = 18.0
+theme = ExtResource("7_yh54y")
+theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
+theme_override_font_sizes/font_size = 12
+text = "O"
+uppercase = true
+
+[node name="A2" type="Label" parent="Titlescreen/GameTitle"]
+layout_mode = 0
+offset_left = 71.0
+offset_right = 80.0
+offset_bottom = 18.0
+theme = ExtResource("7_yh54y")
+theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
+theme_override_font_sizes/font_size = 12
+text = "A"
+uppercase = true
+
+[node name="D" type="Label" parent="Titlescreen/GameTitle"]
+layout_mode = 0
+offset_left = 80.0
+offset_right = 89.0
+offset_bottom = 18.0
+theme = ExtResource("7_yh54y")
+theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
+theme_override_font_sizes/font_size = 12
+text = "D"
 uppercase = true
 
 [node name="Subtitle" type="Label" parent="Titlescreen/GameTitle"]
@@ -370,5 +507,29 @@ to take control"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("point_counter_label")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_1q0p2")
+point_counter_label = NodePath("GameOverlay/PointCounter")
+
+[node name="GameOverlay" type="Control" parent="UI"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PointCounter" type="Label" parent="UI/GameOverlay"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 125.0
+offset_bottom = 28.0
+theme = ExtResource("7_yh54y")
+theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
+text = "0"
 
 [editable path="PlayerCarV5"]
