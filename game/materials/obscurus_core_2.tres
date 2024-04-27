@@ -1,0 +1,25 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://onjey1f6wsis"]
+
+[ext_resource type="Shader" path="res://shader/obscurus_core.gdshader" id="1_gkk23"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s4okr"]
+frequency = 0.0426
+fractal_type = 3
+fractal_octaves = 1
+fractal_lacunarity = 10.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ugvyh"]
+width = 64
+height = 64
+noise = SubResource("FastNoiseLite_s4okr")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_gkk23")
+shader_parameter/amplitude = 0.04
+shader_parameter/frequency = 5.0
+shader_parameter/albedo_color = Color(0.345098, 0.329412, 0.317647, 1)
+shader_parameter/rim_color = Color(0.306716, 0.224015, 0.604621, 1)
+shader_parameter/rim_strength = 1.0
+shader_parameter/rim_width = 1.0
+shader_parameter/normal_map = SubResource("NoiseTexture2D_ugvyh")
