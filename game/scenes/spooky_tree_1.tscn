@@ -1,13 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://molrk3pyx2am"]
 
-[ext_resource type="ArrayMesh" uid="uid://cf502nxa15n4i" path="res://models/tree.obj" id="1_geqfv"]
+[ext_resource type="PackedScene" uid="uid://oclw25afc8o" path="res://models/spooky_tree_1.glb" id="1_jpioc"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l6is8"]
-albedo_color = Color(0.262745, 0.180392, 0.0588235, 1)
-texture_filter = 0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4nw0t"]
+albedo_color = Color(0.218789, 0.12579, 0.0149949, 1)
 
-[node name="SpookyTree1" type="Node3D"]
+[node name="spooky_tree_1" instance=ExtResource("1_jpioc")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_l6is8")
-mesh = ExtResource("1_geqfv")
+[node name="tree" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_4nw0t")
