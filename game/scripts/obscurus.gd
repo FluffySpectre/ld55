@@ -71,7 +71,7 @@ func move_towards_target(target_position, delta):
 	# Look at
 	var current_angle = rotation.y
 	var target_angle = atan2(target_dir.x, target_dir.z) + PI
-	var smoothed_angle = lerp_angle(current_angle, target_angle, delta * 3.0)
+	var smoothed_angle = lerp_angle(current_angle, target_angle, delta * 4.0)
 	rotation.y = smoothed_angle
 
 func on_attack_area_entered(body: CollisionObject3D):

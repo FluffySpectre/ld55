@@ -9,4 +9,7 @@ func _ready():
 	health.on_health_changed.connect(on_health_changed)
 
 func on_health_changed():
-	car_body.material_overlay.albedo_color.a = 1.0 - (float(health.health) / float(health.max_health))
+	var alpha = 1.0 - (float(health.health) / float(health.max_health))
+	if alpha > 0.95:
+		alpha = 0.95
+	car_body.material_overlay.albedo_color.a = alpha
