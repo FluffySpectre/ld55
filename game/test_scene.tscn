@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7i8oybpixn7p"]
+[gd_scene load_steps=6 format=3 uid="uid://c7i8oybpixn7p"]
 
 [ext_resource type="PackedScene" uid="uid://dap5ikl03t5t4" path="res://scenes/straight_street.tscn" id="1_3471x"]
-[ext_resource type="PackedScene" uid="uid://cc2gxluvkmj1t" path="res://scenes/player_car_v5.tscn" id="2_vdsca"]
+[ext_resource type="Script" path="res://scripts/camera_controller.gd" id="2_m3tnp"]
+[ext_resource type="Script" path="res://scripts/follow_target.gd" id="3_57fl3"]
+[ext_resource type="PackedScene" uid="uid://c2705ttw61a38" path="res://scenes/player_car_v6.tscn" id="4_ebts2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jld3x"]
+size = Vector3(500, 1, 583.271)
 
 [node name="TestScene" type="Node3D"]
 
@@ -18,5 +23,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 291.334)
 [node name="StraightStreet4" parent="StreetParts" instance=ExtResource("1_3471x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 432.246)
 
-[node name="PlayerCarV5" parent="." instance=ExtResource("2_vdsca")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.337247, 1.17806, 12.3204)
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(0.161724, 0, 0.986836, 0, 1, 0, -0.986836, 0, 0.161724, 0, 0, 0)
+script = ExtResource("2_m3tnp")
+target = NodePath("../CameraTarget")
+lerp_speed = 14.0
+offset = Vector3(2.08165e-12, 5, -7)
+
+[node name="CameraTarget" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_57fl3")
+target = NodePath("../PlayerCarV6")
+
+[node name="PlayerCarV6" parent="." instance=ExtResource("4_ebts2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.29041, 2.25207, 11.9424)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 296.942)
+shape = SubResource("BoxShape3D_jld3x")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.722931, 0, -0.69092, 0, 1, 0, 0.69092, 0, 0.722931, 0, 0, 0)
+light_energy = 2.713
+light_indirect_energy = 2.082
