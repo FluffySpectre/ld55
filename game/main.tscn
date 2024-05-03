@@ -508,6 +508,34 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+[node name="Creditsscreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Credits" type="Label" parent="Creditsscreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 39.0
+offset_top = 66.0
+offset_right = 265.0
+offset_bottom = 138.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_yh54y")
+text = "* CREDITS *
+
+created by Björn Bosse
+
+Help on the Post Jam Version:
+Christopher Pollok"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="UI" type="Control" parent="." node_paths=PackedStringArray("point_counter_label")]
 layout_mode = 3
 anchors_preset = 0

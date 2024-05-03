@@ -5,3 +5,4 @@
 [resource]
 default_font = ExtResource("1_mya4k")
 Label/constants/line_spacing = 0
+Label/font_sizes/font_size = 12
