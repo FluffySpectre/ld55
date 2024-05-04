@@ -5,7 +5,8 @@ class_name Obscurus extends CharacterBody3D
 @export var damage_interval = 0.25
 @export var damage_per_interval = 1
 
-@onready var attackArea: Area3D = $AttackArea
+@onready var attackAreaContainer: Node3D = $AttackAreaContainer
+@onready var attackArea: Area3D = $AttackAreaContainer/AttackArea
 
 enum BehaviourState {
 	IDLE,
@@ -68,11 +69,11 @@ func move_towards_target(target_position, delta):
 	var target_dir = target_position - global_position
 	move_and_collide(target_dir * speed * delta)
 	
-	# Look at
-	var current_angle = rotation.y
+	# Look at (attack area only)
+	var current_angle = attackAreaContainer.rotation.y
 	var target_angle = atan2(target_dir.x, target_dir.z) + PI
 	var smoothed_angle = lerp_angle(current_angle, target_angle, delta * 4.0)
-	rotation.y = smoothed_angle
+	attackAreaContainer.rotation.y = smoothed_angle
 
 func on_attack_area_entered(body: CollisionObject3D):
 	if Globals.player_car != body.get_parent():

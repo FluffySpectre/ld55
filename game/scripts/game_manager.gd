@@ -5,6 +5,7 @@ class_name GameManager extends Node
 @export var track_generator: TrackGenerator
 @export var intro_animation_player: AnimationPlayer
 
+signal pickup_picked_up(type)
 signal score_changed(new_score: int)
 
 static var instance: GameManager

@@ -1,13 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://dap5ikl03t5t4"]
+[gd_scene load_steps=19 format=3 uid="uid://dap5ikl03t5t4"]
 
 [ext_resource type="Texture2D" uid="uid://dvg4jvbn8k6kl" path="res://textures/street.png" id="1_llngd"]
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="2_b4fxe"]
 [ext_resource type="Texture2D" uid="uid://blj021ji4ardo" path="res://textures/street_sidelines.png" id="2_n2rpe"]
-[ext_resource type="PackedScene" uid="uid://ch788n75qxxpa" path="res://scenes/ritual_pickup_2.tscn" id="3_fnry5"]
+[ext_resource type="PackedScene" uid="uid://dnrt1etjrsg1e" path="res://scenes/rune_1.tscn" id="5_050ft"]
 [ext_resource type="PackedScene" uid="uid://kal68on760kc" path="res://scenes/obscurus.tscn" id="5_osjkm"]
 [ext_resource type="PackedScene" uid="uid://dfyv2qv2siijh" path="res://scenes/sign.tscn" id="6_qs4op"]
 [ext_resource type="PackedScene" uid="uid://d2265v0byai01" path="res://scenes/street_lamp.tscn" id="6_u5635"]
 [ext_resource type="PackedScene" uid="uid://molrk3pyx2am" path="res://scenes/spooky_tree_1.tscn" id="7_o86ua"]
+[ext_resource type="Script" path="res://scripts/tree_spawner.gd" id="7_ovo0c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r3ovw"]
 size = Vector3(30.0463, 1, 150.715)
@@ -34,6 +35,9 @@ size = Vector3(25, 0.5, 145)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ye283"]
 size = Vector3(1, 0.01, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7lqfb"]
+size = Vector3(200, 0.01, 130)
 
 [node name="StraightStreet" type="Node3D"]
 
@@ -72,7 +76,7 @@ script = ExtResource("2_b4fxe")
 scenes_to_spawn = Array[PackedScene]([ExtResource("5_osjkm")])
 spawn_area = NodePath("../PowerupSpawner/Area3D")
 spawn_offset = Vector3(0, 1, 0)
-chance_for_spawn = 0.4
+chance_for_spawn = 0.3
 
 [node name="Area3D" type="Area3D" parent="Spawner/EnemySpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 15)
@@ -88,9 +92,9 @@ shape = SubResource("BoxShape3D_02cjv")
 [node name="PowerupSpawner" type="Node3D" parent="Spawner" node_paths=PackedStringArray("spawn_area")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 59.3558)
 script = ExtResource("2_b4fxe")
-scenes_to_spawn = Array[PackedScene]([ExtResource("3_fnry5")])
+scenes_to_spawn = Array[PackedScene]([ExtResource("5_050ft")])
 spawn_area = NodePath("Area3D")
-chance_for_spawn = 0.1
+chance_for_spawn = 0.6
 
 [node name="Area3D" type="Area3D" parent="Spawner/PowerupSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 15)
@@ -119,6 +123,32 @@ monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Spawner/SignSpawner/Area3D"]
 shape = SubResource("BoxShape3D_ye283")
+
+[node name="TreeSpawner1" type="Node3D" parent="Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 131.752, 0, 75.3462)
+script = ExtResource("7_ovo0c")
+tree_scene = ExtResource("7_o86ua")
+num_trees = 5
+group_radius = 15
+trees_per_group = 3
+
+[node name="Area3D" type="Area3D" parent="Spawner/TreeSpawner1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spawner/TreeSpawner1/Area3D"]
+shape = SubResource("BoxShape3D_7lqfb")
+
+[node name="TreeSpawner2" type="Node3D" parent="Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -130.293, 0, 75.3462)
+script = ExtResource("7_ovo0c")
+tree_scene = ExtResource("7_o86ua")
+num_trees = 5
+group_radius = 15
+trees_per_group = 3
+
+[node name="Area3D" type="Area3D" parent="Spawner/TreeSpawner2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spawner/TreeSpawner2/Area3D"]
+shape = SubResource("BoxShape3D_7lqfb")
 
 [node name="StreetLamp" parent="." instance=ExtResource("6_u5635")]
 transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, -14.579, 0.21, 75)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://cc2gxluvkmj1t"]
+[gd_scene load_steps=40 format=3 uid="uid://cc2gxluvkmj1t"]
 
 [ext_resource type="Script" path="res://scripts/car_controller.gd" id="1_ydngu"]
 [ext_resource type="Script" path="res://scripts/player_input.gd" id="2_gusdt"]
 [ext_resource type="Script" path="res://scripts/brake_lights.gd" id="2_kefjp"]
+[ext_resource type="Script" path="res://scripts/gameplay_controller.gd" id="3_yuwnx"]
 [ext_resource type="Script" path="res://scripts/car_collision_controller.gd" id="4_vdqqh"]
 [ext_resource type="AudioStream" uid="uid://cymc7327kabfu" path="res://sounds/hitHurt-2.wav" id="5_pl3mc"]
 [ext_resource type="AudioStream" uid="uid://bxg5avmhwn5ew" path="res://sounds/hitHurt-3.wav" id="6_12kjx"]
@@ -13,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://con7mnuk4sqbt" path="res://sounds/engine.wav" id="9_n88ve"]
 [ext_resource type="AudioStream" uid="uid://k46d5vrb56uh" path="res://sounds/brake-2.wav" id="10_jibt2"]
 [ext_resource type="Script" path="res://scripts/mud_fx.gd" id="11_8prwl"]
+[ext_resource type="Shader" path="res://shader/obscurus_core.gdshader" id="13_un0in"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_816rp"]
 transparency = 1
@@ -260,6 +262,22 @@ vertex_color_use_as_albedo = true
 material = SubResource("StandardMaterial3D_xxs0f")
 size = Vector2(0.2, 0.2)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c6kqi"]
+render_priority = 0
+shader = ExtResource("13_un0in")
+shader_parameter/amplitude = 0.07
+shader_parameter/frequency = 7.5
+shader_parameter/albedo_color = Color(0.654902, 0.552941, 0.0156863, 0.0980392)
+shader_parameter/rim_color = Color(0.780941, 0.541237, 0, 1)
+shader_parameter/rim_strength = 0.395
+shader_parameter/rim_width = 0.085
+
+[sub_resource type="SphereMesh" id="SphereMesh_c40t2"]
+material = SubResource("ShaderMaterial_c6kqi")
+radius = 2.5
+height = 2.5
+is_hemisphere = true
+
 [sub_resource type="Curve" id="Curve_5hl7n"]
 _data = [Vector2(0.00871459, 1), 0.0, 0.0, 0, 0, Vector2(0.984749, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -408,6 +426,11 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_x0b63")
 draw_pass_1 = SubResource("QuadMesh_1cnoi")
 
+[node name="GameplayController" type="Node" parent="." node_paths=PackedStringArray("particle_attractor_sphere", "particle_repulsor_sphere")]
+script = ExtResource("3_yuwnx")
+particle_attractor_sphere = NodePath("../GPUParticlesAttractorSphere3D")
+particle_repulsor_sphere = NodePath("../RepulsorSphere")
+
 [node name="PlayerInput" type="Node" parent="."]
 script = ExtResource("2_gusdt")
 
@@ -444,6 +467,16 @@ strength = 60.0
 cull_mask = 4293918722
 radius = 50.0
 
+[node name="RepulsorSphere" type="GPUParticlesAttractorSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.614513, 2.08165e-12)
+strength = -5.0
+radius = 30.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RepulsorSphere"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08165e-12, -2.08165e-12, -2.08165e-12)
+mesh = SubResource("SphereMesh_c40t2")
+skeleton = NodePath("../..")
+
 [node name="RayCastLeft" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.781965, -0.447318, 0)
 target_position = Vector3(2.08165e-12, -1, 2.08165e-12)
@@ -476,8 +509,8 @@ process_material = SubResource("ParticleProcessMaterial_2llal")
 draw_pass_1 = SubResource("QuadMesh_1cnoi")
 
 [node name="AttackTargetArea" type="Area3D" parent="."]
-collision_layer = 512
-collision_mask = 512
+collision_layer = 66048
+collision_mask = 66048
 input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackTargetArea"]
