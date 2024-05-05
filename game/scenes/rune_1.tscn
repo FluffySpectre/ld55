@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnrt1etjrsg1e"]
+[gd_scene load_steps=16 format=3 uid="uid://dnrt1etjrsg1e"]
 
+[ext_resource type="Texture2D" uid="uid://7k2x4c2et3jx" path="res://textures/flames.png" id="1_8dlyb"]
 [ext_resource type="Texture2D" uid="uid://bug3n4dc3y0j" path="res://textures/rune_1.png" id="1_d5fi3"]
+[ext_resource type="Script" path="res://scripts/simple_animated_sprite.gd" id="2_ll63j"]
 [ext_resource type="Script" path="res://scripts/rune_pickup.gd" id="2_os0sx"]
+[ext_resource type="Texture2D" uid="uid://cfhbpy0x07ewt" path="res://textures/flame.png" id="5_6sm67"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_npggm"]
 radius = 2.0
@@ -22,38 +25,62 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(3.48787e-16, 3.48787e-16, 3.14159), Vector3(3.48787e-16, 3.48787e-16, 6.28319)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite3D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(3.48787e-16, 6.28319, 3.48787e-16)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2m5p4"]
 _data = {
 "rune": SubResource("Animation_mk165")
 }
 
+[sub_resource type="Curve" id="Curve_louat"]
+_data = [Vector2(0, 1), 0.0, -1.84457, 0, 0, Vector2(0.347826, 0.342031), -1.33115, -1.33115, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4c75o"]
+curve = SubResource("Curve_louat")
+
+[sub_resource type="Curve" id="Curve_vakrv"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8qqg1"]
+curve = SubResource("Curve_vakrv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iwc7w"]
+gravity = Vector3(2.08165e-12, 1, 2.08165e-12)
+attractor_interaction_enabled = false
+scale_min = 2.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_8qqg1")
+alpha_curve = SubResource("CurveTexture_4c75o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fpw4q"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("5_6sm67")
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_sawuk"]
+material = SubResource("StandardMaterial3D_fpw4q")
+size = Vector2(3, 3)
+
 [node name="Rune1" type="Node3D"]
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(-8, 1.39515e-15, -8.74228e-08, 1.39515e-15, 8, -1.74393e-16, 6.99382e-07, -1.39515e-15, -1, 2.08165e-12, 1.89601, 2.08165e-12)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 1, 2.08165e-12, 1.89601, 2.08165e-12)
 sorting_offset = 1.0
-modulate = Color(0.717188, 0.639065, 0.194612, 1)
+transparency = 0.1
+modulate = Color(0.35, 0.48, 1, 1)
+billboard = 2
 texture_filter = 0
-texture = ExtResource("1_d5fi3")
-hframes = 2
+texture = ExtResource("1_8dlyb")
+hframes = 5
+script = ExtResource("2_ll63j")
+fps = 8.0
 
 [node name="Sprite3D2" type="Sprite3D" parent="."]
-transform = Transform3D(-8, 6.99382e-07, 3.48787e-16, -6.99382e-07, -8, -3.48787e-16, 2.79029e-15, -2.7903e-15, 1, 2.08165e-12, 1.89601, 2.08165e-12)
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 1, 2.08165e-12, 1.70971, 2.08165e-12)
 visible = false
-modulate = Color(0.690027, 0.420576, 0.0578409, 1)
+modulate = Color(0.643122, 0.774743, 0.991119, 1)
 texture_filter = 0
 texture = ExtResource("1_d5fi3")
 hframes = 2
@@ -69,16 +96,18 @@ shape = SubResource("SphereShape3D_npggm")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95884, 0)
-light_color = Color(0.818716, 0.721809, 0, 1)
+light_color = Color(0.106058, 0.484077, 0.961119, 1)
 light_energy = 4.0
+light_volumetric_fog_energy = 4.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_2m5p4")
 }
-autoplay = "rune"
 
-[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="."]
-strength = 128.0
-directionality = 1.0
-radius = 10.0
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81408, 0)
+lifetime = 1.5
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_iwc7w")
+draw_pass_1 = SubResource("QuadMesh_sawuk")

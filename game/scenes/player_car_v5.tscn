@@ -267,8 +267,8 @@ render_priority = 0
 shader = ExtResource("13_un0in")
 shader_parameter/amplitude = 0.05
 shader_parameter/frequency = 8.0
-shader_parameter/albedo_color = Color(0.654902, 0.552941, 0.0156863, 0.0980392)
-shader_parameter/rim_color = Color(0.780941, 0.541237, 0, 1)
+shader_parameter/albedo_color = Color(0.0431262, 0.383774, 0.851603, 0.0980392)
+shader_parameter/rim_color = Color(0.721205, 0.83907, 0.99688, 1)
 shader_parameter/rim_strength = 0.395
 shader_parameter/rim_width = 0.085
 
