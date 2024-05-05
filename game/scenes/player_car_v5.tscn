@@ -265,8 +265,8 @@ size = Vector2(0.2, 0.2)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c6kqi"]
 render_priority = 0
 shader = ExtResource("13_un0in")
-shader_parameter/amplitude = 0.07
-shader_parameter/frequency = 7.5
+shader_parameter/amplitude = 0.05
+shader_parameter/frequency = 8.0
 shader_parameter/albedo_color = Color(0.654902, 0.552941, 0.0156863, 0.0980392)
 shader_parameter/rim_color = Color(0.780941, 0.541237, 0, 1)
 shader_parameter/rim_strength = 0.395
@@ -276,6 +276,8 @@ shader_parameter/rim_width = 0.085
 material = SubResource("ShaderMaterial_c6kqi")
 radius = 2.5
 height = 2.5
+radial_segments = 32
+rings = 16
 is_hemisphere = true
 
 [sub_resource type="Curve" id="Curve_5hl7n"]
@@ -467,10 +469,10 @@ strength = 60.0
 cull_mask = 4293918722
 radius = 50.0
 
-[node name="RepulsorSphere" type="GPUParticlesAttractorSphere3D" parent="."]
+[node name="RepulsorSphere" type="GPUParticlesCollisionSphere3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.614513, 2.08165e-12)
-strength = -5.0
-radius = 30.0
+layers = 2
+radius = 2.5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RepulsorSphere"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08165e-12, -2.08165e-12, -2.08165e-12)
