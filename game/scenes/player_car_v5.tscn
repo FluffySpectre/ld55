@@ -479,6 +479,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08165e-12, -2.08165e-12, -
 mesh = SubResource("SphereMesh_c40t2")
 skeleton = NodePath("../..")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="RepulsorSphere"]
+light_color = Color(0.155362, 0.48526, 0.981468, 1)
+light_volumetric_fog_energy = 2.0
+shadow_blur = 4.5
+omni_range = 4.0
+
 [node name="RayCastLeft" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.781965, -0.447318, 0)
 target_position = Vector3(2.08165e-12, -1, 2.08165e-12)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://kal68on760kc"]
+[gd_scene load_steps=18 format=3 uid="uid://kal68on760kc"]
 
 [ext_resource type="Script" path="res://scripts/obscurus.gd" id="1_8y0th"]
 [ext_resource type="Material" uid="uid://onjey1f6wsis" path="res://materials/obscurus_core_2.tres" id="2_vhmk0"]
+[ext_resource type="AudioStream" uid="uid://dskn8dsms7u46" path="res://sounds/obscurus.wav" id="3_l2nxk"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_m8yf8"]
 
@@ -163,3 +164,8 @@ shape = SubResource("BoxShape3D_jsava")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.5, 12.5)
 visible = false
 mesh = SubResource("BoxMesh_n1kvj")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_l2nxk")
+volume_db = 1.0
+autoplay = true

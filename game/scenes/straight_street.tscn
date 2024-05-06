@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dap5ikl03t5t4"]
+[gd_scene load_steps=36 format=3 uid="uid://dap5ikl03t5t4"]
 
 [ext_resource type="Texture2D" uid="uid://dvg4jvbn8k6kl" path="res://textures/street.png" id="1_llngd"]
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="2_b4fxe"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://d2265v0byai01" path="res://scenes/street_lamp.tscn" id="6_u5635"]
 [ext_resource type="PackedScene" uid="uid://molrk3pyx2am" path="res://scenes/spooky_tree_1.tscn" id="7_o86ua"]
 [ext_resource type="Script" path="res://scripts/tree_spawner.gd" id="7_ovo0c"]
+[ext_resource type="Shader" path="res://shader/ground_fog.gdshader" id="10_12v7w"]
+[ext_resource type="Texture2D" uid="uid://b1wr222vhan7g" path="res://textures/fog_2.png" id="10_mfelg"]
+[ext_resource type="Script" path="res://scripts/fade_in_fog.gd" id="11_as7k2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r3ovw"]
 size = Vector3(30.0463, 1, 150.715)
@@ -38,6 +41,87 @@ size = Vector3(1, 0.01, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7lqfb"]
 size = Vector3(200, 0.01, 130)
+
+[sub_resource type="Gradient" id="Gradient_tosjb"]
+offsets = PackedFloat32Array(0.00847458, 0.0714286, 1)
+colors = PackedColorArray(0.8, 0.8, 0.8, 1, 0.685146, 0.685146, 0.685146, 1, 0.000333904, 0.000333904, 0.000333904, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_skxgt"]
+gradient = SubResource("Gradient_tosjb")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rk44w"]
+noise_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_28g75"]
+width = 256
+height = 256
+seamless = true
+noise = SubResource("FastNoiseLite_rk44w")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0316r"]
+shader = ExtResource("10_12v7w")
+shader_parameter/noise_scale = 0.06
+shader_parameter/flatness = 4.0
+shader_parameter/density = 0.8
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_28g75")
+shader_parameter/gradient_tex = SubResource("GradientTexture1D_skxgt")
+
+[sub_resource type="Curve" id="Curve_yg56q"]
+_data = [Vector2(0, 0), 0.0, -0.0634416, 0, 0, Vector2(0.496894, 0.496848), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.987561, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3o7fr"]
+curve = SubResource("Curve_yg56q")
+
+[sub_resource type="Curve" id="Curve_mvrbx"]
+min_value = 2.13163e-14
+_data = [Vector2(0, 2.13163e-14), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mlsnh"]
+curve = SubResource("Curve_mvrbx")
+
+[sub_resource type="Curve" id="Curve_vu7fa"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 1, Vector2(0.927536, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 13.8, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_nn5su"]
+curve = SubResource("Curve_vu7fa")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r6dl5"]
+emission_shape = 3
+emission_box_extents = Vector3(15, 0.1, 75)
+angle_max = 360.0
+angle_curve = SubResource("CurveTexture_mlsnh")
+velocity_pivot = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+direction = Vector3(1, 2.08165e-12, 2.08165e-12)
+spread = 0.0
+flatness = 1.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+radial_accel_min = 0.05
+radial_accel_max = 0.07
+damping_max = 0.1
+damping_curve = SubResource("CurveTexture_nn5su")
+attractor_interaction_enabled = false
+scale_max = 1.5
+alpha_curve = SubResource("CurveTexture_3o7fr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43ek7"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.81242, 0.899985, 0.953751, 0.0941176)
+albedo_texture = ExtResource("10_mfelg")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_acdg4"]
+material = SubResource("StandardMaterial3D_43ek7")
+size = Vector2(2, 2)
 
 [node name="StraightStreet" type="Node3D"]
 
@@ -175,3 +259,20 @@ transform = Transform3D(0.576432, 8.39574e-17, 0.817145, 3.48787e-16, 1, -3.4878
 
 [node name="SpookyTree6" parent="Trees" instance=ExtResource("7_o86ua")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.4276, 0, 140.155)
+
+[node name="FogVolumeShader" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.208727, 1.00751, 74.7652)
+size = Vector3(500, 2, 150)
+material = SubResource("ShaderMaterial_0316r")
+script = ExtResource("11_as7k2")
+
+[node name="StreetFog" type="GPUParticles3D" parent="."]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.208727, 0.140638, 75.8801)
+visible = false
+amount = 100
+lifetime = 10.0
+randomness = 0.1
+visibility_aabb = AABB(-15, -4, -75, 30, 8, 160)
+process_material = SubResource("ParticleProcessMaterial_r6dl5")
+draw_pass_1 = SubResource("QuadMesh_acdg4")

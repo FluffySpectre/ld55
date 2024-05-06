@@ -27,7 +27,7 @@ fog_light_color = Color(1, 0.152941, 0.137255, 1)
 fog_height = 1.0
 fog_height_density = 0.2
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.04
+volumetric_fog_density = 0.06
 volumetric_fog_albedo = Color(0.8, 0.8, 0.8, 1)
 volumetric_fog_length = 100.0
 adjustment_brightness = 0.47
@@ -287,12 +287,13 @@ _data = {
 
 [node name="Main" type="Node3D"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player_car", "cam_controller", "track_generator", "intro_animation_player")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player_car", "cam_controller", "track_generator", "intro_animation_player", "world_environment")]
 script = ExtResource("1_a32xk")
 player_car = NodePath("../PlayerCarV5")
 cam_controller = NodePath("../Camera3D2")
 track_generator = NodePath("../TrackGenerator")
 intro_animation_player = NodePath("../Intro/AnimationPlayer")
+world_environment = NodePath("../WorldEnvironment")
 
 [node name="SoundManager" type="Node" parent="."]
 script = ExtResource("2_t7407")

@@ -97,7 +97,7 @@ shape = SubResource("SphereShape3D_npggm")
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95884, 0)
 light_color = Color(0.106058, 0.484077, 0.961119, 1)
-light_energy = 4.0
+light_energy = 2.0
 light_volumetric_fog_energy = 4.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

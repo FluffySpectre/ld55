@@ -4,6 +4,7 @@ class_name GameManager extends Node
 @export var cam_controller: CameraController
 @export var track_generator: TrackGenerator
 @export var intro_animation_player: AnimationPlayer
+@export var world_environment: WorldEnvironment
 
 signal pickup_picked_up(type)
 signal score_changed(new_score: int)
