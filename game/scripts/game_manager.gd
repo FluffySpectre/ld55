@@ -32,6 +32,8 @@ func _ready():
 	last_position = player_car.global_position
 
 	track_generator.on_track_spawned.connect(on_track_spawned)
+	
+	score_changed.connect(check_enemy_spawn)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -54,8 +56,6 @@ func start_game():
 	intro_animation_player.play("game_in")
 	
 	print("Game started")
-	
-	Globals.spawn_enemies = true
 	
 	last_position = player_car.global_position
 
@@ -94,11 +94,13 @@ func reset_player():
 	
 	cam_controller.reset_view()
 
+func check_enemy_spawn(score):
+	# Start spawning enemies after fog sets in
+	if score >= 30:
+		Globals.spawn_enemies = true
+
 func on_track_spawned():
 	total_spawned_tracks += 1
-	# Start spawning enemies only a bit later in the game
-	# if total_spawned_tracks > 2:
-	#	Globals.spawn_enemies = true
 
 func on_intro_ended():
 	print("Intro ended")

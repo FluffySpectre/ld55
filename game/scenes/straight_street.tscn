@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dap5ikl03t5t4"]
+[gd_scene load_steps=37 format=3 uid="uid://dap5ikl03t5t4"]
 
 [ext_resource type="Texture2D" uid="uid://dvg4jvbn8k6kl" path="res://textures/street.png" id="1_llngd"]
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="2_b4fxe"]
@@ -65,6 +65,10 @@ shader_parameter/flatness = 4.0
 shader_parameter/density = 0.8
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_28g75")
 shader_parameter/gradient_tex = SubResource("GradientTexture1D_skxgt")
+
+[sub_resource type="Curve" id="Curve_wsamy"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.699187, 0.320832), 1.07644, 1.07644, 0, 0, Vector2(1, 1), 2.61874, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Curve" id="Curve_yg56q"]
 _data = [Vector2(0, 0), 0.0, -0.0634416, 0, 0, Vector2(0.496894, 0.496848), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.987561, 0.0, 1, 0]
@@ -265,6 +269,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.208727, 1.00751, 74.7652)
 size = Vector3(500, 2, 150)
 material = SubResource("ShaderMaterial_0316r")
 script = ExtResource("11_as7k2")
+fade_curve = SubResource("Curve_wsamy")
 
 [node name="StreetFog" type="GPUParticles3D" parent="."]
 process_mode = 4
