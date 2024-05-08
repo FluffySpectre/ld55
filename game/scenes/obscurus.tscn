@@ -40,8 +40,8 @@ gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 linear_accel_min = 1.0
 linear_accel_max = 2.0
 alpha_curve = SubResource("CurveTexture_mjgld")
-hue_variation_min = -0.01
-hue_variation_max = 0.01
+hue_variation_min = -0.1
+hue_variation_max = 0.1
 turbulence_enabled = true
 turbulence_noise_scale = 3.0
 collision_mode = 1
@@ -143,7 +143,7 @@ draw_pass_1 = SubResource("TubeTrailMesh_xvb66")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08165e-12, 0, -2.08165e-12)
-light_color = Color(0.179702, 0.149064, 0.306381, 1)
+light_color = Color(0.442269, 0.185599, 0.877683, 1)
 light_energy = 2.0
 light_indirect_energy = 2.0
 light_volumetric_fog_energy = 2.056
