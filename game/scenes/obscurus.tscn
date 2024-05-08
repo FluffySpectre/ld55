@@ -12,7 +12,7 @@ radial_segments = 32
 rings = 16
 
 [sub_resource type="Curve" id="Curve_arej0"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.610022, 0.741055), -1.28784, -1.28784, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.806565), 0.0, 0.0, 0, 0, Vector2(0.5, 0.456674), -0.868886, -0.868886, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_mjgld"]
@@ -117,7 +117,7 @@ skeleton = NodePath("../..")
 [node name="Lines" type="GPUParticles3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08165e-12, 0, -2.08165e-12)
 layers = 2
-amount = 16
+amount = 10
 lifetime = 5.0
 preprocess = 1.0
 collision_base_size = 0.1
