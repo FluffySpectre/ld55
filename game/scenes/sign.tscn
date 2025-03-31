@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://dfyv2qv2siijh"]
 
-[ext_resource type="Script" path="res://scripts/sign.gd" id="1_60fhp"]
+[ext_resource type="Script" uid="uid://dmtm8uptj8e67" path="res://scripts/sign.gd" id="1_60fhp"]
 [ext_resource type="FontFile" uid="uid://c7bjj2b2gsfv2" path="res://font/Silkscreen-Regular.ttf" id="1_j7i4i"]
 [ext_resource type="Texture2D" uid="uid://cxbi7o8712scg" path="res://textures/sign.png" id="2_6ocb6"]
-[ext_resource type="Script" path="res://scripts/line_mesh.gd" id="4_oy2xh"]
+[ext_resource type="Script" uid="uid://burg5ay0m3nuv" path="res://scripts/line_mesh.gd" id="4_oy2xh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2i2f"]
 transparency = 1

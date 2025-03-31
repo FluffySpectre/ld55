@@ -1,17 +1,17 @@
 [gd_scene load_steps=37 format=3 uid="uid://dap5ikl03t5t4"]
 
 [ext_resource type="Texture2D" uid="uid://dvg4jvbn8k6kl" path="res://textures/street.png" id="1_llngd"]
-[ext_resource type="Script" path="res://scripts/spawner.gd" id="2_b4fxe"]
+[ext_resource type="Script" uid="uid://xalfxxnjwjml" path="res://scripts/spawner.gd" id="2_b4fxe"]
 [ext_resource type="Texture2D" uid="uid://blj021ji4ardo" path="res://textures/street_sidelines.png" id="2_n2rpe"]
 [ext_resource type="PackedScene" uid="uid://dnrt1etjrsg1e" path="res://scenes/rune_1.tscn" id="5_050ft"]
 [ext_resource type="PackedScene" uid="uid://kal68on760kc" path="res://scenes/obscurus.tscn" id="5_osjkm"]
 [ext_resource type="PackedScene" uid="uid://dfyv2qv2siijh" path="res://scenes/sign.tscn" id="6_qs4op"]
 [ext_resource type="PackedScene" uid="uid://d2265v0byai01" path="res://scenes/street_lamp.tscn" id="6_u5635"]
 [ext_resource type="PackedScene" uid="uid://molrk3pyx2am" path="res://scenes/spooky_tree_1.tscn" id="7_o86ua"]
-[ext_resource type="Script" path="res://scripts/tree_spawner.gd" id="7_ovo0c"]
-[ext_resource type="Shader" path="res://shader/ground_fog.gdshader" id="10_12v7w"]
+[ext_resource type="Script" uid="uid://x4euk0kmo4r0" path="res://scripts/tree_spawner.gd" id="7_ovo0c"]
+[ext_resource type="Shader" uid="uid://tw6ujjiq4g3g" path="res://shader/ground_fog.gdshader" id="10_12v7w"]
 [ext_resource type="Texture2D" uid="uid://b1wr222vhan7g" path="res://textures/fog_2.png" id="10_mfelg"]
-[ext_resource type="Script" path="res://scripts/fade_in_fog.gd" id="11_as7k2"]
+[ext_resource type="Script" uid="uid://fdydbjyijq0b" path="res://scripts/fade_in_fog.gd" id="11_as7k2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r3ovw"]
 size = Vector3(30.0463, 1, 150.715)
@@ -60,10 +60,10 @@ noise = SubResource("FastNoiseLite_rk44w")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0316r"]
 shader = ExtResource("10_12v7w")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_28g75")
 shader_parameter/noise_scale = 0.06
 shader_parameter/flatness = 4.0
 shader_parameter/density = 0.8
-shader_parameter/noise_tex = SubResource("NoiseTexture2D_28g75")
 shader_parameter/gradient_tex = SubResource("GradientTexture1D_skxgt")
 
 [sub_resource type="Curve" id="Curve_wsamy"]
@@ -78,7 +78,7 @@ point_count = 3
 curve = SubResource("Curve_yg56q")
 
 [sub_resource type="Curve" id="Curve_mvrbx"]
-min_value = 2.13163e-14
+_limits = [2.13163e-14, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 2.13163e-14), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
 point_count = 2
 

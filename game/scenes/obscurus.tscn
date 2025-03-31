@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://kal68on760kc"]
 
-[ext_resource type="Script" path="res://scripts/obscurus.gd" id="1_8y0th"]
+[ext_resource type="Script" uid="uid://d0vf77wmjy3jf" path="res://scripts/obscurus.gd" id="1_8y0th"]
 [ext_resource type="Material" uid="uid://onjey1f6wsis" path="res://materials/obscurus_core_2.tres" id="2_vhmk0"]
 [ext_resource type="AudioStream" uid="uid://dskn8dsms7u46" path="res://sounds/obscurus.wav" id="3_l2nxk"]
 
@@ -19,8 +19,7 @@ point_count = 3
 curve = SubResource("Curve_arej0")
 
 [sub_resource type="Curve" id="Curve_26o2h"]
-min_value = -2.0
-max_value = 2.0
+_limits = [-2.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 

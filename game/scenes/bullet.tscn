@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://p5cjdn7jticj"]
 
-[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_gsa4t"]
-[ext_resource type="Script" path="res://scripts/destroy_after_time.gd" id="1_v6sj8"]
+[ext_resource type="Script" uid="uid://m5r4u5iofrcv" path="res://scripts/bullet.gd" id="1_gsa4t"]
+[ext_resource type="Script" uid="uid://cecm8nu6gnf43" path="res://scripts/destroy_after_time.gd" id="1_v6sj8"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_warbx"]
 height = 0.1

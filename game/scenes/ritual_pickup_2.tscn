@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://ch788n75qxxpa"]
 
 [ext_resource type="Texture2D" uid="uid://c1jvhdcw7yxxi" path="res://textures/pentagram.png" id="1_24t3k"]
-[ext_resource type="Shader" path="res://shader/fadeout.gdshader" id="2_nxpvq"]
+[ext_resource type="Shader" uid="uid://c01ybg4e850x7" path="res://shader/fadeout.gdshader" id="2_nxpvq"]
 
 [sub_resource type="Curve" id="Curve_dpdsp"]
 _data = [Vector2(0, 0.985491), 0.0, 0.0, 0, 0, Vector2(0.62, 0.985491), 0.0, 0.0, 0, 0, Vector2(0.988572, 0), 0.0, 0.0, 0, 0]
@@ -23,6 +23,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 2.08165e-12
 emission_ring_radius = 2.0
 emission_ring_inner_radius = 2.0
+emission_ring_cone_angle = 90.0
 direction = Vector3(0, 1, 0)
 spread = 0.0
 flatness = 1.0

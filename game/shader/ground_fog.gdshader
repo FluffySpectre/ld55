@@ -11,10 +11,10 @@ void fog() {
 	float detail_noise = texture(noise_tex, WORLD_POSITION.xz * noise_scale + move_uv * 0.5).r;
 	detail_noise *= 0.2;
 	float noise = texture(noise_tex, WORLD_POSITION.xz * noise_scale + move_uv + detail_noise).r;
-	
+
 	DENSITY = mix(1.0, noise, UVW.y * flatness);
 	DENSITY *= step(0.0, -SDF) * density;
-	
+
 	vec3 col = texture(gradient_tex, vec2(DENSITY, 0.5)).rgb;
 	ALBEDO = vec3(col);
 }

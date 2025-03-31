@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://c7i8oybpixn7p"]
 
 [ext_resource type="PackedScene" uid="uid://dap5ikl03t5t4" path="res://scenes/straight_street.tscn" id="1_3471x"]
-[ext_resource type="Script" path="res://scripts/camera_controller.gd" id="2_m3tnp"]
-[ext_resource type="Script" path="res://scripts/follow_target.gd" id="3_57fl3"]
+[ext_resource type="Script" uid="uid://c3rej0l58uelg" path="res://scripts/camera_controller.gd" id="2_m3tnp"]
+[ext_resource type="Script" uid="uid://c61nxme6fd12t" path="res://scripts/follow_target.gd" id="3_57fl3"]
 [ext_resource type="PackedScene" uid="uid://c2705ttw61a38" path="res://scenes/player_car_v6.tscn" id="4_ebts2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jld3x"]

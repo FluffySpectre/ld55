@@ -18,12 +18,12 @@ void fragment() {
     vec4 tex_color = texture(albedo_texture, UV);
     ALBEDO = tex_color.rgb * albedo_color.rgb;
     ALPHA = tex_color.a * albedo_color.a;
-	
+
 	// Normalmap
     vec3 normal_from_map = texture(normal_map, UV).rgb;
     normal_from_map = normal_from_map * 2.0 - 1.0;
     NORMAL = mat3(TANGENT, BINORMAL, NORMAL) * normal_from_map;
-	
+
 	// Rim
 	float rim = pow(1.0 - max(dot(normalize(NORMAL), normalize(VIEW)), 0.0), rim_width);
     vec3 rim_light = rim * rim_color * rim_strength;

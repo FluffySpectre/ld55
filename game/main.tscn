@@ -1,13 +1,13 @@
 [gd_scene load_steps=19 format=3 uid="uid://c5385qrdr3oil"]
 
-[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_a32xk"]
+[ext_resource type="Script" uid="uid://cikmwb4btubvb" path="res://scripts/game_manager.gd" id="1_a32xk"]
 [ext_resource type="PackedScene" uid="uid://cc2gxluvkmj1t" path="res://scenes/player_car_v5.tscn" id="2_np6hg"]
-[ext_resource type="Script" path="res://scripts/sound_manager.gd" id="2_t7407"]
-[ext_resource type="Script" path="res://scripts/follow_target.gd" id="4_n7enx"]
-[ext_resource type="Script" path="res://scripts/camera_controller.gd" id="4_n7y0v"]
+[ext_resource type="Script" uid="uid://ce4fds2kir28c" path="res://scripts/sound_manager.gd" id="2_t7407"]
+[ext_resource type="Script" uid="uid://c61nxme6fd12t" path="res://scripts/follow_target.gd" id="4_n7enx"]
+[ext_resource type="Script" uid="uid://c3rej0l58uelg" path="res://scripts/camera_controller.gd" id="4_n7y0v"]
 [ext_resource type="PackedScene" uid="uid://bke87oao2tdg8" path="res://scenes/track_generator.tscn" id="6_76i6k"]
 [ext_resource type="Theme" uid="uid://blwncnbab5bdl" path="res://ui_theme.tres" id="7_yh54y"]
-[ext_resource type="Script" path="res://scripts/game_ui.gd" id="8_1q0p2"]
+[ext_resource type="Script" uid="uid://bwmvh7ya1lhws" path="res://scripts/game_ui.gd" id="8_1q0p2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jf1u2"]
 ground_bottom_color = Color(0.141176, 0.145098, 0.345098, 1)
@@ -278,11 +278,11 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8ugun"]
 _data = {
-"RESET": SubResource("Animation_m28vg"),
-"game_in": SubResource("Animation_r3b6j"),
-"intro": SubResource("Animation_t86n8"),
-"menu": SubResource("Animation_mimwi"),
-"menu_in": SubResource("Animation_8dxtq")
+&"RESET": SubResource("Animation_m28vg"),
+&"game_in": SubResource("Animation_r3b6j"),
+&"intro": SubResource("Animation_t86n8"),
+&"menu": SubResource("Animation_mimwi"),
+&"menu_in": SubResource("Animation_8dxtq")
 }
 
 [node name="Main" type="Node3D"]
@@ -336,7 +336,7 @@ camera_attributes = SubResource("CameraAttributesPractical_82l6d")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Intro"]
 libraries = {
-"": SubResource("AnimationLibrary_8ugun")
+&"": SubResource("AnimationLibrary_8ugun")
 }
 autoplay = "intro"
 
