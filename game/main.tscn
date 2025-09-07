@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c5385qrdr3oil"]
+[gd_scene load_steps=20 format=3 uid="uid://c5385qrdr3oil"]
 
 [ext_resource type="Script" uid="uid://cikmwb4btubvb" path="res://scripts/game_manager.gd" id="1_a32xk"]
 [ext_resource type="PackedScene" uid="uid://cc2gxluvkmj1t" path="res://scenes/player_car_v5.tscn" id="2_np6hg"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bke87oao2tdg8" path="res://scenes/track_generator.tscn" id="6_76i6k"]
 [ext_resource type="Theme" uid="uid://blwncnbab5bdl" path="res://ui_theme.tres" id="7_yh54y"]
 [ext_resource type="Script" uid="uid://bwmvh7ya1lhws" path="res://scripts/game_ui.gd" id="8_1q0p2"]
+[ext_resource type="Script" uid="uid://bur685vb16n3r" path="res://scripts/splash.gd" id="9_kek77"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jf1u2"]
 ground_bottom_color = Color(0.141176, 0.145098, 0.345098, 1)
@@ -560,5 +561,14 @@ offset_bottom = 28.0
 theme = ExtResource("7_yh54y")
 theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
 text = "0"
+
+[node name="Splash" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("9_kek77")
 
 [editable path="PlayerCarV5"]

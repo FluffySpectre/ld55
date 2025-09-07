@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://sen6qmn35sma"]
+
+[ext_resource type="PackedScene" uid="uid://kal68on760kc" path="res://scenes/obscurus.tscn" id="1_4jya1"]
+[ext_resource type="Script" uid="uid://cnavj7uibi8q0" path="res://shader_prewarm.gd" id="1_82i4s"]
+[ext_resource type="PackedScene" uid="uid://dnrt1etjrsg1e" path="res://scenes/rune_1.tscn" id="2_ut2nr"]
+[ext_resource type="PackedScene" uid="uid://dfyv2qv2siijh" path="res://scenes/sign.tscn" id="3_qua5m"]
+
+[node name="ShaderPrewarm" type="Node3D"]
+script = ExtResource("1_82i4s")
+
+[node name="Obscurus" parent="." instance=ExtResource("1_4jya1")]
+script = null
+
+[node name="AudioStreamPlayer3D" parent="Obscurus" index="3"]
+autoplay = false
+
+[node name="Rune1" parent="." instance=ExtResource("2_ut2nr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9976349, 0, 0)
+
+[node name="Sign" parent="." instance=ExtResource("3_qua5m")]
+transform = Transform3D(2.4998572, -8.6271184e-16, 0.026396155, 8.7196716e-16, 2.5000002, -8.7196716e-16, -0.026396155, 8.8112613e-16, 2.4998572, 0, 0, -1.5926533)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2970996, 4.3008027)
+
+[node name="Splash" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Splash"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[editable path="Obscurus"]
