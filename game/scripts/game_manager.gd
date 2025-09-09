@@ -6,19 +6,21 @@ class_name GameManager extends Node
 @export var intro_animation_player: AnimationPlayer
 @export var world_environment: WorldEnvironment
 @export var gameover_animation_player: AnimationPlayer
+@export var highscore_label: Label
+@export var score_label: Label
 
 signal pickup_picked_up(type)
-signal score_changed(new_score: int)
+signal distance_changed(new_distance: float)
 
 static var instance: GameManager
 
 var start_position: Vector3 = Vector3.ZERO
 var total_spawned_tracks = 0
-var distance_interval = 150.0
-var score_per_interval = 5.0
+var distance_interval = 100.0
 var last_position = Vector3.ZERO
 var distance_in_target_direction_interval = 0.0
 var player_health: Health
+var savegame: Savegame
 
 enum GameState {
   INTRO,
@@ -32,7 +34,15 @@ var state_changed: bool = false
 func _ready():
   instance = self
   
+  # Handle game quit ourselfs
+  get_tree().set_auto_accept_quit(false)
+  
   Globals.reset()
+  
+  savegame = Savegame.new()
+  savegame.load()
+  
+  print("Loaded highscore: ", Globals.highscore)
   
   player_health = player_car.get_node("Health") as Health
   player_health.died.connect(on_player_died)
@@ -42,7 +52,11 @@ func _ready():
 
   track_generator.on_track_spawned.connect(on_track_spawned)
   
-  score_changed.connect(check_enemy_spawn)
+  distance_changed.connect(check_enemy_spawn)
+
+func _notification(what):
+  if what == NOTIFICATION_WM_CLOSE_REQUEST:
+    quit_game()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -65,9 +79,16 @@ func _process(_delta):
   if game_state == GameState.GAME_OVER:
     if state_changed:
       state_changed = false
+      
+      if Globals.distance_in_target_direction > Globals.highscore:
+        Globals.highscore = Globals.distance_in_target_direction
+      
       gameover_animation_player.play("gameover")
+      highscore_label.text = "Your longest drive so far:\n" + Utils.format_distance(Globals.highscore)
+      score_label.text = "You survived " + Utils.format_distance(Globals.distance_in_target_direction) + "!"
     
     if Input.is_action_just_pressed("ui_accept"):
+      savegame.save()
       Globals.reset()
       get_tree().reload_current_scene()
     elif Input.is_action_just_pressed("ui_cancel"):
@@ -93,9 +114,12 @@ func update_score():
     Globals.distance_in_target_direction += distance_this_frame
   
   if distance_in_target_direction_interval >= distance_interval:
-    Globals.score += score_per_interval
     distance_in_target_direction_interval -= distance_interval
-    score_changed.emit(Globals.score)
+    
+    if Globals.distance_in_target_direction > Globals.highscore:
+      Globals.highscore = Globals.distance_in_target_direction
+    
+    distance_changed.emit(Globals.distance_in_target_direction)
     
   last_position = current_position
 
@@ -104,6 +128,7 @@ func reset_player():
   # and place the car there
   
   # Reload the entire scene for now
+  savegame.save()
   Globals.reset()
   get_tree().reload_current_scene()
   return
@@ -118,9 +143,9 @@ func reset_player():
   
   cam_controller.reset_view()
 
-func check_enemy_spawn(score):
+func check_enemy_spawn(new_distance: float):
   # Start spawning enemies after fog sets in
-  if score >= 30:
+  if new_distance >= 1000.0:
     Globals.spawn_enemies = true
 
 func on_track_spawned():
@@ -142,4 +167,6 @@ func on_player_died() -> void:
   print("Game Over")
   
 func quit_game() -> void:
+  print("Quitting...")
+  savegame.save()
   get_tree().quit()

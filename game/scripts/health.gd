@@ -38,7 +38,7 @@ func apply_damage(damage: int):
   
   if old_health != new_health:
     on_health_changed.emit()
-    print("Health updated: ", health)
+    #print("Health updated: ", health)
 
 func add_health(amount: int):
   health += amount
