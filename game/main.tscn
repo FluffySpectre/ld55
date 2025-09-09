@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c5385qrdr3oil"]
+[gd_scene load_steps=23 format=3 uid="uid://c5385qrdr3oil"]
 
 [ext_resource type="Script" uid="uid://cikmwb4btubvb" path="res://scripts/game_manager.gd" id="1_a32xk"]
 [ext_resource type="PackedScene" uid="uid://cc2gxluvkmj1t" path="res://scenes/player_car_v5.tscn" id="2_np6hg"]
@@ -286,15 +286,101 @@ _data = {
 &"menu_in": SubResource("Animation_8dxtq")
 }
 
+[sub_resource type="Animation" id="Animation_4c57u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameOverLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RestartLabel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kek77"]
+resource_name = "gameover"
+length = 5.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.4333333, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.4745098), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameOverLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RestartLabel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4.5, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_efxa6"]
+_data = {
+&"RESET": SubResource("Animation_4c57u"),
+&"gameover": SubResource("Animation_kek77")
+}
+
 [node name="Main" type="Node3D"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player_car", "cam_controller", "track_generator", "intro_animation_player", "world_environment")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player_car", "cam_controller", "track_generator", "intro_animation_player", "world_environment", "gameover_animation_player")]
 script = ExtResource("1_a32xk")
 player_car = NodePath("../PlayerCarV5")
 cam_controller = NodePath("../Camera3D2")
 track_generator = NodePath("../TrackGenerator")
 intro_animation_player = NodePath("../Intro/AnimationPlayer")
 world_environment = NodePath("../WorldEnvironment")
+gameover_animation_player = NodePath("../GameOver/AnimationPlayer")
 
 [node name="SoundManager" type="Node" parent="."]
 script = ExtResource("2_t7407")
@@ -303,6 +389,9 @@ script = ExtResource("2_t7407")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 10)
 speed_dependent_steering = 0.1
 acceleration_input = 1.0
+
+[node name="Body" parent="PlayerCarV5" index="0"]
+surface_material_override/2 = null
 
 [node name="Camera3D2" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(-1, -6.18173e-08, 6.18173e-08, 2.4663e-16, 0.707107, 0.707107, -8.74228e-08, 0.707107, -0.707107, 1.62137, 7.9633, 8.0044)
@@ -497,7 +586,7 @@ anchor_right = 0.759
 anchor_bottom = 1.0
 offset_left = 1.0
 offset_top = -76.0
-offset_right = 0.147973
+offset_right = 0.14797974
 offset_bottom = -44.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -563,7 +652,6 @@ theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
 text = "0"
 
 [node name="GameOver" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -571,7 +659,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Fade" type="ColorRect" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
 [node name="GameOverLabel" type="Label" parent="GameOver"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -579,9 +677,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -65.32001
-offset_top = -16.0
+offset_top = -37.0
 offset_right = 65.32001
-offset_bottom = 16.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_yh54y")
@@ -591,6 +689,34 @@ text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+
+[node name="RestartLabel" type="Label" parent="GameOver"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -3.100006
+offset_right = 93.0
+offset_bottom = 28.899994
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_yh54y")
+theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
+theme_override_font_sizes/font_size = 12
+text = "Press Space to restart
+Press Escape to exit"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameOver"]
+libraries = {
+&"": SubResource("AnimationLibrary_efxa6")
+}
 
 [node name="Splash" type="ColorRect" parent="."]
 visible = false

@@ -5,6 +5,7 @@ class_name GameManager extends Node
 @export var track_generator: TrackGenerator
 @export var intro_animation_player: AnimationPlayer
 @export var world_environment: WorldEnvironment
+@export var gameover_animation_player: AnimationPlayer
 
 signal pickup_picked_up(type)
 signal score_changed(new_score: int)
@@ -26,9 +27,12 @@ enum GameState {
   GAME_OVER,
 }
 var game_state: GameState = GameState.INTRO
+var state_changed: bool = false
 
 func _ready():
   instance = self
+  
+  Globals.reset()
   
   player_health = player_car.get_node("Health") as Health
   player_health.died.connect(on_player_died)
@@ -55,9 +59,23 @@ func _process(_delta):
   if game_state == GameState.MENU:
     if Input.is_action_pressed("accelerate") || Input.is_action_pressed("brake") || Input.is_action_pressed("steer_left") || Input.is_action_pressed("steer_left"):
       start_game()
+    elif Input.is_action_just_pressed("ui_cancel"):
+      quit_game()
+      
+  if game_state == GameState.GAME_OVER:
+    if state_changed:
+      state_changed = false
+      gameover_animation_player.play("gameover")
+    
+    if Input.is_action_just_pressed("ui_accept"):
+      Globals.reset()
+      get_tree().reload_current_scene()
+    elif Input.is_action_just_pressed("ui_cancel"):
+      quit_game()
 
 func start_game():
   game_state = GameState.IN_GAME
+  state_changed = true
   intro_animation_player.play("game_in")
   
   print("Game started")
@@ -86,6 +104,7 @@ func reset_player():
   # and place the car there
   
   # Reload the entire scene for now
+  Globals.reset()
   get_tree().reload_current_scene()
   return
   
@@ -113,11 +132,14 @@ func on_intro_ended():
 
 func on_menu_in_ended():
   game_state = GameState.MENU
+  state_changed = true
   
   intro_animation_player.play("menu")
 
 func on_player_died() -> void:
   game_state = GameState.GAME_OVER
+  state_changed = true
   print("Game Over")
   
-  
+func quit_game() -> void:
+  get_tree().quit()
