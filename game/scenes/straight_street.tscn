@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://dvg4jvbn8k6kl" path="res://textures/street.png" id="1_llngd"]
 [ext_resource type="Script" uid="uid://xalfxxnjwjml" path="res://scripts/spawner.gd" id="2_b4fxe"]
 [ext_resource type="Texture2D" uid="uid://blj021ji4ardo" path="res://textures/street_sidelines.png" id="2_n2rpe"]
-[ext_resource type="PackedScene" uid="uid://dnrt1etjrsg1e" path="res://scenes/rune_1.tscn" id="5_050ft"]
 [ext_resource type="PackedScene" uid="uid://kal68on760kc" path="res://scenes/obscurus.tscn" id="5_osjkm"]
+[ext_resource type="PackedScene" uid="uid://bxoaf0w42s6rh" path="res://scenes/ritual_pickup_1.tscn" id="6_3l01b"]
 [ext_resource type="PackedScene" uid="uid://dfyv2qv2siijh" path="res://scenes/sign.tscn" id="6_qs4op"]
 [ext_resource type="PackedScene" uid="uid://d2265v0byai01" path="res://scenes/street_lamp.tscn" id="6_u5635"]
 [ext_resource type="PackedScene" uid="uid://molrk3pyx2am" path="res://scenes/spooky_tree_1.tscn" id="7_o86ua"]
@@ -55,8 +55,8 @@ noise_type = 0
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_28g75"]
 width = 256
 height = 256
-seamless = true
 noise = SubResource("FastNoiseLite_rk44w")
+seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0316r"]
 shader = ExtResource("10_12v7w")
@@ -180,7 +180,7 @@ shape = SubResource("BoxShape3D_02cjv")
 [node name="PowerupSpawner" type="Node3D" parent="Spawner" node_paths=PackedStringArray("spawn_area")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 59.3558)
 script = ExtResource("2_b4fxe")
-scenes_to_spawn = Array[PackedScene]([ExtResource("5_050ft")])
+scenes_to_spawn = Array[PackedScene]([ExtResource("6_3l01b")])
 spawn_area = NodePath("Area3D")
 chance_for_spawn = 0.6
 

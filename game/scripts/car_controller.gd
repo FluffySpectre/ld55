@@ -89,5 +89,5 @@ func detect_underground_friction():
       street_hits += 1
       right_on_street = true
   
-  var friction_factors = [0.7, 0.8, 1.0]
+  var friction_factors = [0.6, 0.7, 1.0]
   return friction_factors[street_hits]

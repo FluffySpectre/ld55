@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxoaf0w42s6rh"]
+[gd_scene load_steps=18 format=3 uid="uid://bxoaf0w42s6rh"]
 
 [ext_resource type="Texture2D" uid="uid://c1jvhdcw7yxxi" path="res://textures/pentagram.png" id="1_8ky1q"]
+[ext_resource type="Script" uid="uid://dxsa3dtlh01w5" path="res://scripts/rune_pickup.gd" id="2_g7pvl"]
 
 [sub_resource type="Curve" id="Curve_dpdsp"]
 _data = [Vector2(0, 0.985491), 0.0, 0.0, 0, 0, Vector2(0.62, 0.985491), 0.0, 0.0, 0, 0, Vector2(0.988572, 0), 0.0, 0.0, 0, 0]
@@ -11,15 +12,17 @@ curve = SubResource("Curve_dpdsp")
 
 [sub_resource type="Gradient" id="Gradient_fnwxb"]
 interpolation_mode = 2
-colors = PackedColorArray(0.185605, 0.329721, 0.0852146, 1, 0.375274, 0.82866, 0.235013, 1)
+colors = PackedColorArray(0.06027998, 0.40996033, 0.8388964, 1, 0.32989153, 0.60222995, 0.9893107, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_b6gr7"]
 gradient = SubResource("Gradient_fnwxb")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8j2uu"]
+emission_shape_offset = Vector3(0, 1, 0)
+emission_shape_scale = Vector3(2, 1, 2)
 emission_shape = 6
 emission_ring_axis = Vector3(0, 1, 0)
-emission_ring_height = 0.1
+emission_ring_height = 0.0
 emission_ring_radius = 1.0
 emission_ring_inner_radius = 1.0
 emission_ring_cone_angle = 90.0
@@ -27,58 +30,102 @@ direction = Vector3(0, 1, 0)
 spread = 0.0
 flatness = 1.0
 initial_velocity_min = 4.0
-initial_velocity_max = 4.0
+initial_velocity_max = 6.0
 gravity = Vector3(0, 0, 0)
-damping_min = 5.0
-damping_max = 5.0
+damping_min = 1.8490001
+damping_max = 3.1100001
 color_ramp = SubResource("GradientTexture1D_b6gr7")
 alpha_curve = SubResource("CurveTexture_6730o")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ndo2o"]
-transparency = 1
-vertex_color_use_as_albedo = true
-use_particle_trails = true
-
-[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_4innc"]
-material = SubResource("StandardMaterial3D_ndo2o")
-shape = 0
-size = 0.1
-sections = 2
-section_length = 0.1
-section_segments = 1
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ubf7"]
 transparency = 1
+shading_mode = 0
 vertex_color_use_as_albedo = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_5ik64"]
 material = SubResource("StandardMaterial3D_6ubf7")
+size = Vector2(0.15, 0.3)
+
+[sub_resource type="Curve" id="Curve_g7pvl"]
+_data = [Vector2(0, 0.985491), 0.0, 0.0, 0, 0, Vector2(0.62, 0.985491), 0.0, 0.0, 0, 0, Vector2(0.988572, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_lmqyt"]
+curve = SubResource("Curve_g7pvl")
+
+[sub_resource type="Gradient" id="Gradient_0kj0f"]
+interpolation_mode = 2
+colors = PackedColorArray(0, 0.2653845, 0.5932767, 1, 0.0056360145, 0.47447097, 0.7934159, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_obmqy"]
+gradient = SubResource("Gradient_0kj0f")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fnk3v"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 2.08165e-12
+emission_ring_radius = 2.0
+emission_ring_inner_radius = 2.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+flatness = 1.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+damping_min = 20.0
+damping_max = 20.0
+attractor_interaction_enabled = false
+color_ramp = SubResource("GradientTexture1D_obmqy")
+alpha_curve = SubResource("CurveTexture_lmqyt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mpks8"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_5dqfe"]
+material = SubResource("StandardMaterial3D_mpks8")
 size = Vector2(0.2, 0.2)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_gi4nu"]
+radius = 2.0
 
 [node name="RitualPickup1" type="Node3D"]
 
-[node name="CircleParticles" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.154869, 0.367996, -1.73068)
-visible = false
-amount = 250
-lifetime = 20.0
-preprocess = 10.0
-transform_align = 1
-trail_enabled = true
-trail_lifetime = 20.0
-process_material = SubResource("ParticleProcessMaterial_8j2uu")
-draw_pass_1 = SubResource("RibbonTrailMesh_4innc")
-
 [node name="PickupParticlesGreen" type="GPUParticles3D" parent="."]
-amount = 50
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5178757, 0)
+amount = 100
 preprocess = 3.0
 transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_8j2uu")
 draw_pass_1 = SubResource("QuadMesh_5ik64")
 
+[node name="PickupParticlesGreen2" type="GPUParticles3D" parent="."]
+visible = false
+amount = 100
+preprocess = 3.0
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_fnk3v")
+draw_pass_1 = SubResource("QuadMesh_5dqfe")
+
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0)
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0)
 axis = 1
 double_sided = false
 texture_filter = 0
 texture = ExtResource("1_8ky1q")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95884, 0)
+light_color = Color(0.21438941, 0.47018307, 0.95850855, 1)
+light_energy = 2.0
+light_volumetric_fog_energy = 4.0
+
+[node name="CollisionArea" type="Area3D" parent="."]
+collision_layer = 65536
+collision_mask = 65536
+script = ExtResource("2_g7pvl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8757477, 0)
+shape = SubResource("CylinderShape3D_gi4nu")

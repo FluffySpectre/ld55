@@ -17,16 +17,21 @@ var distance_interval = 150.0
 var score_per_interval = 5.0
 var last_position = Vector3.ZERO
 var distance_in_target_direction_interval = 0.0
+var player_health: Health
 
 enum GameState {
   INTRO,
   MENU,
-  IN_GAME
+  IN_GAME,
+  GAME_OVER,
 }
 var game_state: GameState = GameState.INTRO
 
 func _ready():
   instance = self
+  
+  player_health = player_car.get_node("Health") as Health
+  player_health.died.connect(on_player_died)
   
   Globals.player_car = player_car
   last_position = player_car.global_position
@@ -110,3 +115,9 @@ func on_menu_in_ended():
   game_state = GameState.MENU
   
   intro_animation_player.play("menu")
+
+func on_player_died() -> void:
+  game_state = GameState.GAME_OVER
+  print("Game Over")
+  
+  

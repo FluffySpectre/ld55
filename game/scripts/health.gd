@@ -5,6 +5,7 @@ class_name Health extends Node
 @export var heal_amount: int = 10
 
 signal on_health_changed()
+signal died
 
 var is_invincible = false
 var heal_interval = 1.0
@@ -24,13 +25,20 @@ func apply_damage(damage: int):
   if is_invincible:
     return
   
-  health -= damage
-  if health < 0:
-    health = 0
+  var old_health = health
+  var new_health = health - damage
+  if new_health < 0:
+    new_health = 0
     
+  if old_health > 0 && new_health == 0:
+    died.emit()
+  
+  health = new_health
   cooldown_timer = 0.0
   
-  on_health_changed.emit()
+  if old_health != new_health:
+    on_health_changed.emit()
+    print("Health updated: ", health)
 
 func add_health(amount: int):
   health += amount
