@@ -80,6 +80,10 @@ func _process(_delta):
     if state_changed:
       state_changed = false
       
+      # Disable player input
+      var player_input = player_car.get_node("PlayerInput") as PlayerInput
+      player_input.controllable = false
+      
       if Globals.distance_in_target_direction > Globals.highscore:
         Globals.highscore = Globals.distance_in_target_direction
       
@@ -162,6 +166,9 @@ func on_menu_in_ended():
   intro_animation_player.play("menu")
 
 func on_player_died() -> void:
+  if game_state == GameState.GAME_OVER:
+    return
+  
   game_state = GameState.GAME_OVER
   state_changed = true
   print("Game Over")
