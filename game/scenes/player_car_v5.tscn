@@ -472,6 +472,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.614513, 2.081
 layers = 2
 radius = 2.5
 
+[node name="GPUParticlesRepulsorSphere3D" type="GPUParticlesAttractorSphere3D" parent="RepulsorSphere"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08165e-12, 0.614513, -2.08165e-12)
+layers = 2
+strength = -128.0
+directionality = 0.1
+cull_mask = 4293918722
+radius = 8.0
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RepulsorSphere"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08165e-12, -2.08165e-12, -2.08165e-12)
 mesh = SubResource("SphereMesh_c40t2")
