@@ -34,7 +34,7 @@ func on_player_health_changed() -> void:
 
 func update_target_radius() -> void:
   var health_percentage = float(player_health.health) / float(player_health.max_health)
-  target_radius = remap(health_percentage, 0.0, 1.0, 0.3, 0.7)
+  target_radius = remap(health_percentage, 0.0, 1.0, 0.3, 0.8)
  
 func start_critical_pulse() -> void:
   if pulse_tween:
@@ -44,7 +44,7 @@ func start_critical_pulse() -> void:
   pulse_tween.set_loops()
   
   var health_percentage = float(player_health.health) / float(player_health.max_health)
-  var base_intensity = remap(health_percentage, 0.0, 1.0, 0.4, 0.7)
+  var base_intensity = remap(health_percentage, 0.0, 1.0, 0.4, 0.8)
   
   pulse_tween.tween_method(
     func(intensity): target_radius = intensity,
