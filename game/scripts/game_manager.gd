@@ -84,6 +84,8 @@ func _process(_delta):
       var player_input = player_car.get_node("PlayerInput") as PlayerInput
       player_input.controllable = false
       
+      SoundManager.instance.fade_volume_out()
+      
       if Globals.distance_in_target_direction > Globals.highscore:
         Globals.highscore = Globals.distance_in_target_direction
       
