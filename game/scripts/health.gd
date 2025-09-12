@@ -14,6 +14,10 @@ var cooldown_timer = 0.0
 var heal_cooldown = 2.0
 
 func _process(delta):
+  if health >= max_health:
+    heal_timer = 0.0
+    return
+  
   cooldown_timer += delta
   if cooldown_timer > heal_cooldown:
     heal_timer += delta

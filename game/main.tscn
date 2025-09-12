@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c5385qrdr3oil"]
+[gd_scene load_steps=31 format=3 uid="uid://c5385qrdr3oil"]
 
 [ext_resource type="Script" uid="uid://cikmwb4btubvb" path="res://scripts/game_manager.gd" id="1_a32xk"]
 [ext_resource type="PackedScene" uid="uid://cc2gxluvkmj1t" path="res://scenes/player_car_v5.tscn" id="2_np6hg"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://dap5ikl03t5t4" path="res://scenes/straight_street.tscn" id="8_efxa6"]
 [ext_resource type="PackedScene" uid="uid://dtuqc8mq32te" path="res://scenes/straight_street_variant_1.tscn" id="9_dg77c"]
 [ext_resource type="Script" uid="uid://bur685vb16n3r" path="res://scripts/splash.gd" id="9_kek77"]
+[ext_resource type="Shader" uid="uid://cocu00hgw8c5s" path="res://shader/vignette.gdshader" id="11_w48qg"]
+[ext_resource type="Script" uid="uid://due54qvqvncuv" path="res://scripts/health_vignette.gd" id="13_ycdy4"]
 
 [sub_resource type="Resource" id="Resource_efxa6"]
 script = ExtResource("7_4c57u")
@@ -300,6 +302,14 @@ _data = {
 &"menu": SubResource("Animation_mimwi"),
 &"menu_in": SubResource("Animation_8dxtq")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vivmo"]
+shader = ExtResource("11_w48qg")
+shader_parameter/vignette_intensity = 1.0
+shader_parameter/vignette_radius = 0.16100000438762002
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
+shader_parameter/pixelation_steps = 64
+shader_parameter/hard_edges = false
 
 [sub_resource type="Animation" id="Animation_4c57u"]
 length = 0.001
@@ -704,6 +714,17 @@ Help on the Post Jam Version:
 Christopher Pollok"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HealthVignette" type="ColorRect" parent="." node_paths=PackedStringArray("player_health")]
+material = SubResource("ShaderMaterial_vivmo")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("13_ycdy4")
+player_health = NodePath("../PlayerCarV5/Health")
 
 [node name="UI" type="Control" parent="." node_paths=PackedStringArray("point_counter_label")]
 layout_mode = 3
