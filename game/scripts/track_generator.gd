@@ -1,6 +1,6 @@
 class_name TrackGenerator extends Node3D
 
-@export var street_part_scenes: Array[PackedScene]
+@export var track_parts_data: Array[TrackPartData]
 @export var player_car: Node3D
 
 signal on_track_spawned
@@ -27,8 +27,20 @@ func _process(_delta):
   first_frame = false
 
 func get_street_part_scene():
-  return street_part_scenes[rng.randi_range(0, street_part_scenes.size() - 1)]
-
+  var total_weight = 0
+  for track_data in track_parts_data:
+    total_weight += track_data.probability
+  
+  var random_value = randf() * total_weight
+  var current_weight = 0
+  
+  for track_data in track_parts_data:
+    current_weight += track_data.probability
+    if random_value <= current_weight:
+      return track_data.track_scene
+  
+  return track_parts_data[-1].track_scene
+  
 func spawn_street_part():
   var instance = get_street_part_scene().instantiate() as Node3D
   add_child(instance)

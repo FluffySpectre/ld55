@@ -79,13 +79,13 @@ func detect_underground_friction():
   right_on_street = false
   if raycast_left.is_colliding():
     var colliderLeft = raycast_left.get_collider()
-    if colliderLeft.name == "StreetCollider":
+    if colliderLeft && colliderLeft.name == "StreetCollider":
       street_hits += 1
       left_on_street = true
   
   if raycast_right.is_colliding():
     var colliderRight = raycast_right.get_collider()
-    if colliderRight.name == "StreetCollider":
+    if colliderRight && colliderRight.name == "StreetCollider":
       street_hits += 1
       right_on_street = true
   

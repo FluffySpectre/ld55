@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://4kipsvfc0wyd"]
+
+[ext_resource type="Texture2D" uid="uid://cneecwnxewn7d" path="res://textures/eye_big.png" id="1_60o0r"]
+[ext_resource type="Script" uid="uid://djkri7iel2jsg" path="res://scripts/eye.gd" id="1_e6m2j"]
+[ext_resource type="Script" uid="uid://6tx7tswlpqkq" path="res://scripts/look_at.gd" id="2_60o0r"]
+[ext_resource type="PackedScene" uid="uid://ddirxqq8p7icd" path="res://scenes/fx/splatter_fx.tscn" id="4_hrmh8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_60o0r"]
+transparency = 1
+albedo_texture = ExtResource("1_60o0r")
+metallic = 0.3
+roughness = 0.16
+rim_enabled = true
+uv1_scale = Vector3(0.92, 0.54, 1)
+uv1_offset = Vector3(0, 0.23, 0)
+texture_filter = 0
+texture_repeat = false
+
+[sub_resource type="SphereMesh" id="SphereMesh_e6m2j"]
+material = SubResource("StandardMaterial3D_60o0r")
+radius = 2.0
+height = 4.0
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_e6m2j"]
+radius = 2.0
+
+[node name="Eye" type="Node3D"]
+script = ExtResource("1_e6m2j")
+splatter_fx_scene = ExtResource("4_hrmh8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.9654998, 0, 0.2604035, 0, 1, 0, -0.2604035, 0, -0.9654998, 0, 0, 0)
+mesh = SubResource("SphereMesh_e6m2j")
+
+[node name="LookAt" type="Node" parent="."]
+script = ExtResource("2_60o0r")
+metadata/_custom_type_script = "uid://6tx7tswlpqkq"
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_e6m2j")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+visible = false
+light_color = Color(0.9693404, 0.008954726, 0.19121501, 1)
+light_energy = 4.0
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 100.0
+distance_fade_length = 50.0
+omni_range = 10.0

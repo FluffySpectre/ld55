@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://5v37hlxphs3y"]
+
+[ext_resource type="Script" uid="uid://cyw5vo4t0vb8a" path="res://scripts/eyes_enemy.gd" id="1_w5cdx"]
+[ext_resource type="PackedScene" uid="uid://4kipsvfc0wyd" path="res://scenes/eye.tscn" id="2_jtd6f"]
+
+[node name="EyesEnemy" type="Node3D"]
+script = ExtResource("1_w5cdx")
+
+[node name="Eye" parent="." instance=ExtResource("2_jtd6f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.4110985, 2.5621653, 0)
+
+[node name="Eye2" parent="." instance=ExtResource("2_jtd6f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8229513, 2.5621653, 0)
+
+[node name="Eye3" parent="." instance=ExtResource("2_jtd6f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08546972, 2.5621653, 0)
+
+[node name="Eye4" parent="." instance=ExtResource("2_jtd6f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6546016, 2.5621653, 0)
+
+[node name="Eye5" parent="." instance=ExtResource("2_jtd6f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.3623085, 2.5621653, 0)
