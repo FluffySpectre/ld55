@@ -33,6 +33,8 @@ func on_body_entered(other: Node3D) -> void:
       player_input = car_controller.get_node("PlayerInput") as PlayerInput
       player_input.controllable = false
       powerloss_timer = powerloss_time
+      
+      player_health.apply_damage(20)
     
     destroy()
 
