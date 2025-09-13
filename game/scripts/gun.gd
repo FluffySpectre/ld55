@@ -12,27 +12,27 @@ var shoot_timer = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+  pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_pressed("shoot_gun"):
-		shoot_timer += delta
-		if shoot_timer >= shoot_delay:
-			shoot()
-			shoot_timer = 0.0
-	else:
-		shoot_timer = 0.0
+  if Input.is_action_pressed("shoot_gun"):
+    shoot_timer += delta
+    if shoot_timer >= shoot_delay:
+      shoot()
+      shoot_timer = 0.0
+  else:
+    shoot_timer = 0.0
 
 func shoot():
-	var instance = bullet_scene.instantiate() as Bullet
-	instance.top_level = true
-	instance.car_rigidbody = car_rigidbody
-	instance.global_position = left_barrel.global_position
-	get_tree().root.add_child(instance)
-	
-	instance = bullet_scene.instantiate() as Bullet
-	instance.top_level = true
-	instance.car_rigidbody = car_rigidbody
-	instance.global_position = right_barrel.global_position
-	get_tree().root.add_child(instance)
+  var instance = bullet_scene.instantiate() as Bullet
+  instance.top_level = true
+  instance.car_rigidbody = car_rigidbody
+  instance.global_position = left_barrel.global_position
+  get_tree().root.add_child(instance)
+  
+  instance = bullet_scene.instantiate() as Bullet
+  instance.top_level = true
+  instance.car_rigidbody = car_rigidbody
+  instance.global_position = right_barrel.global_position
+  get_tree().root.add_child(instance)

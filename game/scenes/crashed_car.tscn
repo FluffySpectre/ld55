@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://su6sc562h7kg"]
+[gd_scene load_steps=6 format=3 uid="uid://su6sc562h7kg"]
 
 [ext_resource type="PackedScene" uid="uid://rl415ul5p8lw" path="res://models/player_car_2.glb" id="1_hq1pd"]
 [ext_resource type="PackedScene" uid="uid://d1v2g7hmtytt7" path="res://scenes/fx/smoke.tscn" id="3_f4vqn"]
+[ext_resource type="PackedScene" uid="uid://c0ox8l0n20414" path="res://scenes/fx/fire.tscn" id="3_hq1pd"]
 [ext_resource type="Script" uid="uid://c5vah8whll5h2" path="res://scripts/flicker_light.gd" id="4_kdsye"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0vgxq"]
@@ -35,6 +36,9 @@ transform = Transform3D(-8.8990674e-08, -0.17691079, -0.111357376, 0.5077144, -3
 
 [node name="Smoke" parent="." instance=ExtResource("3_f4vqn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6983261, 0.81035185, 2.8559113)
+
+[node name="Fire" parent="." instance=ExtResource("3_hq1pd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.47539914, 0.67573047, 2.930142)
 
 [node name="FireLight" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7046, 0.94174576, 2.8759322)

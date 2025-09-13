@@ -6,13 +6,16 @@ class_name Spawner extends Node3D
 @export var chance_for_spawn = 0.05
 
 var rng = RandomNumberGenerator.new()
+var track_part_data: TrackPartData
+
+# Interface
+func set_track_part_data(data: TrackPartData):
+  track_part_data = data
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-  if (!Globals.spawn_enemies):
-    return
-    
-  spawn()
+  if (Globals.spawn_enemies && track_part_data.spawn_enemies):
+    spawn()
 
 func get_random_scene_to_spawn():
   return scenes_to_spawn[rng.randi_range(0, scenes_to_spawn.size() - 1)]

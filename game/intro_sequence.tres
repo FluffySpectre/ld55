@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="TrackSequence" load_steps=10 format=3 uid="uid://n6vru4hfcive"]
+
+[ext_resource type="Script" uid="uid://bgnor0ew4kr3b" path="res://scripts/track_sequence.gd" id="1_opd6s"]
+[ext_resource type="Script" uid="uid://cb2u3fueyxt06" path="res://scripts/track_part_data.gd" id="2_wl1ot"]
+[ext_resource type="PackedScene" uid="uid://bsup5cljc6wqb" path="res://scenes/track_parts/intro_track_part_2.tscn" id="3_oqmcd"]
+[ext_resource type="PackedScene" uid="uid://dap5ikl03t5t4" path="res://scenes/straight_street.tscn" id="4_cpkjx"]
+[ext_resource type="PackedScene" uid="uid://bg7gi7xgjwgi0" path="res://scenes/track_parts/intro_track_part_1.tscn" id="5_68uij"]
+
+[sub_resource type="Resource" id="Resource_cpkjx"]
+script = ExtResource("2_wl1ot")
+track_scene = ExtResource("3_oqmcd")
+metadata/_custom_type_script = "uid://cb2u3fueyxt06"
+
+[sub_resource type="Resource" id="Resource_68uij"]
+script = ExtResource("2_wl1ot")
+track_scene = ExtResource("4_cpkjx")
+metadata/_custom_type_script = "uid://cb2u3fueyxt06"
+
+[sub_resource type="Resource" id="Resource_44twl"]
+script = ExtResource("2_wl1ot")
+track_scene = ExtResource("4_cpkjx")
+metadata/_custom_type_script = "uid://cb2u3fueyxt06"
+
+[sub_resource type="Resource" id="Resource_6s6d0"]
+script = ExtResource("2_wl1ot")
+track_scene = ExtResource("5_68uij")
+metadata/_custom_type_script = "uid://cb2u3fueyxt06"
+
+[resource]
+script = ExtResource("1_opd6s")
+sequence_name = "intro"
+track_parts = Array[ExtResource("2_wl1ot")]([SubResource("Resource_cpkjx"), SubResource("Resource_68uij"), SubResource("Resource_44twl"), SubResource("Resource_6s6d0")])
+metadata/_custom_type_script = "uid://bgnor0ew4kr3b"

@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://c0ox8l0n20414"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hq1pd"]
+transparency = 1
+depth_draw_mode = 1
+vertex_color_use_as_albedo = true
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_0vgxq"]
+offsets = PackedFloat32Array(0, 0.20886075, 0.5042194, 0.8016878, 1)
+colors = PackedColorArray(1, 1, 0.3, 0.8, 1, 0.6, 0.1, 0.9, 1, 0.3, 0.1, 0.7, 0.8, 0.1, 0.1, 0.4, 0.1, 0.1, 0.1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hq1pd"]
+gradient = SubResource("Gradient_0vgxq")
+
+[sub_resource type="Curve" id="Curve_hq1pd"]
+_data = [Vector2(0, 0.99375594), 0.0, 0.0, 0, 0, Vector2(0.73295456, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_nwuim"]
+curve = SubResource("Curve_hq1pd")
+
+[sub_resource type="Curve" id="Curve_0vgxq"]
+_data = [Vector2(0, 0.10086459), 0.0, 0.0, 0, 0, Vector2(0.29734847, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hq1pd"]
+curve = SubResource("Curve_0vgxq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0vgxq"]
+emission_shape = 3
+emission_box_extents = Vector3(0.8, 0.1, 0.8)
+direction = Vector3(1, 1, 0)
+spread = 15.0
+flatness = 0.2
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+angular_velocity_min = -45.000015
+angular_velocity_max = 44.999985
+gravity = Vector3(0, 5, 0)
+damping_min = 1.0
+damping_max = 2.0
+scale_min = 0.29999998
+scale_max = 0.79999995
+scale_curve = SubResource("CurveTexture_hq1pd")
+color_ramp = SubResource("GradientTexture1D_hq1pd")
+emission_curve = SubResource("CurveTexture_nwuim")
+turbulence_enabled = true
+turbulence_noise_strength = 0.53
+turbulence_noise_scale = 0.5
+turbulence_influence_max = 0.3
+
+[sub_resource type="QuadMesh" id="QuadMesh_0vgxq"]
+size = Vector2(0.3, 0.5)
+
+[node name="Fire" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_hq1pd")
+amount = 150
+lifetime = 2.5
+process_material = SubResource("ParticleProcessMaterial_0vgxq")
+draw_pass_1 = SubResource("QuadMesh_0vgxq")

@@ -8,6 +8,7 @@ class_name GameManager extends Node
 @export var gameover_animation_player: AnimationPlayer
 @export var highscore_label: Label
 @export var score_label: Label
+@export var intro_track_sequence: TrackSequence
 
 signal pickup_picked_up(type)
 signal distance_changed(new_distance: float)
@@ -67,6 +68,11 @@ func _process(_delta):
     last_position = player_car.global_position
   
   if game_state == GameState.IN_GAME:
+    if state_changed:
+      state_changed = false
+      
+      track_generator.queue_track_sequence(intro_track_sequence)
+    
     if Input.is_action_just_pressed("ui_cancel"):
       reset_player()
     
@@ -156,8 +162,13 @@ func check_enemy_spawn(new_distance: float):
   if new_distance >= 1000.0:
     Globals.spawn_enemies = true
 
-func on_track_spawned():
+func on_track_spawned(track_part_data: TrackPartData):
   total_spawned_tracks += 1
+  apply_track_part_effects(track_part_data)
+
+func apply_track_part_effects(track_part_data: TrackPartData):
+  #Globals.spawn_enemies = track_part_data.spawn_enemies
+  pass
 
 func on_intro_ended():
   print("Intro ended")

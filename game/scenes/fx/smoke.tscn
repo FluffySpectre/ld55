@@ -28,7 +28,7 @@ curve = SubResource("Curve_aa8k5")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aa8k5"]
 emission_shape = 3
-emission_box_extents = Vector3(0.3, 0.3, 0.3)
+emission_box_extents = Vector3(0.5, 0.3, 0.3)
 gravity = Vector3(0, 1, 0)
 scale_min = 0.25
 scale_curve = SubResource("CurveTexture_4etnt")

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg7gi7xgjwgi0"]
+
+[ext_resource type="PackedScene" uid="uid://c0y7lmf8livxb" path="res://scenes/base_track_part.tscn" id="1_hxhd6"]
+[ext_resource type="PackedScene" uid="uid://su6sc562h7kg" path="res://scenes/crashed_car.tscn" id="2_gfsf5"]
+
+[node name="IntroTrackPart1" instance=ExtResource("1_hxhd6")]
+
+[node name="StreetLamp" parent="." index="7"]
+transform = Transform3D(-0.08246051, -0.34306014, 0.93568695, 0.27823916, 0.8936256, 0.3521595, -0.9569656, 0.28938398, 0.021763943, -14.579, 0.21, 75)
+
+[node name="CrashedCar" parent="." index="12" instance=ExtResource("2_gfsf5")]
+transform = Transform3D(0.70969373, 0, -0.70451033, 0, 1, 0, 0.70451033, 0, 0.70969373, -12.797852, 0, 72.10519)

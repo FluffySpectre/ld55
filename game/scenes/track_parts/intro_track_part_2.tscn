@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsup5cljc6wqb"]
+
+[ext_resource type="PackedScene" uid="uid://c0y7lmf8livxb" path="res://scenes/base_track_part.tscn" id="1_movso"]
+[ext_resource type="PackedScene" uid="uid://dcg12x5mdl8mn" path="res://scenes/sign_fog_warning.tscn" id="2_v53my"]
+
+[node name="IntroTrackPart2" instance=ExtResource("1_movso")]
+
+[node name="SignFogWarning" parent="." index="12" instance=ExtResource("2_v53my")]
+transform = Transform3D(-2.16506, 1.19113e-15, 1.25, 8.71967e-16, 2.5, -8.71967e-16, -1.25, -3.19162e-16, -2.16506, -21.140013, 0.78838325, 122.943275)

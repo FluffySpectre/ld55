@@ -1,18 +1,21 @@
 class_name TrackGenerator extends Node3D
 
+signal on_track_spawned(track_part: TrackPartData)
+
 @export var track_parts_data: Array[TrackPartData]
 @export var player_car: Node3D
-
-signal on_track_spawned
 
 @onready var track_collider: CollisionShape3D = $TrackCollider/CollisionShape3D
 @onready var track_collider_particles: GPUParticlesCollisionBox3D = $TrackCollider/GPUParticlesCollisionBox3D
 
-var num_parts_to_load = 8
+var num_parts_to_load = 7
 var loaded_street_parts = []
 var last_out_connector: Node3D
 var rng = RandomNumberGenerator.new()
 var first_frame = true
+
+# Sequencing
+var track_sequence_queue: Array[TrackPartData] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,7 +29,15 @@ func _process(_delta):
     
   first_frame = false
 
-func get_street_part_scene():
+# Sequencing
+func queue_track_sequence(sequence: TrackSequence):
+  track_sequence_queue.append_array(sequence.track_parts)
+
+func get_street_part():
+  # Queued track parts have priority
+  if track_sequence_queue.size() > 0:
+    return track_sequence_queue.pop_front()
+  
   var total_weight = 0
   for track_data in track_parts_data:
     total_weight += track_data.probability
@@ -37,12 +48,15 @@ func get_street_part_scene():
   for track_data in track_parts_data:
     current_weight += track_data.probability
     if random_value <= current_weight:
-      return track_data.track_scene
+      return track_data
   
-  return track_parts_data[-1].track_scene
+  return track_parts_data[-1]
   
 func spawn_street_part():
-  var instance = get_street_part_scene().instantiate() as Node3D
+  var track_part: TrackPartData = get_street_part()
+  
+  var instance = track_part.track_scene.instantiate() as BaseTrackPart
+  instance.track_part_data = track_part
   add_child(instance)
   loaded_street_parts.append(instance)
   
@@ -59,10 +73,10 @@ func spawn_street_part():
   resize_track_collider()
   
   # Emit track spawned signal
-  on_track_spawned.emit()
+  on_track_spawned.emit(track_part)
 
 func generate():
-  for i in range(loaded_street_parts.size(),num_parts_to_load):
+  for i in range(loaded_street_parts.size(), num_parts_to_load):
     spawn_street_part()
 
 func destroy_out_of_screen_street_parts():
