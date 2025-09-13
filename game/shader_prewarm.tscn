@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://sen6qmn35sma"]
+[gd_scene load_steps=9 format=3 uid="uid://sen6qmn35sma"]
 
 [ext_resource type="PackedScene" uid="uid://kal68on760kc" path="res://scenes/obscurus.tscn" id="1_4jya1"]
 [ext_resource type="Script" uid="uid://cnavj7uibi8q0" path="res://shader_prewarm.gd" id="1_82i4s"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dfyv2qv2siijh" path="res://scenes/sign.tscn" id="3_qua5m"]
 [ext_resource type="PackedScene" uid="uid://5v37hlxphs3y" path="res://scenes/eyes_enemy.tscn" id="6_nxvh1"]
 [ext_resource type="PackedScene" uid="uid://ddirxqq8p7icd" path="res://scenes/fx/splatter_fx.tscn" id="7_4i35g"]
+[ext_resource type="PackedScene" uid="uid://su6sc562h7kg" path="res://scenes/crashed_car.tscn" id="7_ks4rv"]
 
 [node name="ShaderPrewarm" type="Node3D"]
 script = ExtResource("1_82i4s")
@@ -29,6 +30,9 @@ transform = Transform3D(2.4998572, -8.6271184e-16, 0.026396155, 8.7196716e-16, 2
 [node name="EyesEnemy" parent="." instance=ExtResource("6_nxvh1")]
 process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2155905, 0, -2.7445087)
+
+[node name="DestroyedCar" parent="." instance=ExtResource("7_ks4rv")]
+transform = Transform3D(0.70969373, 0, -0.70451033, 0, 1, 0, 0.70451033, 0, 0.70969373, -0.4463315, -2.5652337, 0)
 
 [node name="SplatterFx" parent="." instance=ExtResource("7_4i35g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0775557, 0, -0.515141)

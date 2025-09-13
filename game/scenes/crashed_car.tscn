@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://su6sc562h7kg"]
+
+[ext_resource type="PackedScene" uid="uid://rl415ul5p8lw" path="res://models/player_car_2.glb" id="1_hq1pd"]
+[ext_resource type="PackedScene" uid="uid://d1v2g7hmtytt7" path="res://scenes/fx/smoke.tscn" id="3_f4vqn"]
+[ext_resource type="Script" uid="uid://c5vah8whll5h2" path="res://scripts/flicker_light.gd" id="4_kdsye"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0vgxq"]
+albedo_color = Color(0.019554144, 0.019554138, 0.019554136, 1)
+metallic = 0.83
+roughness = 0.16
+
+[node name="CrashedCar" type="Node3D"]
+transform = Transform3D(0.70969373, 0, -0.70451033, 0, 1, 0, 0.70451033, 0, 0.70969373, 0, 0, 0)
+
+[node name="player_car_2" parent="." instance=ExtResource("1_hq1pd")]
+transform = Transform3D(-0.75, 0, -8.940697e-08, 0, 0.75, 0, 8.940697e-08, 0, -0.75, 0.12842178, 0.33074474, 0.7621231)
+
+[node name="Body" parent="player_car_2" index="0"]
+transform = Transform3D(-0.9723934, -0.12120539, -0.19939923, -0.117381394, 0.9926049, -0.030933773, 0.20167401, -0.0066740364, -0.9794298, -0.09193802, -0.039572358, -0.22522736)
+surface_material_override/0 = SubResource("StandardMaterial3D_0vgxq")
+
+[node name="WheelFrontLeft" parent="player_car_2" index="1"]
+transform = Transform3D(0.50770205, -0.001246691, -5.8084726e-05, -0.0034912303, -0.18129662, -0.008441696, 2.9802322e-08, -0.003014954, 0.5076439, -6.340206, -0.12400484, -0.29901123)
+
+[node name="WheelFrontRight" parent="player_car_2" index="2"]
+transform = Transform3D(-8.899062e-08, -0.17691079, -0.111357406, 0.507714, -3.241632e-08, -1.982331e-09, 1.7973697e-08, 0.039770357, -0.49535188, 0.65460587, 0.12919414, -2.0711021)
+
+[node name="WheelRearLeft" parent="player_car_2" index="3"]
+transform = Transform3D(-8.8990674e-08, 0.17691079, 0.11135724, 0.5077144, 3.2416324e-08, 1.9823023e-09, 1.7973715e-08, -0.039770313, 0.4953519, -0.83472824, 0.12919414, 1.6408463)
+
+[node name="WheelRearRight" parent="player_car_2" index="4"]
+transform = Transform3D(-8.8990674e-08, -0.17691079, -0.111357376, 0.5077144, -3.241632e-08, -1.982331e-09, 1.7973715e-08, 0.03977038, -0.4953519, 1.3859291, 0.12919414, 1.181469)
+
+[node name="BrakeMarks" type="Sprite3D" parent="."]
+
+[node name="Smoke" parent="." instance=ExtResource("3_f4vqn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6983261, 0.81035185, 2.8559113)
+
+[node name="FireLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7046, 0.94174576, 2.8759322)
+light_color = Color(0.9098305, 0.63014853, 0.010901808, 1)
+light_volumetric_fog_energy = 2.0
+script = ExtResource("4_kdsye")
+min_intensity = 5.0
+flicker_chance = 1.0
+
+[node name="FrontLights" type="Node3D" parent="."]
+transform = Transform3D(0.9682795, 0.11648886, 0.22105493, -0.11944374, 0.992841, -4.1909516e-09, -0.21947241, -0.026403625, 0.97526145, 0.2485008, 0.5602616, 1.6713662)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="FrontLights"]
+transform = Transform3D(-1, -5.41669e-14, -8.74228e-08, -2.38872e-08, 0.961947, 0.273237, 8.40961e-08, 0.273237, -0.961947, -0.61973846, 0.123352, 1.42012)
+light_color = Color(0.717647, 0.780392, 0.984314, 1)
+light_energy = 3.0
+spot_range = 30.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="FrontLights"]
+transform = Transform3D(-1, -5.50161e-14, -8.74228e-08, -2.38872e-08, 0.961947, 0.273237, 8.40961e-08, 0.273237, -0.961947, 0.8342673, 0.12300001, 1.42)
+light_color = Color(0.717647, 0.780392, 0.984314, 1)
+light_energy = 3.0
+spot_range = 30.0
+
+[node name="BrakeLights" type="Node3D" parent="."]
+transform = Transform3D(0.95962656, 0.14429054, 0.2414477, -0.1486897, 0.9888839, 3.7252903e-09, -0.23876375, -0.035900787, 0.97041386, 0.18368408, 0.5116878, 0.50618273)
+
+[node name="BrakeLightLeft" type="OmniLight3D" parent="BrakeLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.626404, 0.26454034, -1.4525062)
+light_color = Color(1, 0, 0, 1)
+omni_range = 1.1908498
+
+[node name="BrakeLightRight" type="OmniLight3D" parent="BrakeLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.66279274, 0.215992, -1.4920939)
+light_color = Color(1, 0.0588235, 0.0588235, 1)
+omni_range = 1.191
+
+[editable path="player_car_2"]

@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1v2g7hmtytt7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aa8k5"]
+transparency = 1
+depth_draw_mode = 1
+vertex_color_use_as_albedo = true
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_4etnt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.6306818, 0.74399614), -0.50720483, -0.50720483, 0, 0, Vector2(0.9886364, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_0x3uo"]
+curve = SubResource("Curve_4etnt")
+
+[sub_resource type="Curve" id="Curve_aa8k5"]
+_data = [Vector2(0.0075757504, 0), 0.0, 0.0, 0, 0, Vector2(0.67424244, 0.31940442), 1.0773959, 1.0773959, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4etnt"]
+curve = SubResource("Curve_aa8k5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aa8k5"]
+emission_shape = 3
+emission_box_extents = Vector3(0.3, 0.3, 0.3)
+gravity = Vector3(0, 1, 0)
+scale_min = 0.25
+scale_curve = SubResource("CurveTexture_4etnt")
+color = Color(0.4045111, 0.40451115, 0.4045111, 1)
+alpha_curve = SubResource("CurveTexture_0x3uo")
+
+[sub_resource type="QuadMesh" id="QuadMesh_aa8k5"]
+
+[node name="Smoke" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_aa8k5")
+amount = 128
+lifetime = 3.0
+visibility_aabb = AABB(-1.299057, -1.2982233, -1.2965393, 2.5975375, 7.1188917, 2.5932436)
+process_material = SubResource("ParticleProcessMaterial_aa8k5")
+draw_pass_1 = SubResource("QuadMesh_aa8k5")

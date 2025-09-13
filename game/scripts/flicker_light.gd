@@ -10,14 +10,14 @@ var timer = 0.0
 var do_flicker = false
 
 func _ready():
-	timer = randf_range(min_flicker_speed, max_flicker_speed)
-	do_flicker = randf() < flicker_chance
+  timer = randf_range(min_flicker_speed, max_flicker_speed)
+  do_flicker = randf() < flicker_chance
 
 func _process(delta):
-	if !do_flicker:
-		return
-	
-	timer -= delta
-	if timer <= 0.0:
-		light_energy = randf_range(min_intensity, max_intensity)
-		timer = randf_range(min_flicker_speed, max_flicker_speed)
+  if !do_flicker:
+    return
+  
+  timer -= delta
+  if timer <= 0.0:
+    light_energy = randf_range(min_intensity, max_intensity)
+    timer = randf_range(min_flicker_speed, max_flicker_speed)
