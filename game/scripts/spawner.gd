@@ -1,6 +1,7 @@
 class_name Spawner extends Node3D
 
 @export var scenes_to_spawn: Array[PackedScene]
+@export var spawn_start_at_distance: float = 0.0
 @export var spawn_area: Area3D
 @export var spawn_offset = Vector3(0, 0, 0)
 @export var chance_for_spawn = 0.05
@@ -14,7 +15,10 @@ func set_track_part_data(data: TrackPartData):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-  if (Globals.spawn_enemies && track_part_data.spawn_enemies):
+  if track_part_data.distance < spawn_start_at_distance:
+    return
+  
+  if Globals.spawn_enemies && track_part_data.spawn_enemies:
     spawn()
 
 func get_random_scene_to_spawn():

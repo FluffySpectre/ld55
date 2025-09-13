@@ -187,6 +187,7 @@ shape = SubResource("BoxShape3D_02cjv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 59.356)
 script = ExtResource("2_b4fxe")
 scenes_to_spawn = Array[PackedScene]([ExtResource("1_3l01b")])
+spawn_start_at_distance = 4000.0
 spawn_area = NodePath("Area3D")
 spawn_offset = Vector3(0, 1, 0)
 chance_for_spawn = 0.15

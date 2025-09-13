@@ -55,6 +55,9 @@ func get_street_part():
 func spawn_street_part():
   var track_part: TrackPartData = get_street_part()
   
+  if last_out_connector:
+    track_part.distance = Vector3.ZERO.distance_to(last_out_connector.global_position)
+  
   var instance = track_part.track_scene.instantiate() as BaseTrackPart
   instance.track_part_data = track_part
   add_child(instance)
