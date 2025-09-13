@@ -35,6 +35,8 @@ func on_body_entered(other: Node3D) -> void:
       powerloss_timer = powerloss_time
       
       player_health.apply_damage(20)
+      
+      Globals.camera_controller.shake_camera(0.6, 0.2)
     
     destroy()
 

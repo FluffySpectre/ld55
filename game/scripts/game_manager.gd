@@ -50,6 +50,8 @@ func _ready():
   Globals.player_car = player_car
   last_position = player_car.global_position
 
+  Globals.camera_controller = cam_controller
+
   track_generator.on_track_spawned.connect(on_track_spawned)
   
   distance_changed.connect(check_enemy_spawn)
