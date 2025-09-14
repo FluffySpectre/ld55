@@ -101,6 +101,8 @@ func _process(_delta):
       highscore_label.text = "Your longest drive so far:\n" + Utils.format_distance(Globals.highscore)
       score_label.text = "You survived " + Utils.format_distance(Globals.distance_in_target_direction) + "!"
     
+      Globals.first_run = false
+    
     if Input.is_action_just_pressed("ui_accept"):
       savegame.save()
       Globals.reset()
