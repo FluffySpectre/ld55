@@ -13,5 +13,8 @@ func emit_particles() -> void:
   particles.restart()
   particles.emitting = true
 
-func on_body_entered(_body: Node3D) -> void:
+func on_body_entered(body: Node3D) -> void:
+  if body != Globals.player_car:
+    return
+  
   emit_particles()
