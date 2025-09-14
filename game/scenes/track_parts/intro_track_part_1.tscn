@@ -1,13 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://bg7gi7xgjwgi0"]
+[gd_scene load_steps=11 format=3 uid="uid://bg7gi7xgjwgi0"]
 
 [ext_resource type="PackedScene" uid="uid://c0y7lmf8livxb" path="res://scenes/base_track_part.tscn" id="1_hxhd6"]
 [ext_resource type="PackedScene" uid="uid://su6sc562h7kg" path="res://scenes/crashed_car.tscn" id="2_gfsf5"]
 [ext_resource type="PackedScene" uid="uid://d1kcnouopfsgh" path="res://scenes/fx/electric_sparks.tscn" id="3_vk5ja"]
+[ext_resource type="Script" uid="uid://bvla16a8vrf47" path="res://scripts/emit_particles_immediatly.gd" id="4_r0dme"]
+[ext_resource type="Script" uid="uid://dsx20b1wbswuv" path="res://scripts/slowdown_area.gd" id="5_f3shd"]
+[ext_resource type="Script" uid="uid://dsjek1j1wg77i" path="res://scripts/camera_attention_trigger.gd" id="6_3wu11"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gfsf5"]
 transparency = 1
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 1.24
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vk5ja"]
+size = Vector3(50, 2, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3wu11"]
+size = Vector3(50, 2, 74.6861)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1yl3g"]
+size = Vector3(50, 2, 57.28942)
 
 [node name="IntroTrackPart1" instance=ExtResource("1_hxhd6")]
 
@@ -26,5 +38,45 @@ transform = Transform3D(0.70969373, 0, -0.70451033, 0, 1, 0, 0.70451033, 0, 0.70
 
 [node name="ElectricSparks" parent="." index="13" instance=ExtResource("3_vk5ja")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.499727, 8.384281, 77.52528)
+emitting = false
+
+[node name="EmitParticlesImmediatly" type="Node" parent="ElectricSparks" index="0"]
+script = ExtResource("4_r0dme")
+emit_on_ready = false
+metadata/_custom_type_script = "uid://bvla16a8vrf47"
+
+[node name="SparksTrigger" type="Area3D" parent="." index="14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50.732296)
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SparksTrigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.107, 0)
+shape = SubResource("BoxShape3D_vk5ja")
+
+[node name="SlowdownArea" type="Area3D" parent="." index="15"]
+monitorable = false
+script = ExtResource("5_f3shd")
+metadata/_custom_type_script = "uid://dsx20b1wbswuv"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SlowdownArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.107, 38.221134)
+shape = SubResource("BoxShape3D_3wu11")
+
+[node name="CameraAttentionTrigger" type="Area3D" parent="." index="16" node_paths=PackedStringArray("attention_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 58.338)
+monitorable = false
+script = ExtResource("6_3wu11")
+attention_target = NodePath("../CrashCameraTarget")
+disable_player_input = false
+metadata/_custom_type_script = "uid://dsjek1j1wg77i"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraAttentionTrigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -11.355286)
+shape = SubResource("BoxShape3D_1yl3g")
+
+[node name="CrashCameraTarget" type="Node3D" parent="." index="17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.625835, 0.054543257, 73.78158)
+
+[connection signal="body_entered" from="SparksTrigger" to="ElectricSparks/EmitParticlesImmediatly" method="on_body_entered"]
 
 [editable path="StreetLamp"]
