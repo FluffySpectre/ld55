@@ -503,11 +503,11 @@ autoplay = "intro"
 
 [node name="Titlescreen" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 431.0
-offset_bottom = 280.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="GameTitle" type="Label" parent="Titlescreen"]
 modulate = Color(1, 1, 1, 0)
@@ -663,14 +663,11 @@ uppercase = true
 [node name="StartHint" type="Label" parent="Titlescreen"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.759
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -76.0
-offset_right = 0.14797974
-offset_bottom = -44.0
+offset_top = -56.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("7_yh54y")
@@ -685,19 +682,17 @@ uppercase = true
 [node name="Creditsscreen" type="Control" parent="."]
 visible = false
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Credits" type="Label" parent="Creditsscreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 39.0
-offset_top = 66.0
-offset_right = 265.0
-offset_bottom = 138.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_yh54y")
@@ -705,7 +700,7 @@ text = "* CREDITS *
 
 created by Björn Bosse
 
-Help on the Post Jam Version:
+Help with the Post Jam Version:
 Christopher Pollok"
 horizontal_alignment = 1
 vertical_alignment = 1

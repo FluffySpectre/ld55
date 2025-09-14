@@ -242,7 +242,7 @@ shape = SubResource("BoxShape3D_ye283")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 131.752, 0, 75.3462)
 script = ExtResource("7_ovo0c")
 tree_scene = ExtResource("7_o86ua")
-num_trees = 5
+num_trees = 7
 group_radius = 15
 trees_per_group = 3
 
@@ -255,7 +255,7 @@ shape = SubResource("BoxShape3D_7lqfb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -130.293, 0, 75.3462)
 script = ExtResource("7_ovo0c")
 tree_scene = ExtResource("7_o86ua")
-num_trees = 5
+num_trees = 7
 group_radius = 15
 trees_per_group = 3
 

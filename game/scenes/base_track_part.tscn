@@ -154,7 +154,7 @@ aabb = AABB(-250.444, -1, 0.138, 500.888, 2, 600)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 131.752, 0, 75.3462)
 script = ExtResource("8_a4ypy")
 tree_scene = ExtResource("9_rlijm")
-num_trees = 5
+num_trees = 7
 group_radius = 15
 trees_per_group = 3
 
@@ -167,7 +167,7 @@ shape = SubResource("BoxShape3D_7lqfb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -130.293, 0, 75.3462)
 script = ExtResource("8_a4ypy")
 tree_scene = ExtResource("9_rlijm")
-num_trees = 5
+num_trees = 7
 group_radius = 15
 trees_per_group = 3
 
