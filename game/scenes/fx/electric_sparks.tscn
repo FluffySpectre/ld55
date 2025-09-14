@@ -40,7 +40,7 @@ collision_friction = 0.4
 collision_bounce = 0.4
 
 [sub_resource type="QuadMesh" id="QuadMesh_gfsf5"]
-size = Vector2(0.1, 0.4)
+size = Vector2(0.05, 0.3)
 
 [node name="ElectricSparks" type="GPUParticles3D"]
 material_override = SubResource("StandardMaterial3D_vk5ja")
