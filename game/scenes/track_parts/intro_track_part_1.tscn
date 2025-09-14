@@ -59,6 +59,7 @@ shape = SubResource("BoxShape3D_vk5ja")
 [node name="SlowdownArea" type="Area3D" parent="CrashAttention" index="0"]
 monitorable = false
 script = ExtResource("5_f3shd")
+slowdown_factor = 0.35
 metadata/_custom_type_script = "uid://dsx20b1wbswuv"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CrashAttention/SlowdownArea" index="0"]
