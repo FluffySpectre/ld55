@@ -63,5 +63,6 @@ size = Vector2(0.3, 0.5)
 material_override = SubResource("StandardMaterial3D_hq1pd")
 amount = 150
 lifetime = 2.5
+visibility_aabb = AABB(-2.0434017, -0.5826401, -2.808259, 4.9176874, 6.0109997, 6.218623)
 process_material = SubResource("ParticleProcessMaterial_0vgxq")
 draw_pass_1 = SubResource("QuadMesh_0vgxq")

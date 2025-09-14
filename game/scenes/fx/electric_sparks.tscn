@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1kcnouopfsgh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vk5ja"]
+transparency = 1
+depth_draw_mode = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.6976961, 0.623587, 0, 1)
+emission_enabled = true
+emission = Color(0.9390508, 0.70051837, 3.85046e-07, 1)
+texture_filter = 0
+texture_repeat = false
+billboard_keep_scale = true
+
+[sub_resource type="Curve" id="Curve_vk5ja"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.8541667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_r0dme"]
+curve = SubResource("Curve_vk5ja")
+
+[sub_resource type="Curve" id="Curve_gfsf5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.49839896), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vk5ja"]
+curve = SubResource("Curve_gfsf5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gfsf5"]
+lifetime_randomness = 0.6
+emission_shape = 1
+emission_sphere_radius = 0.25
+initial_velocity_min = 8.0
+initial_velocity_max = 13.0
+attractor_interaction_enabled = false
+color = Color(0.9985433, 0.7425038, 0.24335608, 1)
+alpha_curve = SubResource("CurveTexture_r0dme")
+emission_curve = SubResource("CurveTexture_vk5ja")
+collision_mode = 1
+collision_friction = 0.4
+collision_bounce = 0.4
+
+[sub_resource type="QuadMesh" id="QuadMesh_gfsf5"]
+size = Vector2(0.1, 0.4)
+
+[node name="ElectricSparks" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_vk5ja")
+amount = 32
+lifetime = 5.0
+speed_scale = 2.0
+explosiveness = 1.0
+randomness = 0.3
+visibility_aabb = AABB(-0.28604832, -94.81225, -15.550165, 51.166153, 95.91179, 31.864624)
+transform_align = 3
+process_material = SubResource("ParticleProcessMaterial_gfsf5")
+draw_pass_1 = SubResource("QuadMesh_gfsf5")

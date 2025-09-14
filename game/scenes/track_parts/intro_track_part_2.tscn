@@ -6,4 +6,4 @@
 [node name="IntroTrackPart2" instance=ExtResource("1_movso")]
 
 [node name="SignFogWarning" parent="." index="12" instance=ExtResource("2_v53my")]
-transform = Transform3D(-2.16506, 1.19113e-15, 1.25, 8.71967e-16, 2.5, -8.71967e-16, -1.25, -3.19162e-16, -2.16506, -21.140013, 0.78838325, 122.943275)
+transform = Transform3D(-2.16506, 1.19113e-15, 1.25, 8.71967e-16, 2.5, -8.71967e-16, -1.25, -3.19162e-16, -2.16506, -21.140013, 0.78838325, 9.167046)
