@@ -22,7 +22,7 @@ size = Vector3(50, 2, 10)
 size = Vector3(50, 2, 80.49881)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1yl3g"]
-size = Vector3(50, 2, 63.090145)
+size = Vector3(50, 2, 37.438557)
 
 [sub_resource type="SphereMesh" id="SphereMesh_wsgin"]
 
@@ -35,7 +35,7 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("Obscurus")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -12.860146, 2.08165e-12, 2.08165e-12, 1, 1, -1.643, 0, 8, 4, 1, -1.6432648, 2.08165e-12, 870.8373)
+tracks/0/keys = PackedFloat32Array(0, 1, -12.860146, 2.08165e-12, 2.08165e-12, 1, 1, 0, 0, 8, 4, 1, -1.643, 0, 700)
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -134,7 +134,7 @@ shape = SubResource("BoxShape3D_vk5ja")
 [node name="SlowdownArea" type="Area3D" parent="CrashAttention" index="0"]
 monitorable = false
 script = ExtResource("5_f3shd")
-slowdown_factor = 0.35
+slowdown_factor = 0.3
 metadata/_custom_type_script = "uid://dsx20b1wbswuv"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CrashAttention/SlowdownArea" index="0"]
@@ -150,11 +150,11 @@ disable_player_input = false
 metadata/_custom_type_script = "uid://dsjek1j1wg77i"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CrashAttention/CameraAttentionTrigger" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -8.454922)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4.3708763)
 shape = SubResource("BoxShape3D_1yl3g")
 
 [node name="CrashCameraTarget" type="Node3D" parent="CrashAttention" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.625835, 0.054543257, 73.78158)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.625835, 2.0341005, 73.78158)
 
 [node name="DisableAfterFirstRun" type="Node" parent="CrashAttention" index="3"]
 script = ExtResource("7_1yl3g")
@@ -182,13 +182,14 @@ script = ExtResource("7_1yl3g")
 metadata/_custom_type_script = "uid://cakylm773f0hr"
 
 [node name="ObscurusRevealTrigger" type="Area3D" parent="." index="17"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.00983)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.082096)
 monitorable = false
 
 [node name="PlayAnimationOnEnter" type="Node" parent="ObscurusRevealTrigger" index="0" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("9_wsgin")
 animation_player = NodePath("../../ObscurusReveal/AnimationPlayer")
 animation_name = "obscurus_flee"
+trigger_once = true
 metadata/_custom_type_script = "uid://bxgdmukycqr11"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ObscurusRevealTrigger" index="1"]

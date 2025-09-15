@@ -529,6 +529,8 @@ script = ExtResource("4_n7y0v")
 target = NodePath("../CameraTarget")
 lerp_speed = 5.0
 offset = Vector3(2.08165e-12, 5, -7)
+attention_weight = 0.5
+attention_transition_speed = 0.4
 
 [node name="CameraTarget" type="Node3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 10)
