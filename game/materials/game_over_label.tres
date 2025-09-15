@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://7qdrlxus3ein"]
+
+[ext_resource type="Shader" uid="uid://wmooujr2njsh" path="res://shader/dither_fade.gdshader" id="1_mwlvh"]
+
+[resource]
+shader = ExtResource("1_mwlvh")
+shader_parameter/fade_amount = 0.0
+shader_parameter/dither_scale = 0.60000002524012
+shader_parameter/color = Color(1, 1, 1, 0.627451)

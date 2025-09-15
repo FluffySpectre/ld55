@@ -56,6 +56,8 @@ func _ready():
   track_generator.on_track_spawned.connect(on_track_spawned)
   
   distance_changed.connect(check_enemy_spawn)
+  
+  gameover_animation_player.play("RESET")
 
 func _notification(what):
   if what == NOTIFICATION_WM_CLOSE_REQUEST:

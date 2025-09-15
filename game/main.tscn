@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c5385qrdr3oil"]
+[gd_scene load_steps=41 format=3 uid="uid://c5385qrdr3oil"]
 
 [ext_resource type="Script" uid="uid://cikmwb4btubvb" path="res://scripts/game_manager.gd" id="1_a32xk"]
 [ext_resource type="PackedScene" uid="uid://cc2gxluvkmj1t" path="res://scenes/player_car_v5.tscn" id="2_np6hg"]
@@ -12,8 +12,14 @@
 [ext_resource type="Script" uid="uid://bwmvh7ya1lhws" path="res://scripts/game_ui.gd" id="8_1q0p2"]
 [ext_resource type="PackedScene" uid="uid://dap5ikl03t5t4" path="res://scenes/straight_street.tscn" id="8_efxa6"]
 [ext_resource type="Script" uid="uid://bur685vb16n3r" path="res://scripts/splash.gd" id="9_kek77"]
+[ext_resource type="Shader" uid="uid://wmooujr2njsh" path="res://shader/dither_fade.gdshader" id="10_vivmo"]
+[ext_resource type="Material" uid="uid://bwe55jafgyeqb" path="res://materials/game_title_label.tres" id="11_vivmo"]
 [ext_resource type="Shader" uid="uid://cocu00hgw8c5s" path="res://shader/vignette.gdshader" id="11_w48qg"]
+[ext_resource type="Material" uid="uid://c6tq5tv0iyqfb" path="res://materials/start_hint_label.tres" id="12_2cqfq"]
+[ext_resource type="Script" uid="uid://b066tglcaikq3" path="res://scripts/set_shader_param.gd" id="12_yaehf"]
 [ext_resource type="Script" uid="uid://due54qvqvncuv" path="res://scripts/health_vignette.gd" id="13_ycdy4"]
+[ext_resource type="Material" uid="uid://c140cw7crlmsl" path="res://materials/game_overlay.tres" id="17_074og"]
+[ext_resource type="Material" uid="uid://7qdrlxus3ein" path="res://materials/game_over_label.tres" id="18_82xsv"]
 
 [sub_resource type="Resource" id="Resource_dg77c"]
 script = ExtResource("7_4c57u")
@@ -53,38 +59,38 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Titlescreen/GameTitle:modulate")
+tracks/0/path = NodePath("../Titlescreen/GameTitle/GameTitle_SetShaderParam:float_value")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Titlescreen/StartHint:modulate")
+tracks/1/path = NodePath("../Titlescreen/StartHint/StartHint_SetShaderParam:float_value")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../UI/GameOverlay:modulate")
+tracks/2/path = NodePath("../UI/GameOverlay/GameOverlay_SetShaderParam:float_value")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_r3b6j"]
@@ -93,38 +99,38 @@ length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Titlescreen/GameTitle:modulate")
+tracks/0/path = NodePath("../Titlescreen/GameTitle/GameTitle_SetShaderParam:float_value")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [1.0, 0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Titlescreen/StartHint:modulate")
+tracks/1/path = NodePath("../Titlescreen/StartHint/StartHint_SetShaderParam:float_value")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [1.0, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../UI/GameOverlay:modulate")
+tracks/2/path = NodePath("../UI/GameOverlay/GameOverlay_SetShaderParam:float_value")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(1, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [0.0, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_t86n8"]
@@ -191,6 +197,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../UI/GameOverlay/GameOverlay_SetShaderParam:float_value")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_mimwi"]
@@ -266,26 +284,38 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Titlescreen/GameTitle:modulate")
+tracks/3/path = NodePath("../Titlescreen/GameTitle/GameTitle_SetShaderParam:float_value")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [0.0, 1.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Titlescreen/StartHint:modulate")
+tracks/4/path = NodePath("../Titlescreen/StartHint/StartHint_SetShaderParam:float_value")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(1.5, 3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [0.0, 0.0, 1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../UI/GameOverlay/GameOverlay_SetShaderParam:float_value")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8ugun"]
@@ -305,67 +335,91 @@ shader_parameter/vignette_color = Color(0, 0, 0, 1)
 shader_parameter/pixelation_steps = 64
 shader_parameter/hard_edges = false
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d13ii"]
+shader = ExtResource("10_vivmo")
+shader_parameter/fade_amount = 0.0
+shader_parameter/dither_scale = 0.60000002524012
+shader_parameter/color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_82xsv"]
+shader = ExtResource("10_vivmo")
+shader_parameter/fade_amount = 0.0
+shader_parameter/dither_scale = 0.60000002524012
+shader_parameter/color = Color(1, 1, 1, 0.627451)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_getpj"]
+shader = ExtResource("10_vivmo")
+shader_parameter/fade_amount = 0.0
+shader_parameter/dither_scale = 0.60000002524012
+shader_parameter/color = Color(1, 1, 1, 0.627451)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ryguw"]
+shader = ExtResource("10_vivmo")
+shader_parameter/fade_amount = 0.0
+shader_parameter/dither_scale = 0.60000002524012
+shader_parameter/color = Color(1, 1, 1, 0.627451)
+
 [sub_resource type="Animation" id="Animation_4c57u"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Fade:color")
+tracks/0/path = NodePath("Fade/GameOver_Fade_SetShaderParam:float_value")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0, 0, 0, 0)]
+"values": [0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GameOverLabel:modulate")
+tracks/1/path = NodePath("GameOverLabel/GameOver_GameOverLabel_SetShaderParam:float_value")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("RestartLabel:modulate")
+tracks/2/path = NodePath("RestartLabel/GameOver_Restart_SetShaderParam:float_value")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [0.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("ScoreLabel:modulate")
+tracks/3/path = NodePath("ScoreLabel/GameOver_Score_SetShaderParam:float_value")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [0.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HighscoreLabel:modulate")
+tracks/4/path = NodePath("HighscoreLabel/GameOver_Highscore_SetShaderParam:float_value")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_kek77"]
@@ -374,62 +428,62 @@ length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Fade:color")
+tracks/0/path = NodePath("Fade/GameOver_Fade_SetShaderParam:float_value")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.4333333, 2),
+"times": PackedFloat32Array(0, 1.4333, 2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.4745098), Color(0, 0, 0, 1)]
+"values": [0.0, 0.5, 1.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GameOverLabel:modulate")
+tracks/1/path = NodePath("GameOverLabel/GameOver_GameOverLabel_SetShaderParam:float_value")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 2.5, 3.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [0.0, 0.0, 1.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("RestartLabel:modulate")
+tracks/2/path = NodePath("RestartLabel/GameOver_Restart_SetShaderParam:float_value")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 8.5, 9.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [0.0, 0.0, 1.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("ScoreLabel:modulate")
+tracks/3/path = NodePath("ScoreLabel/GameOver_Score_SetShaderParam:float_value")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 4.5, 5.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [0.0, 0.0, 1.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HighscoreLabel:modulate")
+tracks/4/path = NodePath("HighscoreLabel/GameOver_Highscore_SetShaderParam:float_value")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 6.5, 7.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [0.0, 0.0, 1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_efxa6"]
@@ -437,6 +491,12 @@ _data = {
 &"RESET": SubResource("Animation_4c57u"),
 &"gameover": SubResource("Animation_kek77")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cegan"]
+shader = ExtResource("10_vivmo")
+shader_parameter/fade_amount = 1.0
+shader_parameter/dither_scale = 0.60000002524012
+shader_parameter/color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node3D"]
 
@@ -510,7 +570,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GameTitle" type="Label" parent="Titlescreen"]
-modulate = Color(1, 1, 1, 0)
+material = ExtResource("11_vivmo")
 layout_mode = 0
 offset_left = 6.0
 offset_top = 5.0
@@ -523,6 +583,7 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="R" type="Label" parent="Titlescreen/GameTitle"]
+material = ExtResource("11_vivmo")
 layout_mode = 0
 offset_right = 9.0
 offset_bottom = 21.0
@@ -533,6 +594,7 @@ text = "R"
 uppercase = true
 
 [node name="I" type="Label" parent="Titlescreen/GameTitle"]
+material = ExtResource("11_vivmo")
 layout_mode = 0
 offset_left = 9.0
 offset_right = 14.0
@@ -544,6 +606,7 @@ text = "I"
 uppercase = true
 
 [node name="T" type="Label" parent="Titlescreen/GameTitle"]
+material = ExtResource("11_vivmo")
 layout_mode = 0
 offset_left = 13.0
 offset_right = 21.0
@@ -555,6 +618,7 @@ text = "T"
 uppercase = true
 
 [node name="U" type="Label" parent="Titlescreen/GameTitle"]
+material = ExtResource("11_vivmo")
 layout_mode = 0
 offset_left = 21.0
 offset_right = 30.0
@@ -567,6 +631,7 @@ text = "U
 uppercase = true
 
 [node name="A" type="Label" parent="Titlescreen/GameTitle"]
+material = ExtResource("11_vivmo")
 layout_mode = 0
 offset_left = 30.0
 offset_right = 39.0
@@ -579,6 +644,7 @@ text = "A
 uppercase = true
 
 [node name="L" type="Label" parent="Titlescreen/GameTitle"]
+material = ExtResource("11_vivmo")
 layout_mode = 0
 offset_left = 39.0
 offset_right = 48.0
@@ -592,6 +658,7 @@ text = "L
 uppercase = true
 
 [node name="R2" type="Label" parent="Titlescreen/GameTitle"]
+material = ExtResource("11_vivmo")
 layout_mode = 0
 offset_left = 53.0
 offset_right = 62.0
@@ -603,6 +670,7 @@ text = "R"
 uppercase = true
 
 [node name="O" type="Label" parent="Titlescreen/GameTitle"]
+material = ExtResource("11_vivmo")
 layout_mode = 0
 offset_left = 62.0
 offset_right = 71.0
@@ -614,6 +682,7 @@ text = "O"
 uppercase = true
 
 [node name="A2" type="Label" parent="Titlescreen/GameTitle"]
+material = ExtResource("11_vivmo")
 layout_mode = 0
 offset_left = 71.0
 offset_right = 80.0
@@ -625,6 +694,7 @@ text = "A"
 uppercase = true
 
 [node name="D" type="Label" parent="Titlescreen/GameTitle"]
+material = ExtResource("11_vivmo")
 layout_mode = 0
 offset_left = 80.0
 offset_right = 89.0
@@ -636,6 +706,7 @@ text = "D"
 uppercase = true
 
 [node name="Subtitle" type="Label" parent="Titlescreen/GameTitle"]
+material = ExtResource("11_vivmo")
 layout_mode = 0
 offset_top = 16.0
 offset_right = 109.0
@@ -649,6 +720,7 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="Version" type="Label" parent="Titlescreen/GameTitle"]
+material = ExtResource("11_vivmo")
 layout_mode = 0
 offset_top = 36.0
 offset_right = 113.0
@@ -660,8 +732,13 @@ text = "v1.1"
 vertical_alignment = 1
 uppercase = true
 
+[node name="GameTitle_SetShaderParam" type="Node" parent="Titlescreen/GameTitle"]
+script = ExtResource("12_yaehf")
+param_name = "fade_amount"
+metadata/_custom_type_script = "uid://b066tglcaikq3"
+
 [node name="StartHint" type="Label" parent="Titlescreen"]
-modulate = Color(1, 1, 1, 0)
+material = ExtResource("12_2cqfq")
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -678,6 +755,11 @@ to take control"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+
+[node name="StartHint_SetShaderParam" type="Node" parent="Titlescreen/StartHint"]
+script = ExtResource("12_yaehf")
+param_name = "fade_amount"
+metadata/_custom_type_script = "uid://b066tglcaikq3"
 
 [node name="Creditsscreen" type="Control" parent="."]
 visible = false
@@ -725,12 +807,13 @@ script = ExtResource("8_1q0p2")
 point_counter_label = NodePath("GameOverlay/PointCounter")
 
 [node name="GameOverlay" type="Control" parent="UI"]
-modulate = Color(1, 1, 1, 0)
+material = ExtResource("17_074og")
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="PointCounter" type="Label" parent="UI/GameOverlay"]
+material = ExtResource("17_074og")
 layout_mode = 0
 offset_left = 8.0
 offset_top = 5.0
@@ -739,6 +822,11 @@ offset_bottom = 28.0
 theme = ExtResource("7_yh54y")
 theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
 text = "0m"
+
+[node name="GameOverlay_SetShaderParam" type="Node" parent="UI/GameOverlay"]
+script = ExtResource("12_yaehf")
+param_name = "fade_amount"
+metadata/_custom_type_script = "uid://b066tglcaikq3"
 
 [node name="GameOver" type="Control" parent="."]
 layout_mode = 3
@@ -749,16 +837,22 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Fade" type="ColorRect" parent="GameOver"]
+material = SubResource("ShaderMaterial_d13ii")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0)
+color = Color(0, 0, 0, 0.9814544)
+
+[node name="GameOver_Fade_SetShaderParam" type="Node" parent="GameOver/Fade"]
+script = ExtResource("12_yaehf")
+param_name = "fade_amount"
+metadata/_custom_type_script = "uid://b066tglcaikq3"
 
 [node name="GameOverLabel" type="Label" parent="GameOver"]
-modulate = Color(1, 1, 1, 0)
+material = ExtResource("18_82xsv")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -779,8 +873,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+[node name="GameOver_GameOverLabel_SetShaderParam" type="Node" parent="GameOver/GameOverLabel"]
+script = ExtResource("12_yaehf")
+param_name = "fade_amount"
+metadata/_custom_type_script = "uid://b066tglcaikq3"
+
 [node name="ScoreLabel" type="Label" parent="GameOver"]
-modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_82xsv")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -801,8 +900,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+[node name="GameOver_Score_SetShaderParam" type="Node" parent="GameOver/ScoreLabel"]
+script = ExtResource("12_yaehf")
+param_name = "fade_amount"
+metadata/_custom_type_script = "uid://b066tglcaikq3"
+
 [node name="HighscoreLabel" type="Label" parent="GameOver"]
-modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_getpj")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -824,8 +928,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+[node name="GameOver_Highscore_SetShaderParam" type="Node" parent="GameOver/HighscoreLabel"]
+script = ExtResource("12_yaehf")
+param_name = "fade_amount"
+metadata/_custom_type_script = "uid://b066tglcaikq3"
+
 [node name="RestartLabel" type="Label" parent="GameOver"]
-modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_ryguw")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -847,12 +956,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+[node name="GameOver_Restart_SetShaderParam" type="Node" parent="GameOver/RestartLabel"]
+script = ExtResource("12_yaehf")
+param_name = "fade_amount"
+metadata/_custom_type_script = "uid://b066tglcaikq3"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GameOver"]
 libraries = {
 &"": SubResource("AnimationLibrary_efxa6")
 }
 
 [node name="Splash" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_cegan")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
