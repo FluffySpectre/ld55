@@ -163,7 +163,7 @@ func reset_player():
 
 func check_enemy_spawn(new_distance: float):
   # Start spawning enemies after fog sets in
-  if new_distance >= 1000.0:
+  if new_distance >= 1500.0:
     Globals.spawn_enemies = true
 
 func on_track_spawned(track_part_data: TrackPartData):
