@@ -20,6 +20,9 @@ emission_energy_multiplier = 1.24
 [sub_resource type="BoxShape3D" id="BoxShape3D_vk5ja"]
 size = Vector3(50, 2, 10)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wsgin"]
+size = Vector3(50, 2, 10)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_3wu11"]
 size = Vector3(50, 2, 80.49881)
 
@@ -96,9 +99,6 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_phtl5"]
 size = Vector3(50, 2, 10)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_wsgin"]
-size = Vector3(50, 2, 10)
-
 [node name="IntroTrackPart1" instance=ExtResource("1_hxhd6")]
 
 [node name="StreetLamp" parent="." index="7"]
@@ -137,7 +137,25 @@ debug_color = Color(0.6509804, 0.5176471, 0, 0.41960785)
 
 [node name="CrashAttention" type="Node3D" parent="." index="15"]
 
-[node name="SlowdownArea" type="Area3D" parent="CrashAttention" index="0"]
+[node name="CrashSoundTrigger" type="Area3D" parent="CrashAttention" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -221.64813)
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CrashAttention/CrashSoundTrigger" index="0"]
+shape = SubResource("BoxShape3D_wsgin")
+debug_color = Color(0.6509804, 0.5176471, 0, 0.41960785)
+
+[node name="PlaySoundOnEnter" type="Node" parent="CrashAttention/CrashSoundTrigger" index="1" node_paths=PackedStringArray("audio_stream_player")]
+script = ExtResource("10_se2a6")
+audio_stream_player = NodePath("AudioStreamPlayer3D")
+trigger_once = true
+metadata/_custom_type_script = "uid://deb7vfltb6jt8"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="CrashAttention/CrashSoundTrigger/PlaySoundOnEnter" index="0"]
+stream = ExtResource("11_qiorq")
+attenuation_model = 3
+
+[node name="SlowdownArea" type="Area3D" parent="CrashAttention" index="1"]
 monitorable = false
 script = ExtResource("5_f3shd")
 slowdown_factor = 0.3
@@ -147,7 +165,7 @@ metadata/_custom_type_script = "uid://dsx20b1wbswuv"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.107, 41.12749)
 shape = SubResource("BoxShape3D_3wu11")
 
-[node name="CameraAttentionTrigger" type="Area3D" parent="CrashAttention" index="1" node_paths=PackedStringArray("attention_target")]
+[node name="CameraAttentionTrigger" type="Area3D" parent="CrashAttention" index="2" node_paths=PackedStringArray("attention_target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 58.338)
 monitorable = false
 script = ExtResource("6_3wu11")
@@ -160,10 +178,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4.3708763)
 shape = SubResource("BoxShape3D_1yl3g")
 debug_color = Color(0.6509804, 0.5176471, 0, 0.41960785)
 
-[node name="CrashCameraTarget" type="Node3D" parent="CrashAttention" index="2"]
+[node name="CrashCameraTarget" type="Node3D" parent="CrashAttention" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.625835, 2.0341005, 73.78158)
 
-[node name="DisableAfterFirstRun" type="Node" parent="CrashAttention" index="3"]
+[node name="DisableAfterFirstRun" type="Node" parent="CrashAttention" index="4"]
 script = ExtResource("7_1yl3g")
 metadata/_custom_type_script = "uid://cakylm773f0hr"
 
@@ -203,24 +221,6 @@ metadata/_custom_type_script = "uid://bxgdmukycqr11"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4.117119)
 shape = SubResource("BoxShape3D_phtl5")
 debug_color = Color(0.65225244, 0.51726055, 5.7756904e-07, 0.41960785)
-
-[node name="CrashSoundTrigger" type="Area3D" parent="." index="18"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -283.71973)
-monitorable = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CrashSoundTrigger" index="0"]
-shape = SubResource("BoxShape3D_wsgin")
-debug_color = Color(0.6509804, 0.5176471, 0, 0.41960785)
-
-[node name="PlaySoundOnEnter" type="Node" parent="CrashSoundTrigger" index="1" node_paths=PackedStringArray("audio_stream_player")]
-script = ExtResource("10_se2a6")
-audio_stream_player = NodePath("AudioStreamPlayer3D")
-trigger_once = true
-metadata/_custom_type_script = "uid://deb7vfltb6jt8"
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="CrashSoundTrigger/PlaySoundOnEnter" index="0"]
-stream = ExtResource("11_qiorq")
-attenuation_model = 3
 
 [connection signal="body_entered" from="SparksTrigger" to="ElectricSparks/EmitParticlesImmediatly" method="on_body_entered"]
 
