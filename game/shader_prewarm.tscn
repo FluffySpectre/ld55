@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://sen6qmn35sma"]
+[gd_scene load_steps=12 format=3 uid="uid://sen6qmn35sma"]
 
 [ext_resource type="PackedScene" uid="uid://kal68on760kc" path="res://scenes/obscurus.tscn" id="1_4jya1"]
 [ext_resource type="Script" uid="uid://cnavj7uibi8q0" path="res://shader_prewarm.gd" id="1_82i4s"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://su6sc562h7kg" path="res://scenes/crashed_car.tscn" id="7_ks4rv"]
 [ext_resource type="PackedScene" uid="uid://bg7gi7xgjwgi0" path="res://scenes/track_parts/intro_track_part_1.tscn" id="9_k8etr"]
 [ext_resource type="PackedScene" uid="uid://bsup5cljc6wqb" path="res://scenes/track_parts/intro_track_part_2.tscn" id="10_oggpa"]
+[ext_resource type="PackedScene" uid="uid://cixxh7ewyotvc" path="res://scenes/grass.tscn" id="11_u8xa4"]
 
 [node name="ShaderPrewarm" type="Node3D"]
 script = ExtResource("1_82i4s")
@@ -51,6 +52,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.377213, -10.440502, -137.0
 process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.194916, -10.44548, -133.86884)
 
+[node name="Grass" parent="." instance=ExtResource("11_u8xa4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.686071, 0)
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2970996, 4.3008027)
 
@@ -74,3 +78,4 @@ color = Color(0, 0, 0, 1)
 [editable path="Obscurus"]
 [editable path="SplatterFx"]
 [editable path="IntroTrackPart1"]
+[editable path="IntroTrackPart1/StreetLamp"]

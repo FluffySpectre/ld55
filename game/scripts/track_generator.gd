@@ -8,7 +8,7 @@ signal on_track_spawned(track_part: TrackPartData)
 @onready var track_collider: CollisionShape3D = $TrackCollider/CollisionShape3D
 @onready var track_collider_particles: GPUParticlesCollisionBox3D = $TrackCollider/GPUParticlesCollisionBox3D
 
-var num_parts_to_load = 7
+var num_parts_to_load = 10
 var loaded_street_parts = []
 var last_out_connector: Node3D
 var rng = RandomNumberGenerator.new()

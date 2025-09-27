@@ -1,8 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://c0y7lmf8livxb"]
+[gd_scene load_steps=35 format=3 uid="uid://c0y7lmf8livxb"]
 
 [ext_resource type="Script" uid="uid://cfl5p4wqyp35w" path="res://scripts/base_track_part.gd" id="1_d0jvq"]
 [ext_resource type="Texture2D" uid="uid://dvg4jvbn8k6kl" path="res://textures/street.png" id="1_ltvrg"]
 [ext_resource type="Texture2D" uid="uid://blj021ji4ardo" path="res://textures/street_sidelines.png" id="2_jot3j"]
+[ext_resource type="PackedScene" uid="uid://cixxh7ewyotvc" path="res://scenes/grass.tscn" id="6_0e4mo"]
 [ext_resource type="Script" uid="uid://x4euk0kmo4r0" path="res://scripts/tree_spawner.gd" id="8_a4ypy"]
 [ext_resource type="PackedScene" uid="uid://molrk3pyx2am" path="res://scenes/spooky_tree_1.tscn" id="9_rlijm"]
 [ext_resource type="PackedScene" uid="uid://d2265v0byai01" path="res://scenes/street_lamp.tscn" id="10_ctsao"]
@@ -32,6 +33,12 @@ size = Vector2(500, 150)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7lqfb"]
 size = Vector3(200, 0.01, 130)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_10hrp"]
+size = Vector3(41.784355, 0.5185547, 145.34674)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0e4mo"]
+size = Vector3(41.683952, 0.5185547, 145.34674)
 
 [sub_resource type="Gradient" id="Gradient_tosjb"]
 offsets = PackedFloat32Array(0.00847458, 0.0714286, 1)
@@ -154,9 +161,11 @@ aabb = AABB(-250.444, -1, 0.138, 500.888, 2, 600)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 131.752, 0, 75.3462)
 script = ExtResource("8_a4ypy")
 tree_scene = ExtResource("9_rlijm")
-num_trees = 7
+num_trees = 30
 group_radius = 15
 trees_per_group = 3
+min_size = 1.5
+max_size = 4.0
 
 [node name="Area3D" type="Area3D" parent="TreeSpawner/TreeSpawner1"]
 
@@ -167,16 +176,57 @@ shape = SubResource("BoxShape3D_7lqfb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -130.293, 0, 75.3462)
 script = ExtResource("8_a4ypy")
 tree_scene = ExtResource("9_rlijm")
-num_trees = 7
+num_trees = 30
 group_radius = 15
 trees_per_group = 3
+min_size = 1.5
+max_size = 4.0
 
 [node name="Area3D" type="Area3D" parent="TreeSpawner/TreeSpawner2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TreeSpawner/TreeSpawner2/Area3D"]
 shape = SubResource("BoxShape3D_7lqfb")
 
+[node name="GrassSpawner" type="Node3D" parent="."]
+
+[node name="GrassSpawner1" type="Node3D" parent="GrassSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.04058, 0, 45.842377)
+script = ExtResource("8_a4ypy")
+tree_scene = ExtResource("6_0e4mo")
+spawns_per_frame = 10
+num_trees = 75
+group_chance = 0.5
+group_radius = 3
+trees_per_group = 12
+min_size = 0.5
+max_size = 1.4
+
+[node name="Area3D" type="Area3D" parent="GrassSpawner/GrassSpawner1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GrassSpawner/GrassSpawner1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.989529, 0.24072266, 28.9747)
+shape = SubResource("BoxShape3D_10hrp")
+
+[node name="GrassSpawner2" type="Node3D" parent="GrassSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.351738, 0, 45.842377)
+script = ExtResource("8_a4ypy")
+tree_scene = ExtResource("6_0e4mo")
+spawns_per_frame = 10
+num_trees = 75
+group_chance = 0.5
+group_radius = 3
+trees_per_group = 12
+min_size = 0.4
+max_size = 1.4
+
+[node name="Area3D" type="Area3D" parent="GrassSpawner/GrassSpawner2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GrassSpawner/GrassSpawner2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.662342, 0.24072266, 28.9747)
+shape = SubResource("BoxShape3D_0e4mo")
+
 [node name="Trees" type="Node3D" parent="."]
+visible = false
 
 [node name="SpookyTree1" parent="Trees" instance=ExtResource("9_rlijm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.3967, 0, 109.85)

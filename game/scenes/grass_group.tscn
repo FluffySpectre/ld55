@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqujxnunjoxij"]
+
+[ext_resource type="PackedScene" uid="uid://cixxh7ewyotvc" path="res://scenes/grass.tscn" id="1_auw2a"]
+
+[node name="GrassGroup" type="Node3D"]
+
+[node name="Grass" parent="." instance=ExtResource("1_auw2a")]
+
+[node name="Grass2" parent="." instance=ExtResource("1_auw2a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1753974, 0, -2.1614442)
+
+[node name="Grass3" parent="." instance=ExtResource("1_auw2a")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -1.4679081, 0, -2.1552486)
+
+[node name="Grass4" parent="." instance=ExtResource("1_auw2a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.422447, 0, -0.5479549)
+
+[node name="Grass5" parent="." instance=ExtResource("1_auw2a")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0.4938178, 0, 2.0916882)
+
+[node name="Grass6" parent="." instance=ExtResource("1_auw2a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3503158, 0, 1.2334465)
+
+[node name="Grass7" parent="." instance=ExtResource("1_auw2a")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -1.5453618, 0, 1.2470787)
+
+[node name="Grass8" parent="." instance=ExtResource("1_auw2a")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.70124507, 0, -0.5479549)
+
+[node name="Grass9" parent="." instance=ExtResource("1_auw2a")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.37680352, 0, -0.71511936)
+
+[node name="Grass10" parent="." instance=ExtResource("1_auw2a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30377138, 0, -1.073012)
+
+[node name="Grass11" parent="." instance=ExtResource("1_auw2a")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.98777604, 0, -0.04472518)
+
+[node name="Grass12" parent="." instance=ExtResource("1_auw2a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.70124507, 0, 0.5135664)
+
+[node name="Grass13" parent="." instance=ExtResource("1_auw2a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.72959304, 0, -1.7462407)
+
+[node name="Grass14" parent="." instance=ExtResource("1_auw2a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.70124507, 0, -1.1355592)
+
+[node name="Grass15" parent="." instance=ExtResource("1_auw2a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.89600885, 0, -0.5479549)

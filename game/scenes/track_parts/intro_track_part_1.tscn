@@ -101,7 +101,7 @@ size = Vector3(50, 2, 10)
 
 [node name="IntroTrackPart1" instance=ExtResource("1_hxhd6")]
 
-[node name="StreetLamp" parent="." index="7"]
+[node name="StreetLamp" parent="." index="8"]
 transform = Transform3D(-0.08246051, -0.34306014, 0.93568695, 0.27823916, 0.8936256, 0.3521595, -0.9569656, 0.28938398, 0.021763943, -14.579, 0.21, 75)
 
 [node name="SpotLight3D" parent="StreetLamp" index="3"]

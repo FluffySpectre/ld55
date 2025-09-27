@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cixxh7ewyotvc"]
+
+[ext_resource type="Texture2D" uid="uid://jblwy6r41f6e" path="res://textures/grass.png" id="1_e1kak"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e1kak"]
+transparency = 1
+depth_draw_mode = 1
+albedo_color = Color(0.72557604, 0.556276, 0, 1)
+albedo_texture = ExtResource("1_e1kak")
+metallic = 0.56
+roughness = 0.32
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 2
+billboard_keep_scale = true
+distance_fade_min_distance = 10.0
+distance_fade_max_distance = 40.8
+stencil_flags = 2
+
+[node name="Grass" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1.2884756, 0)
+material_override = SubResource("StandardMaterial3D_e1kak")
+billboard = 2
+double_sided = false
+texture_filter = 0
+texture = ExtResource("1_e1kak")

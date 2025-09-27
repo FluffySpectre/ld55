@@ -8,4 +8,5 @@ albedo_color = Color(0.218789, 0.12579, 0.0149949, 1)
 [node name="spooky_tree_1" instance=ExtResource("1_jpioc")]
 
 [node name="tree" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -3, 0, 1, -1.3113416e-07, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_4nw0t")
