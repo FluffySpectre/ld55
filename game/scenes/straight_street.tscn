@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cfl5p4wqyp35w" path="res://scripts/base_track_part.gd" id="1_pfhu2"]
 [ext_resource type="Script" uid="uid://xalfxxnjwjml" path="res://scripts/spawner.gd" id="2_b4fxe"]
 [ext_resource type="Texture2D" uid="uid://blj021ji4ardo" path="res://textures/street_sidelines.png" id="2_n2rpe"]
+[ext_resource type="Material" uid="uid://ch8qvjt384eim" path="res://materials/dirt.tres" id="4_n142s"]
 [ext_resource type="PackedScene" uid="uid://kal68on760kc" path="res://scenes/obscurus.tscn" id="5_osjkm"]
 [ext_resource type="PackedScene" uid="uid://bxoaf0w42s6rh" path="res://scenes/ritual_pickup_1.tscn" id="6_3l01b"]
 [ext_resource type="PackedScene" uid="uid://dfyv2qv2siijh" path="res://scenes/sign.tscn" id="6_qs4op"]
@@ -29,9 +30,6 @@ texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_gpxh3"]
 size = Vector2(2, 10)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r7jc4"]
-albedo_color = Color(0.152941, 0.0901961, 0.00392157, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_t6pxs"]
 size = Vector2(500, 150)
@@ -162,7 +160,7 @@ mesh = SubResource("PlaneMesh_gpxh3")
 
 [node name="Plane" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.01, 74.311)
-material_override = SubResource("StandardMaterial3D_r7jc4")
+material_override = ExtResource("4_n142s")
 mesh = SubResource("PlaneMesh_t6pxs")
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
