@@ -1,10 +1,10 @@
-[gd_scene load_steps=43 format=3 uid="uid://dap5ikl03t5t4"]
+[gd_scene load_steps=42 format=3 uid="uid://dap5ikl03t5t4"]
 
 [ext_resource type="PackedScene" uid="uid://5v37hlxphs3y" path="res://scenes/eyes_enemy.tscn" id="1_3l01b"]
-[ext_resource type="Texture2D" uid="uid://dvg4jvbn8k6kl" path="res://textures/street.png" id="1_llngd"]
 [ext_resource type="Script" uid="uid://cfl5p4wqyp35w" path="res://scripts/base_track_part.gd" id="1_pfhu2"]
 [ext_resource type="Script" uid="uid://xalfxxnjwjml" path="res://scripts/spawner.gd" id="2_b4fxe"]
 [ext_resource type="Texture2D" uid="uid://blj021ji4ardo" path="res://textures/street_sidelines.png" id="2_n2rpe"]
+[ext_resource type="Material" uid="uid://dfi6gdx8ryy3i" path="res://materials/track_base.tres" id="2_n142s"]
 [ext_resource type="Material" uid="uid://ch8qvjt384eim" path="res://materials/dirt.tres" id="4_n142s"]
 [ext_resource type="PackedScene" uid="uid://kal68on760kc" path="res://scenes/obscurus.tscn" id="5_osjkm"]
 [ext_resource type="PackedScene" uid="uid://bxoaf0w42s6rh" path="res://scenes/ritual_pickup_1.tscn" id="6_3l01b"]
@@ -19,9 +19,6 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r3ovw"]
 size = Vector3(30.0463, 1, 150.715)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ft1m6"]
-albedo_texture = ExtResource("1_llngd")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gs6mq"]
 transparency = 1
@@ -154,7 +151,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 149
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(15, -5.2318e-15, 5.2318e-15, 5.2318e-15, 15, -5.2318e-15, -5.2318e-15, 5.2318e-15, 15, 3.33064e-11, 3.33064e-11, 74.3558)
-material_override = SubResource("StandardMaterial3D_ft1m6")
+material_override = ExtResource("2_n142s")
 material_overlay = SubResource("StandardMaterial3D_gs6mq")
 mesh = SubResource("PlaneMesh_gpxh3")
 

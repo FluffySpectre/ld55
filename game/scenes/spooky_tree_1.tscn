@@ -1,12 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://molrk3pyx2am"]
 
 [ext_resource type="PackedScene" uid="uid://oclw25afc8o" path="res://models/spooky_tree_1.glb" id="1_jpioc"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4nw0t"]
-albedo_color = Color(0.218789, 0.12579, 0.0149949, 1)
+[ext_resource type="Material" uid="uid://cc3p80shuh8j7" path="res://materials/spooky_tree_1.tres" id="2_8u4is"]
 
 [node name="spooky_tree_1" instance=ExtResource("1_jpioc")]
 
 [node name="tree" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -3, 0, 1, -1.3113416e-07, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_4nw0t")
+material_override = ExtResource("2_8u4is")
