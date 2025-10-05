@@ -312,27 +312,6 @@ transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-
 [node name="StreetLamp2" parent="." instance=ExtResource("6_u5635")]
 transform = Transform3D(-4.37114e-08, -3.48787e-16, -1, 3.48787e-16, 1, -3.48787e-16, 1, -3.48787e-16, -4.37114e-08, 14.5889, 0.21, 75)
 
-[node name="Trees" type="Node3D" parent="."]
-visible = false
-
-[node name="SpookyTree1" parent="Trees" instance=ExtResource("7_o86ua")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.3967, 0, 109.85)
-
-[node name="SpookyTree2" parent="Trees" instance=ExtResource("7_o86ua")]
-transform = Transform3D(0.152091, -3.09202e-16, -0.734417, 2.6159e-16, 0.75, -2.6159e-16, 0.734417, -2.03108e-16, 0.152091, -32.3967, 0, 90.4556)
-
-[node name="SpookyTree3" parent="Trees" instance=ExtResource("7_o86ua")]
-transform = Transform3D(-0.519519, -1.16823e-16, -0.854459, 3.48787e-16, 1, -3.48787e-16, 0.854459, -4.79225e-16, -0.519519, 37.8315, 0, 90.4556)
-
-[node name="SpookyTree4" parent="Trees" instance=ExtResource("7_o86ua")]
-transform = Transform3D(0.6903, -7.05255e-16, -1.33172, 5.2318e-16, 1.5, -5.2318e-16, 1.33172, -2.2372e-16, 0.6903, 27.0938, -0.192451, 46.2006)
-
-[node name="SpookyTree5" parent="Trees" instance=ExtResource("7_o86ua")]
-transform = Transform3D(0.576432, 8.39574e-17, 0.817145, 3.48787e-16, 1, -3.48787e-16, -0.817145, 4.86061e-16, 0.576432, -23.8174, 0, 31.2852)
-
-[node name="SpookyTree6" parent="Trees" instance=ExtResource("7_o86ua")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.4276, 0, 140.155)
-
 [node name="FogVolumeShader" type="FogVolume" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.208727, 1.00751, 74.7652)
 size = Vector3(500, 2, 150)

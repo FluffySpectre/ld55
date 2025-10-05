@@ -39,7 +39,6 @@ sky = SubResource("Sky_legu6")
 ambient_light_color = Color(0.54902, 0.654902, 0.964706, 1)
 tonemap_mode = 3
 tonemap_exposure = 1.96
-ssao_enabled = true
 glow_enabled = true
 fog_light_color = Color(1, 0.152941, 0.137255, 1)
 fog_height = 1.0
